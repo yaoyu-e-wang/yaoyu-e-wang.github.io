@@ -1,0 +1,10 @@
+[submodule "themes/ananke"]
+	path = themes/ananke
+	url = https://github.com/budparr/gohugo-theme-ananke.git
+[submodule "public"]
+	path = public
+	url = https://github.com/yaoyu-e-wang/yaoyu-e-wang.github.io
+	branch = master
+[submodule "themes/ramium"]
+	path = themes/ramium
+	url = https://github.com/rafed/ramium.git
