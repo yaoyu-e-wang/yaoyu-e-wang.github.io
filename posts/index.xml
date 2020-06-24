@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Ramium</title>
+    <link>https://rafed.github.io/ramium/posts/</link>
+    <description>Recent content in Posts on Ramium</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 23 Jun 2020 22:54:15 -0400</lastBuildDate>
+    
+	<atom:link href="https://rafed.github.io/ramium/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>My First Post</title>
+      <link>https://rafed.github.io/ramium/posts/my-first-post/</link>
+      <pubDate>Tue, 23 Jun 2020 22:54:15 -0400</pubDate>
+      
+      <guid>https://rafed.github.io/ramium/posts/my-first-post/</guid>
+      <description>This is the initial post</description>
+    </item>
+    
+  </channel>
+</rss>
