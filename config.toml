@@ -1,0 +1,4 @@
+baseURL = "http://yaoyu-e-wang.github.io/"
+languageCode = "en-us"
+title = "Lingo's Notes"
+theme="ramium"
