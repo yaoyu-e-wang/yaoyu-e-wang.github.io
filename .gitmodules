@@ -3,7 +3,7 @@
 	url = https://github.com/budparr/gohugo-theme-ananke.git
 [submodule "public"]
 	path = public
-	url = https://github.com/yaoyu-e-wang/yaoyu-e-wang.github.io
+	url = https://github.com/yaoyu-e-wang/yaoyu-e-wang.github.io.git
 	branch = master
 [submodule "themes/ramium"]
 	path = themes/ramium
