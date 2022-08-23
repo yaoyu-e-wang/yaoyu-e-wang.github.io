@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><title>
+    Basic RNASeq DGE Analysis | 
+    
+    Ramium</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.
+    ">
+
+
+<meta property="og:title" content="Basic RNASeq DGE Analysis" />
+<meta property="og:description" content="Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yaoyu-e-wang.github.io/posts/rnaseq_dge/" />
+<meta property="article:published_time" content="2020-05-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-01T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Basic RNASeq DGE Analysis"/>
+<meta name="twitter:description" content="Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution."/>
+
+<meta itemprop="name" content="Basic RNASeq DGE Analysis">
+<meta itemprop="description" content="Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.">
+<meta itemprop="datePublished" content="2020-05-01T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-05-01T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="1397">
+
+
+
+<meta itemprop="keywords" content="R,RNASeq,DGE,tutorial," />
+<link rel="canonical" href="https://yaoyu-e-wang.github.io/posts/rnaseq_dge/" />
+
+<link rel="icon" type="image/png" href="https://yaoyu-e-wang.github.io/image/favicon.ico">
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bulma.min.css">
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'analytics-code', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script src=/js/ramium.js></script>
+<link rel="stylesheet" href=/css/ramium.css>
+
+
+
+
+
+</head>
+
+<body><nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href=/>
+      
+      <strong>Ramium </strong>
+      
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      
+      
+      <a class="navbar-item" href="/">Home</a>
+      
+      
+      
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">This Blog</a>
+        <div class="navbar-dropdown">
+          
+          <a class="navbar-item" href="/tags/">All Tags</a>
+          
+          <a class="navbar-item" href="/sections/">All Sections</a>
+          
+          <a class="navbar-item" href="/posts/">All Posts</a>
+          
+        </div>
+      </div>
+      
+      
+      
+      <a class="navbar-item" href="/authorr/">Author</a>
+      
+      
+    </div>
+
+    <div class="navbar-end">
+      
+
+      
+      <div class="navbar-item">
+        <form id="cse-search-box-form-id" onsubmit="return executeQuery();" role="search">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input id="cse-search-input-box-id" size=15 class="input" type="text" autocomplete="off"
+                placeholder="&#xf1a0; Google search" style="font-family:Arial, FontAwesome">
+            </div>
+
+            <div class="control">
+              <button type="submit" class="button is-black">
+                <i class="fa fa-search"></i>
+                </a>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</nav><div class="columns is-centered">
+        <div id="page-body" class="column is-7">
+
+<div class="content blog">
+    <h1>Basic RNASeq DGE Analysis</h1>
+
+    <div id="infobar" class="level is-mobile">
+        <div class="level-left">
+            
+            <div class="level-item">
+                <p class="subtitle info date">May 1, 2020
+                </p>
+            </div>
+            
+
+            <div class="level-item">
+                <p class="subtitle info">
+                    9 mins read
+                </p>
+            </div>
+        </div>
+        <div class="level-right is-hidden-touch">
+            <div class="tags">
+                
+                <a class="tag is-dark is-rounded" href="/tags/r">R</a>
+                
+                <a class="tag is-dark is-rounded" href="/tags/rnaseq">RNASeq</a>
+                
+                <a class="tag is-dark is-rounded" href="/tags/dge">DGE</a>
+                
+                <a class="tag is-dark is-rounded" href="/tags/tutorial">Tutorial</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="tags is-hidden-desktop">
+        
+        <a class="tag is-dark is-rounded" href="/tags/r">R</a>
+        
+        <a class="tag is-dark is-rounded" href="/tags/rnaseq">R n a seq</a>
+        
+        <a class="tag is-dark is-rounded" href="/tags/dge">D g e</a>
+        
+        <a class="tag is-dark is-rounded" href="/tags/tutorial">Tutorial</a>
+        
+    </div>
+
+    <div class="blog-text">
+        
+
+        <h1 id="begin-rna-seq-dge-analysis">Begin RNA-Seq DGE Analysis</h1>
+<p>We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is
+a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count
+matrix by gene.</p>
+<pre><code># One can set up the path
+# Set working directory to PROJECT_DIR
+setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&quot;)
+# setwd(&quot;~/modules/rnaseq_dge/&quot;)
+load('RNASeq_exploratory.RData') 
+
+
+ls()                       # list all current variables
+
+## [1] &quot;count_data&quot;          &quot;exploratory_results&quot; &quot;groups&quot;
+
+#head(count_data)           # The head(count_data) provides the first 6 row of the 'count_data'
+#head(groups)           # The head(count_data) provides the first 6 row of the 'count_data'
+</code></pre>
+<h2 id="principle-component-analysis">Principle component analysis</h2>
+<p>Once the matrix is loaded, we can perform principle component analysis
+to visualize sample distribution.<br>
+We first group samples into two vectors/variables: CONTROL and TREATED.</p>
+<p>Calculate PCA use ‘prcomp’ command. Since prcomp compute PCA by the
+rows, we will need to tranpose the count matrix such that the samples
+are represented by rows and genes by the columns.</p>
+<pre><code>CONTROL=groups$control$sample
+TREATED=groups$treated$sample
+
+pca=prcomp(t(count_data))        # compute PCA on transposed count_data
+plot(pca$x[,1], pca$x[,2], xlab='pc1', ylab='pc2')
+points(pca$x[CONTROL,1], pca$x[CONTROL,2],
+       col=&quot;red&quot;, pch=18)
+points(pca$x[TREATED,1], pca$x[TREATED,2],
+       col=&quot;blue&quot;, pch=18)
+</code></pre>
+<p><img src="/images/RNASeq_DGE_files/figure-markdown_strict/unnamed-chunk-1-1.png" alt="PCA"></p>
+<h2 id="hierarchical-clustering">Hierarchical Clustering</h2>
+<p>We first calculate similarity matrix using Euclidean distance. The
+matrix is computed by ‘dist’ function. ‘hclust’ function computes
+hierarhical cluster tree and save it into an variable object ‘hctree’
+that can be ploted by using generic ‘plot’ function.</p>
+<pre><code># compute similarity matrix on the transposed count_data matrix using Euclidean distance
+dist_matrix=dist(t(count_data), method=&quot;euclidean&quot;)
+# compute hierarchical clustering tree and save it into variable called 'hctree'
+hctree=hclust(dist_matrix)
+# plot hctree
+plot(hctree)
+</code></pre>
+<p><img src="/images/RNASeq_DGE_files/figure-markdown_strict/unnamed-chunk-2-1.png" alt=""></p>
+<h2 id="differential-gene-expression">Differential Gene Expression</h2>
+<p>We will use DESeq2 to perform differential gene expression. Since DESeq2
+is a specialized bioconductor package/library, we will need to install
+it before loading in the package to use.</p>
+<p>The following command check if DESeq2 and Bioconductor Manager packages
+have been installed, and install the packages if they have not been
+installed.</p>
+<pre><code># Check for Bioconductor, install it if it is not yet installed
+  if (!requireNamespace('BiocManager', quietly = TRUE))
+    install.packages('BiocManager')
+
+# Check for DESeq2, install it if it is not yet installed
+  if(!requireNamespace('DESeq2', quietly = TRUE))
+    BiocManager::install('DESeq2', update=FALSE)
+</code></pre>
+<p>Once the packages are installed, we can call ‘library’ function to load
+‘DESeq2’ library to use its functions.</p>
+<p>We can then use the functions within DESeq2 to perform DGE analysis</p>
+<p>First, we define which sampels are control group and which samples are
+treated group The samples are ordered as YEW1_Control, YEW2_Control,
+YEW3_Control, YEW1_Treated, YEW2_Treated, YEW3_Treated, so we can
+use the following to define conditions of each sample</p>
+<pre><code>condition &lt;- factor(c(&quot;control&quot;, &quot;control&quot;, &quot;control&quot;,
+                      &quot;treated&quot;, &quot;treated&quot;, &quot;treated&quot;))
+# alternatively, since the count_data is ordered in the same way as groups variable
+# we can declare condition from groups:
+# 
+# condition &lt;- factor(c(as.character(groups$control$group), as.character(groups$treated$group)))
+#
+</code></pre>
+<p>We then use the ‘condition’ to perform contrast on the count_data.
+Noted that count_data is still raw count matrix, D ESeq2 performs
+normalization and DGE together in one function.</p>
+<p>If you want to know how to use a specific function in R, just type
+‘?function’ in Console. For example type:</p>
+<blockquote>
+<p>?DESeqDataSetFromMatrix</p>
+</blockquote>
+<pre><code># Returns DGE gene list results in data frame format
+dge_results=results(dds, contrast=c(&quot;condition&quot;, &quot;treated&quot;, &quot;control&quot;))
+
+# make sure there is no missing values
+dge_results=na.omit(dge_results)  
+
+# filter for results with padj&lt;0.001 and absolute log2FoldChange&gt;2
+filtered_results=subset(dge_results, padj&lt;0.001 &amp; abs(log2FoldChange)&gt;2)
+
+# Obtain normalized count values
+norm_count &lt;- counts(dds, normalized = T)
+
+# output filtered_results
+filtered_results
+
+## log2 fold change (MLE): condition treated vs control 
+## Wald test p-value: condition treated vs control 
+## DataFrame with 30 rows and 6 columns
+##                       baseMean    log2FoldChange             lfcSE
+##                      &lt;numeric&gt;         &lt;numeric&gt;         &lt;numeric&gt;
+## RP1-137D17.1  29.8839883584897  2.18080051514365 0.525441950834757
+## AP000344.4      73.14903147842  2.12391047870749 0.333193245882354
+## CTB-134H23.2  16.4631893142531 -4.06989298788851 0.902046395861882
+## C12orf40      23.5935805512499 -2.69347617414478 0.622311943521575
+## RP11-395P13.1 25.2555673433736  2.25522540567288  0.55251100155043
+## ...                        ...               ...               ...
+## RP11-413E6.7  62.9678012294187 -3.57669120749119 0.409461162253874
+## CTD-2144E22.8 79.2703453044705 -2.48457438278124 0.339133969829025
+## RP11-747D18.1  1062.4407047496  2.01064482797773  0.12042205283902
+## RP11-864I4.4  25.0810724471142  2.31146493910142  0.55115609828326
+## MSMP          44.7309465700437  2.16345289754786 0.400073627551603
+##                            stat               pvalue                 padj
+##                       &lt;numeric&gt;            &lt;numeric&gt;            &lt;numeric&gt;
+## RP1-137D17.1   4.15041188028299 3.31877521851314e-05  0.00026025079086948
+## AP000344.4      6.3744103608193 1.83668201976646e-10 3.60334193573427e-09
+## CTB-134H23.2  -4.51184440906705 6.42663252483387e-06   5.821921826631e-05
+## C12orf40      -4.32817689293055 1.50348695874195e-05  0.00012712159813363
+## RP11-395P13.1  4.08177466031332 4.46931192753386e-05 0.000338444791804363
+## ...                         ...                  ...                  ...
+## RP11-413E6.7  -8.73511711783197 2.43403807314299e-18 1.20260893386853e-16
+## CTD-2144E22.8 -7.32623270984574 2.36712611316642e-13 6.83284951698415e-12
+## RP11-747D18.1  16.6966496632104 1.38633818987756e-62  7.2031449110832e-60
+## RP11-864I4.4   4.19384807008606 2.74261710788168e-05 0.000220325854147882
+## MSMP            5.4076368662136 6.38617383047045e-08 8.34139160148505e-07
+</code></pre>
+<p>We can compute PCA on normalized matrix again</p>
+<pre><code>CONTROL=groups$control$sample
+TREATED=groups$treated$sample
+
+pca=prcomp(t(norm_count))        # compute PCA on transposed normalized_data
+plot(pca$x[,1], pca$x[,2], xlab='pc1', ylab='pc2')
+points(pca$x[CONTROL,1], pca$x[CONTROL,2],
+       col=&quot;red&quot;, pch=18)
+points(pca$x[TREATED,1], pca$x[TREATED,2],
+       col=&quot;blue&quot;, pch=18)
+</code></pre>
+<p><img src="/images/RNASeq_DGE_files/figure-markdown_strict/norm_pca-1.png" alt=""></p>
+<pre><code># compute similarity matrix on the transposed count_data matrix using Euclidean distance
+dist_matrix=dist(t(norm_count), method=&quot;euclidean&quot;)
+# compute hierarchical clustering tree and save it into variable called 'hctree'
+hctree=hclust(dist_matrix)
+# plot hctree
+plot(hctree)
+</code></pre>
+<p><img src="/images/RNASeq_DGE_files/figure-markdown_strict/norm_pca-2.png" alt=""></p>
+<h2 id="heatmap">Heatmap</h2>
+<p>Generate heatmap using filtered dge results ‘filtered_results’. The
+heatmap function is core function, but we want to have better coloring,
+so we install and load gplots.</p>
+<pre><code># Check and install &quot;gplots&quot; if not installed
+if(!requireNamespace('gplots', quietly = TRUE))
+  install.packages('gplots')
+library(gplots)
+
+## Warning: package 'gplots' was built under R version 3.5.2
+
+## 
+## Attaching package: 'gplots'
+
+## The following object is masked from 'package:IRanges':
+## 
+##     space
+
+## The following object is masked from 'package:S4Vectors':
+## 
+##     space
+
+## The following object is masked from 'package:stats':
+## 
+##     lowess
+
+DGE_matrix=norm_count[rownames(filtered_results),]
+heatmap(DGE_matrix,col=colorpanel(50, 'blue', 'white', 'red'),
+        Rowv=TRUE, Colv=TRUE)
+</code></pre>
+<p><img src="/images/RNASeq_DGE_files/figure-markdown_strict/heatmap-1.png" alt=""></p>
+<pre><code># call the commmand again to write it into a file.
+png(&quot;heatmap.png&quot;)
+heatmap(DGE_matrix,col=colorpanel(50, 'blue', 'white', 'red'),
+        Rowv=TRUE, Colv=TRUE)
+dev.off()
+
+## quartz_off_screen 
+##                 2
+</code></pre>
+<h2 id="generate-volcano-plot">Generate Volcano Plot</h2>
+<p>Again, we first check for the package ‘EnhancedVolcano’, and install it
+if it is not already installed.</p>
+<p>Load the library and run EnhancedVolcano function to generate volcano
+plot.</p>
+<pre><code>library(EnhancedVolcano)
+
+## Warning: package 'EnhancedVolcano' was built under R version 3.5.2
+
+## Loading required package: ggplot2
+
+## Loading required package: ggrepel
+
+## Warning: package 'ggrepel' was built under R version 3.5.2
+
+volcano_plot&lt;-EnhancedVolcano(dge_results,
+    lab = rownames(dge_results),
+    x = 'log2FoldChange',
+    y = 'padj',
+    xlim = c(-5, 8),
+    ylim = c(0, 20),
+    #pCutoff = 10e-16,
+    FCcutoff = 1.5
+)
+
+volcano_plot
+
+## Warning: Removed 235 rows containing missing values (geom_point).
+
+## Warning: Removed 11 rows containing missing values (geom_text).
+</code></pre>
+<p><img src="/images/RNASeq_DGE_files/figure-markdown_strict/volcano-1.png" alt=""></p>
+<h2 id="gene-set-erichment-analysis">Gene Set Erichment Analysis</h2>
+<p>There are many different packages retreiving MSigDB data to perform GSEA
+analysis. Most of the packages perform these tasks in very similar ways
+with different application programming interface (API). We will use the
+following packages:</p>
+<ul>
+<li>migdbr
+(<a href="https://github.com/igordot/msigdbr" class="uri"><a href="https://github.com/igordot/msigdbr">https://github.com/igordot/msigdbr</a></a>)</li>
+<li>fgsea
+(<a href="https://bioconductor.org/packages/release/bioc/html/fgsea.html" class="uri"><a href="https://bioconductor.org/packages/release/bioc/html/fgsea.html">https://bioconductor.org/packages/release/bioc/html/fgsea.html</a></a>)</li>
+</ul>
+<p>First, we install <strong>misgdbr</strong></p>
+<pre><code># install misgdbr from CRAN
+if(!require(msigdbr)) install.packages(&quot;msigdbr&quot;)
+
+## Loading required package: msigdbr
+
+library(msigdbr)
+</code></pre>
+<p>The <strong>misgdbr</strong> retrieve data from MSigDB database hosted at Broad
+Institute
+(<a href="https://www.gsea-msigdb.org/gsea/msigdb/index.jsp" class="uri"><a href="https://www.gsea-msigdb.org/gsea/msigdb/index.jsp">https://www.gsea-msigdb.org/gsea/msigdb/index.jsp</a></a>).
+The function <strong>misgdbr</strong> runs as the following:</p>
+<p>####Usage msigdbr(species = “Homo sapiens”, category = NULL,
+subcategory = NULL)</p>
+<p>####Arguments |Parameters|Description| |:—:|—| |<strong>species</strong>|species
+name, such as Homo sapiens, Mus musculus, etc.|
+|<strong>category</strong>|collection, such as H, C1, C2, C3, C4, C5, C6, C7.|
+|<strong>subcategory</strong>|sub-collection, such as CGP, MIR, BP, etc.|</p>
+<pre><code>m_df = msigdbr(species = &quot;Homo sapiens&quot;, category = &quot;C2&quot;, subcategory = &quot;CP:KEGG&quot;)
+# reformat the data frame into list for fgsea input
+m_list = m_df %&gt;% split(x = .$gene_symbol, f = .$gs_name) 
+
+
+# install fgsea
+if(!require(fgsea)) BiocManager::install(&quot;fgsea&quot;)
+
+## Loading required package: fgsea
+
+## Loading required package: Rcpp
+
+## Warning: package 'Rcpp' was built under R version 3.5.2
+
+library(fgsea)
+
+# reformat
+gene_stat=dge_results$stat
+names(gene_stat)=rownames(dge_results)
+# sort genes
+gene_stat=gene_stat[order(gene_stat)]
+
+fgsea_results=fgsea(pathways=m_list, gene_stat, nperm=50, minSize=20)
+fgsea_results=fgsea_results[order(fgsea_results$pval),]
+head(fgsea_results)
+
+##                                        pathway       pval padj         ES
+## 1:    KEGG_ANTIGEN_PROCESSING_AND_PRESENTATION 0.03703704    1 -0.4975169
+## 2:                          KEGG_AXON_GUIDANCE 0.03846154    1 -0.4746919
+## 3:  KEGG_PHOSPHATIDYLINOSITOL_SIGNALING_SYSTEM 0.07692308    1 -0.4796340
+## 4: KEGG_CYTOKINE_CYTOKINE_RECEPTOR_INTERACTION 0.11428571    1  0.3375730
+## 5:                             KEGG_CELL_CYCLE 0.12903226    1  0.4658802
+## 6:                 KEGG_SMALL_CELL_LUNG_CANCER 0.15384615    1 -0.4090299
+##          NES nMoreExtreme size                                 leadingEdge
+## 1: -1.487950            0   24      PDIA3,KLRC4,HLA-DOA,RFX5,KIR3DL1,IFNA4
+## 2: -1.430389            0   25        CDK5,EPHA5,SEMA3E,PPP3R2,EFNA4,UNC5D
+## 3: -1.503249            1   27 INPP5E,CALML6,CDS1,INPP5A,PLCE1,PIK3C2G,...
+## 4:  1.271000            3   84  IL20,CCL28,TNFRSF9,ACVR2B,CXCL6,TNFSF4,...
+## 5:  1.349746            3   37    CCNB3,SMAD4,RAD21,ZBTB17,MCM2,CDKN1C,...
+## 6: -1.242841            3   26      MAX,TRAF2,COL4A1,LAMA5,PIAS1,ITGB1,...
+</code></pre>
+<p>Now write out the GSEA results</p>
+<pre><code>library(writexl)    # load  library to write excel file
+
+## Warning: package 'writexl' was built under R version 3.5.2
+
+# Current directory is Data directory, change to output
+if(!dir.exists('outputs')){
+  dir.create('outputs')
+}
+
+# using ggplots's ggsave function to save the plot
+print(&quot;Save the volcano plot in ggplot format&quot;)
+
+## [1] &quot;Save the volcano plot in ggplot format&quot;
+
+ggsave(&quot;outputs/volcano.png&quot;, plot=volcano_plot)
+
+## Saving 7 x 5 in image
+
+## Warning: Removed 235 rows containing missing values (geom_point).
+
+## Warning: Removed 11 rows containing missing values (geom_text).
+
+print('Write the final DGE data to Excel file.')
+
+## [1] &quot;Write the final DGE data to Excel file.&quot;
+
+# start a new excel file and write final results 
+write_xlsx(as.data.frame(dge_results), &quot;outputs/dge_results.xlsx&quot;, col_names=TRUE)
+
+
+print('Write the final GSEA data to Excel file.')
+
+## [1] &quot;Write the final GSEA data to Excel file.&quot;
+
+# start a new excel file and write final results 
+write_xlsx(fgsea_results, &quot;outputs/gsea_results.xlsx&quot;, col_names=TRUE)
+</code></pre>
+
+    </div>
+</div><div id="social-media-share" class="has-text-centered">
+	<p><i>Sharing is caring!</i></p>
+	<br>
+	
+	<div class="share-buttons">
+	    <a  href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2frnaseq_dge%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Facebook. Opens in a new window.">
+	        <img src=/img/icons/45px/facebook.png>
+	    </a>
+
+	    <a  href="https://twitter.com/intent/tweet?text=Basic%20RNASeq%20DGE%20Analysis&url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2frnaseq_dge%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Twitter. Opens in a new window." >
+	        <img src=/img/icons/45px/twitter.png>
+	    </a>
+
+		<a  href="http://www.reddit.com/submit?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2frnaseq_dge%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Reddit. Opens in a new window." >
+	        <img src=/img/icons/45px/reddit.png>
+	    </a>
+
+	    <a  href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2frnaseq_dge%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Pinterest. Opens in a new window." >
+	        <img src=/img/icons/45px/pinterest.png>
+	    </a>
+
+	    <a  href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2frnaseq_dge%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Tumblr. Opens in a new window." >
+	        <img src=/img/icons/45px/tumblr.png>
+	    </a>
+
+		<a  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2frnaseq_dge%2f
+			&title=Basic%20RNASeq%20DGE%20Analysis&summary=Begin%20RNA-Seq%20DGE%20Analysis%20We%20first%20load%20the%20RNA-Seq%20count%20matrix%20from%20%e2%80%98RNASeqData.Rdata%e2%80%99.%20This%20is%20a%20simple%203%20vs%203%20RNA-Seq%20experiment%20with%20Control%20vs%20Experiment%20in%20count%20matrix%20by%20gene.%0a%23%20One%20can%20set%20up%20the%20path%20%23%20Set%20working%20directory%20to%20PROJECT_DIR%20setwd%28%26quot%3b~%2fDropbox%20%28Harvard%20University%29%2fqBRC-Share%2fPresentations%2fQBRC-Workshops%2fIntro%20to%20RNASeq%20Analysis%2f2020-0424-IID%2fRNASeq_Exploratory%26quot%3b%29%20%23%20setwd%28%26quot%3b~%2fmodules%2frnaseq_dge%2f%26quot%3b%29%20load%28%27RNASeq_exploratory.RData%27%29%20ls%28%29%20%23%20list%20all%20current%20variables%20%23%23%20%5b1%5d%20%26quot%3bcount_data%26quot%3b%20%26quot%3bexploratory_results%26quot%3b%20%26quot%3bgroups%26quot%3b%20%23head%28count_data%29%20%23%20The%20head%28count_data%29%20provides%20the%20first%206%20row%20of%20the%20%27count_data%27%20%23head%28groups%29%20%23%20The%20head%28count_data%29%20provides%20the%20first%206%20row%20of%20the%20%27count_data%27%20%20Principle%20component%20analysis%20Once%20the%20matrix%20is%20loaded%2c%20we%20can%20perform%20principle%20component%20analysis%20to%20visualize%20sample%20distribution.&source=rafed123.github.io"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on LinkedIn. Opens in a new window." >
+	        <img src=/img/icons/45px/linkedin.png>
+	    </a>
+
+	    <a  href="mailto:?subject=Basic%20RNASeq%20DGE%20Analysis&amp;body=Check out this site https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2frnaseq_dge%2f"
+	        title="Share via Email. Opens in a new window." >
+	        <img src=/img/icons/45px/mail.png>
+	    </a>
+	</div>
+</div>
+
+
+<br>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    (function () {
+        
+        
+        if (window.location.hostname == "localhost")
+            return;
+
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'disqus-code';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </div>
+    </div>
+<script async src="https://cse.google.com/cse.js?cx=google-search-code"></script>
+<gcse:searchresults-only></gcse:searchresults-only>
+
+
+<footer class="footer has-background-dark">
+    <div class="content has-text-centered has-text-white">
+        <p>
+            © 2020 Ramium. Powered by
+            <a class="has-text-light" href="https://github.com/gohugoio/hugo" target="_blank">
+            Hugo</a>. Theme
+            <a class="has-text-light" href="https://github.com/rafed123/ramium/" target="_blank">
+                Ramium.
+            </a>
+        </p>
+    </div>
+</footer>
+</body>
+
+</html>

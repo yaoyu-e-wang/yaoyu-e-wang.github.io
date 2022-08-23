@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><title>
+    ScRNASeq Analysis With Seurat  | 
+    
+    Ramium</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&rsquo;s package manager CRAN.
+# Check if Bioconductor is installed. If not, install if (!requireNamespace(&#34;BiocManager&#34;, quietly = TRUE)) install.packages(&#34;BiocManager&#34;) # Install a necessary package for Seurat BiocManager::install(&#39;multtest&#39;) BiocManager::install(&#39;MAST&#39;) # Install Seurat install.packages(&#39;Seurat&#39;) Updating HTML index of packages in &#39;.
+    ">
+
+
+<meta property="og:title" content="scRNASeq analysis with Seurat " />
+<meta property="og:description" content="scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&rsquo;s package manager CRAN.
+# Check if Bioconductor is installed. If not, install if (!requireNamespace(&#34;BiocManager&#34;, quietly = TRUE)) install.packages(&#34;BiocManager&#34;) # Install a necessary package for Seurat BiocManager::install(&#39;multtest&#39;) BiocManager::install(&#39;MAST&#39;) # Install Seurat install.packages(&#39;Seurat&#39;) Updating HTML index of packages in &#39;." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/" />
+<meta property="article:published_time" content="2020-05-02T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-05-02T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="scRNASeq analysis with Seurat "/>
+<meta name="twitter:description" content="scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&rsquo;s package manager CRAN.
+# Check if Bioconductor is installed. If not, install if (!requireNamespace(&#34;BiocManager&#34;, quietly = TRUE)) install.packages(&#34;BiocManager&#34;) # Install a necessary package for Seurat BiocManager::install(&#39;multtest&#39;) BiocManager::install(&#39;MAST&#39;) # Install Seurat install.packages(&#39;Seurat&#39;) Updating HTML index of packages in &#39;."/>
+
+<meta itemprop="name" content="scRNASeq analysis with Seurat ">
+<meta itemprop="description" content="scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&rsquo;s package manager CRAN.
+# Check if Bioconductor is installed. If not, install if (!requireNamespace(&#34;BiocManager&#34;, quietly = TRUE)) install.packages(&#34;BiocManager&#34;) # Install a necessary package for Seurat BiocManager::install(&#39;multtest&#39;) BiocManager::install(&#39;MAST&#39;) # Install Seurat install.packages(&#39;Seurat&#39;) Updating HTML index of packages in &#39;.">
+<meta itemprop="datePublished" content="2020-05-02T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-05-02T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="10285">
+
+
+
+<meta itemprop="keywords" content="R,scRNASeq,tutorial," />
+<link rel="canonical" href="https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/" />
+
+<link rel="icon" type="image/png" href="https://yaoyu-e-wang.github.io/image/favicon.ico">
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bulma.min.css">
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'analytics-code', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script src=/js/ramium.js></script>
+<link rel="stylesheet" href=/css/ramium.css>
+
+
+
+
+
+</head>
+
+<body><nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href=/>
+      
+      <strong>Ramium </strong>
+      
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      
+      
+      <a class="navbar-item" href="/">Home</a>
+      
+      
+      
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">This Blog</a>
+        <div class="navbar-dropdown">
+          
+          <a class="navbar-item" href="/tags/">All Tags</a>
+          
+          <a class="navbar-item" href="/sections/">All Sections</a>
+          
+          <a class="navbar-item" href="/posts/">All Posts</a>
+          
+        </div>
+      </div>
+      
+      
+      
+      <a class="navbar-item" href="/authorr/">Author</a>
+      
+      
+    </div>
+
+    <div class="navbar-end">
+      
+
+      
+      <div class="navbar-item">
+        <form id="cse-search-box-form-id" onsubmit="return executeQuery();" role="search">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input id="cse-search-input-box-id" size=15 class="input" type="text" autocomplete="off"
+                placeholder="&#xf1a0; Google search" style="font-family:Arial, FontAwesome">
+            </div>
+
+            <div class="control">
+              <button type="submit" class="button is-black">
+                <i class="fa fa-search"></i>
+                </a>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</nav><div class="columns is-centered">
+        <div id="page-body" class="column is-7">
+
+<div class="content blog">
+    <h1>ScRNASeq Analysis With Seurat </h1>
+
+    <div id="infobar" class="level is-mobile">
+        <div class="level-left">
+            
+            <div class="level-item">
+                <p class="subtitle info date">May 2, 2020
+                </p>
+            </div>
+            
+
+            <div class="level-item">
+                <p class="subtitle info">
+                    59 mins read
+                </p>
+            </div>
+        </div>
+        <div class="level-right is-hidden-touch">
+            <div class="tags">
+                
+                <a class="tag is-dark is-rounded" href="/tags/r">R</a>
+                
+                <a class="tag is-dark is-rounded" href="/tags/scrnaseq">ScRNASeq</a>
+                
+                <a class="tag is-dark is-rounded" href="/tags/tutorial">Tutorial</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="tags is-hidden-desktop">
+        
+        <a class="tag is-dark is-rounded" href="/tags/r">R</a>
+        
+        <a class="tag is-dark is-rounded" href="/tags/scrnaseq">Sc r n a seq</a>
+        
+        <a class="tag is-dark is-rounded" href="/tags/tutorial">Tutorial</a>
+        
+    </div>
+
+    <div class="blog-text">
+        
+
+        <h1 id="scrnaseq-analysis-with-seurat-and-other-tools">scRNASeq analysis with Seurat and other tools</h1>
+<h2 id="seurat-install">Seurat install</h2>
+<p>The Seurat package will need to be installed. You can find further instructions for install found <a href="https://satijalab.org/seurat/install.html">here</a>. It is installed via a separate package manager (in R) Bioconductor and R&rsquo;s package manager CRAN.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Check if Bioconductor is installed. If not, install</span>
+<span style="color:#a6e22e">if </span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">requireNamespace</span>(<span style="color:#e6db74">&#34;BiocManager&#34;</span>, quietly <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>))
+    <span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;BiocManager&#34;</span>)
+<span style="color:#75715e"># Install a necessary package for Seurat</span>
+BiocManager<span style="color:#f92672">::</span><span style="color:#a6e22e">install</span>(<span style="color:#e6db74">&#39;multtest&#39;</span>)
+BiocManager<span style="color:#f92672">::</span><span style="color:#a6e22e">install</span>(<span style="color:#e6db74">&#39;MAST&#39;</span>)
+<span style="color:#75715e"># Install Seurat</span>
+<span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#39;Seurat&#39;</span>)
+</code></pre></div><pre><code>Updating HTML index of packages in '.Library'
+
+Making 'packages.html' ...
+ done
+
+Bioconductor version 3.10 (BiocManager 1.30.10), R 3.6.2 (2019-12-12)
+
+Installing package(s) 'BiocVersion', 'multtest'
+
+also installing the dependencies 'BiocGenerics', 'Biobase'
+
+
+Bioconductor version 3.10 (BiocManager 1.30.10), R 3.6.2 (2019-12-12)
+
+Installing package(s) 'MAST'
+
+Updating HTML index of packages in '.Library'
+
+Making 'packages.html' ...
+ done
+</code></pre>
+<h2 id="setup-of-the-scrnaseq-data-into-a-seurat-object">Setup of the scRNASeq data into a Seurat object</h2>
+<p>For this first part of the tutorial, we will be analyzing a small dataset of peripheral blood mononuclear cells (PBMC) provided by 10X Genomics. This is a data set of 2,700 single cells sequenced on Illumina NextSeq 500. You can get the raw data <a href="https://s3-us-west-2.amazonaws.com/10x.files/samples/cell/pbmc3k/pbmc3k_filtered_gene_bc_matrices.tar.gz">here</a>.</p>
+<p>When starting your RStudio session, please move to a separate folder for this project. I will assume you named it <strong>seurat_tutorial</strong>. Then please make a folder named <strong>data</strong> in the <strong>seurat_tutorial</strong> folder and place the downloaded 10X data in the <strong>data</strong> folder. It should be named <strong>pbmc3k_filtered_gene_bc_matrices.tar.gz</strong>. The file will need to be untarred.</p>
+<ul>
+<li>On Windows, the free and open source program 7zip can be used to decompress this file</li>
+<li>On Mac (and Linux), you should be able to decompress this in Finder in the GUI by default.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">setwd</span>(<span style="color:#e6db74">&#34;~/&#34;</span>)
+</code></pre></div><p><em>Note that</em> <code>setwd</code> <em>stands for set working directory.</em></p>
+<p>Now that the environment is set up, we can start by loading the raw data into Seurat so that it is formatted to work with the rest of the Seurat toolset.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Load the libraries</span>
+
+<span style="color:#75715e"># Library for multtest; unneeded as Seurat should automatically load it</span>
+<span style="color:#a6e22e">library</span>(multtest)
+
+<span style="color:#75715e"># Library for Seurat, the scRNASeq analysis toolkit</span>
+<span style="color:#a6e22e">library</span>(Seurat)
+
+<span style="color:#75715e"># Library for MAST, the differential gene analysis algorithm for</span>
+<span style="color:#75715e"># scRNASeq. Needs to be loaded to work in Seurat</span>
+<span style="color:#a6e22e">library</span>(MAST)
+
+<span style="color:#75715e"># Library for plotting in R</span>
+<span style="color:#a6e22e">library</span>(ggplot2)
+
+<span style="color:#75715e"># Library for making heatmaps with Seurat</span>
+<span style="color:#a6e22e">library</span>(patchwork)
+
+<span style="color:#75715e"># Library Seurat uses on top of ggplot</span>
+<span style="color:#75715e"># to plot things easily onto a grid</span>
+<span style="color:#a6e22e">library</span>(cowplot)
+
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Load the PBMC dataset</span>
+pbmc.data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Read10X</span>(data.dir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./data/pbmc3k_filtered_gene_bc_matrices/filtered_gene_bc_matrices/hg19&#34;</span>)
+<span style="color:#75715e"># Initialize the Seurat object with the raw (non-normalized data).</span>
+<span style="color:#75715e"># counts       : your loaded count data</span>
+<span style="color:#75715e"># project      : the name of this object</span>
+<span style="color:#75715e"># min.cells    : assumed lower threshold for cells</span>
+<span style="color:#75715e"># min.features : assumed lower threhold for genes</span>
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">CreateSeuratObject</span>(
+    counts <span style="color:#f92672">=</span> pbmc.data,
+    project <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pbmc3k&#34;</span>,
+    min.cells <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>,
+    min.features <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>
+)
+</code></pre></div><pre><code>Warning message:
+“Feature names cannot have underscores ('_'), replacing with dashes ('-')”
+</code></pre>
+<p>The data for the PBMC scRNASeq is split between three files:</p>
+<ul>
+<li>barcodes.tsv</li>
+<li>genes.tsv</li>
+<li>matrix.mtx</li>
+</ul>
+<p>The three combined work together to define a count matrix. Seurat then converts the data into a single object representing the count matrix. Now that the data has been loaded into a Seurat object, what does the data look like.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Lets examine a few genes in the first thirty cells</span>
+pbmc.data<span style="color:#a6e22e">[c</span>(<span style="color:#e6db74">&#34;CD3D&#34;</span>, <span style="color:#e6db74">&#34;TCL1A&#34;</span>, <span style="color:#e6db74">&#34;MS4A1&#34;</span>), <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">30</span>]
+</code></pre></div><pre><code>   [[ suppressing 30 column names ‘AAACATACAACCAC’, ‘AAACATTGAGCTAC’, ‘AAACATTGATCAGC’ ... ]]
+
+
+
+
+3 x 30 sparse Matrix of class &quot;dgCMatrix&quot;
+                                                                   
+CD3D  4 . 10 . . 1 2 3 1 . . 2 7 1 . . 1 3 . 2  3 . . . . . 3 4 1 5
+TCL1A . .  . . . . . . 1 . . . . . . . . . . .  . 1 . . . . . . . .
+MS4A1 . 6  . . . . . . 1 1 1 . . . . . . . . . 36 1 2 . . 2 . . . .
+</code></pre>
+<p>The <code>.</code> values represent 0s (or no molecules detected). scRNASeq is naturally sparse - i.e. we expect to see a lot of 0 values. This has major effects on the type of analyses we can perform on the data, which is what scRNASeq analyses attempt to deal with.</p>
+<p>Additionally, we should become familiar with the meta data features of a Seurat object. The meta data are annotations applied to each cell. We can view them with:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">head</span>(pbmc<span style="color:#f92672">@</span>meta.data)
+</code></pre></div><table>
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>orig.ident</th><th scope=col>nCount_RNA</th><th scope=col>nFeature_RNA</th></tr>
+	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>AAACATACAACCAC</th><td>pbmc3k</td><td>2419</td><td> 779</td></tr>
+	<tr><th scope=row>AAACATTGAGCTAC</th><td>pbmc3k</td><td>4903</td><td>1352</td></tr>
+	<tr><th scope=row>AAACATTGATCAGC</th><td>pbmc3k</td><td>3147</td><td>1129</td></tr>
+	<tr><th scope=row>AAACCGTGCTTCCG</th><td>pbmc3k</td><td>2639</td><td> 960</td></tr>
+	<tr><th scope=row>AAACCGTGTATGCG</th><td>pbmc3k</td><td> 980</td><td> 521</td></tr>
+	<tr><th scope=row>AAACGCACTGGTAC</th><td>pbmc3k</td><td>2163</td><td> 781</td></tr>
+</tbody>
+</table>
+<p>These are the default annotations in the Seurat object. We can see we&rsquo;ve labeled every cell with the project <code>pbmc3k</code>. Additionally, the total number of RNA molecules sequenced for that cell and the total number of genes (a.k.a features) detected within the cell.</p>
+<p>The real utility comes from adding annotations to these cells. Let us add our cell type annotations from scMatch.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># First read the file in as a data frame with R&#39;s built in</span>
+<span style="color:#75715e"># read.csv() function.</span>
+pbmc.scmatch <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">read.csv</span>(
+    <span style="color:#e6db74">&#34;./data/pbmc3k_filtered_gene_bc_matrices/pbmc1k_scmatch.csv&#34;</span>,
+    row.names <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+)
+<span style="color:#75715e"># Now we must rename the cells, as scMatch adds a &#39;-1&#39; to each cell ID</span>
+<span style="color:#75715e"># We reassign all rownames of the pbmc3k.scmatch data frame (via row.names())</span>
+<span style="color:#75715e"># and by sending it the new list.</span>
+<span style="color:#75715e"># The new list is composed of sub(), which replaces all instances of &#34;-1&#34; </span>
+<span style="color:#75715e"># with nothing for all rownames</span>
+<span style="color:#75715e"># Note that row.names() is different than rownames() and works in a subtlely </span>
+<span style="color:#75715e"># different manner. For our purposes here, they work exactly the same.</span>
+<span style="color:#a6e22e">row.names</span>(pbmc.scmatch) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sub</span>(<span style="color:#e6db74">&#34;-1&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#a6e22e">rownames</span>(pbmc.scmatch))
+</code></pre></div><p>The makeup of the scmatch data looks as so:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">head</span>(pbmc.scmatch)
+</code></pre></div><table>
+<caption>A data.frame: 6 × 3</caption>
+<thead>
+	<tr><th></th><th scope=col>cell.type</th><th scope=col>top.sample</th><th scope=col>top.correlation.score</th></tr>
+	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>AAACATACAACCAC</th><td>CD8+ T cell       </td><td>CD8+ T Cells (pluriselect), donor090309, donation3.CNhs12180.12196-129B9  </td><td>0.2694394</td></tr>
+	<tr><th scope=row>AAACATTGAGCTAC</th><td>B cell            </td><td>CD19+ B Cells (pluriselect), donor090309, donation2.CNhs12179.12194-129B7 </td><td>0.3398503</td></tr>
+	<tr><th scope=row>AAACATTGATCAGC</th><td>CD4+ T cell       </td><td>CD4+CD25-CD45RA- memory conventional T cells, donor2.CNhs13237.11798-124C7</td><td>0.3238483</td></tr>
+	<tr><th scope=row>AAACCGTGCTTCCG</th><td>monocyte          </td><td>CD14-CD16+ Monocytes, donor1.CNhs13229.11790-124B8                        </td><td>0.3081723</td></tr>
+	<tr><th scope=row>AAACCGTGTATGCG</th><td>gamma-delta T cell</td><td>gamma delta positive T cells, donor1.CNhs13914.11937-126A2                </td><td>0.2184953</td></tr>
+	<tr><th scope=row>AAACGCACTGGTAC</th><td>CD4+ T cell       </td><td>CD4+CD25+CD45RA- memory regulatory T cells, donor2.CNhs13206.11797-124C6  </td><td>0.2730377</td></tr>
+</tbody>
+</table>
+<p>What is required to add any annotations to the Seurat object is that we have some reference to the cell IDs. This scmatch dataframe contains the information for the cell IDs as the rownames. When we have this information, we can add the annotations to the Seurat object as metadata.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Now we add these annotations to the Seurat object</span>
+<span style="color:#75715e"># The subset function used here only select the column in the scMatch</span>
+<span style="color:#75715e"># dataset that we want to add. We can add multiple columns if we so wish.</span>
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">AddMetaData</span>(
+    object <span style="color:#f92672">=</span> pbmc,
+    metadata <span style="color:#f92672">=</span> <span style="color:#a6e22e">subset</span>(pbmc.scmatch, select <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;cell.type&#34;</span>)),
+    col.name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;scmatch_celltype&#34;</span>
+)
+</code></pre></div><p>Now let us look at what it has added to the metadata feature.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">head</span>(pbmc<span style="color:#f92672">@</span>meta.data)
+</code></pre></div><table>
+<caption>A data.frame: 6 × 4</caption>
+<thead>
+	<tr><th></th><th scope=col>orig.ident</th><th scope=col>nCount_RNA</th><th scope=col>nFeature_RNA</th><th scope=col>scmatch_celltype</th></tr>
+	<tr><th></th><th scope=col>&lt;fct&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;int&gt;</th><th scope=col>&lt;fct&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>AAACATACAACCAC</th><td>pbmc3k</td><td>2419</td><td> 779</td><td>CD8+ T cell       </td></tr>
+	<tr><th scope=row>AAACATTGAGCTAC</th><td>pbmc3k</td><td>4903</td><td>1352</td><td>B cell            </td></tr>
+	<tr><th scope=row>AAACATTGATCAGC</th><td>pbmc3k</td><td>3147</td><td>1129</td><td>CD4+ T cell       </td></tr>
+	<tr><th scope=row>AAACCGTGCTTCCG</th><td>pbmc3k</td><td>2639</td><td> 960</td><td>monocyte          </td></tr>
+	<tr><th scope=row>AAACCGTGTATGCG</th><td>pbmc3k</td><td> 980</td><td> 521</td><td>gamma-delta T cell</td></tr>
+	<tr><th scope=row>AAACGCACTGGTAC</th><td>pbmc3k</td><td>2163</td><td> 781</td><td>CD4+ T cell       </td></tr>
+</tbody>
+</table>
+<p>We have annotated cells with the cell typing predictions from scMatch. If a cell was in the scMatch data, but not in the Seurat object, the subset invoked in the AddMetaData() function would remove those scMatch cells. In the reverse scenario where Seurat has cells that the scMatch data does not have, cells would be annotated with a null value (i.e. N/A).</p>
+<h2 id="quality-control-visualization">Quality control visualization</h2>
+<p>We will now perform some basic visualization of QC.</p>
+<p>First, we will look at the overall distribution of:</p>
+<ul>
+<li>number of genes detected per cell</li>
+<li>number of total molecules detected per cell</li>
+<li>the percent of mitochonrial genes detected of total genes detected per cell</li>
+</ul>
+<p>We want to look at the mitochondrial genes because low-quality or dying cells tend to exhibit extensive mitchondrial contamination. So this needs to be treated as a variable to consider when normalizing the data (by a linear regression) later.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Store the mitochondrial percentage into the Seurat object as meta data</span>
+<span style="color:#75715e"># Here, we overwrite pbmc with the returned Seurat object from PercentageFeatureSet</span>
+<span style="color:#75715e"># object   : Seurat object</span>
+<span style="color:#75715e"># pattern  : regular expression pattern to match genes / features to</span>
+<span style="color:#75715e">#            In this case, we look for genes prepended with MT-</span>
+<span style="color:#75715e">#            &#39;^&#39; means only consider if the following characters are at the beginning</span>
+<span style="color:#75715e"># col.name : Name of the new meta data to add to the Seurat object</span>
+<span style="color:#75715e"># Note: In mouse datasets, the mitochondrial genes are listed by &#34;mt-&#34; instead.</span>
+<span style="color:#75715e">#       This is important because the pattern is case sensitive.</span>
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">PercentageFeatureSet</span>(
+    object <span style="color:#f92672">=</span> pbmc, 
+    pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;^MT-&#34;</span>, 
+    col.name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;percent.mt&#34;</span>
+)
+
+<span style="color:#75715e"># Visualize QC metrics as a violin plot</span>
+<span style="color:#75715e"># object : Seurat object</span>
+<span style="color:#75715e"># features : features in Seurat object to display</span>
+<span style="color:#75715e">#            nFeature_RNA = # of genes detected in each cell</span>
+<span style="color:#75715e">#            nCount_RNA   = # of total molecules detected in each cell</span>
+<span style="color:#75715e">#            percent.mt   = percentage of detected genes that are mitochondrial</span>
+<span style="color:#75715e"># ncol : # of columns to split the plots across</span>
+<span style="color:#a6e22e">VlnPlot</span>(
+    object <span style="color:#f92672">=</span> pbmc, 
+    features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;nFeature_RNA&#34;</span>, <span style="color:#e6db74">&#34;nCount_RNA&#34;</span>, <span style="color:#e6db74">&#34;percent.mt&#34;</span>), 
+    ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_20_0.png" alt="png"></p>
+<p>Furthermore, it is good to visualize the relationship between these features. <em>Note that the Pearson correlation (r value) is shown as the title for each plot.</em></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># FeatureScatter is typically used to visualize feature-feature relationships, but can be used</span>
+<span style="color:#75715e"># for anything calculated by the object, i.e. columns in object metadata, PC scores etc.</span>
+
+plot1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FeatureScatter</span>(
+    pbmc, 
+    feature1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;nCount_RNA&#34;</span>, 
+    feature2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;percent.mt&#34;</span>
+)
+plot2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FeatureScatter</span>(
+    pbmc, 
+    feature1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;nCount_RNA&#34;</span>, 
+    feature2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;nFeature_RNA&#34;</span>
+)
+plot1 <span style="color:#f92672">+</span> plot2
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_22_0.png" alt="png"></p>
+<h2 id="pre-processing-workflow">Pre-processing workflow</h2>
+<p>By default, we are going to use sctransform. This replaces Seurat&rsquo;s previous normalization method.</p>
+<ul>
+<li>The transformed data is stored in the Seurat object under the SCT assay
+<ul>
+<li>This becomes the default data matrix for Seurat to use for further analysis: PCA, UMAP, etc.</li>
+</ul>
+</li>
+<li>During the normalization, it is important to remove confounding sources of variation. In the typical human case, this is the mitochondrial mapping percentage
+<ul>
+<li>Low-quality or dying cells tend to exhibit extensive mitchondrial contamination. So this needs to be treated as a variable to consider when normalizing the data (by a linear regression).</li>
+</ul>
+</li>
+</ul>
+<p>Outside of mitochondrial mapping percentage, there are a few other variables that can be included in the normalization. These have more importance in the non-sctransform normalization method shows later.</p>
+<ul>
+<li>The number of unique genes detected in each cell
+<ul>
+<li>Low-quality cells or empty droplets will often have very few genes</li>
+<li>Cell doublets or multiplets may exhibit an aberrantly high gene count</li>
+</ul>
+</li>
+<li>It is possible to include the total RNA sequencing to adjust normalization so that total RNA is considered as a regressor.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># run sctransform</span>
+<span style="color:#75715e"># object          : Seurat object</span>
+<span style="color:#75715e"># vars.to.regress : variables to regress out</span>
+<span style="color:#75715e"># verbose         : printing messages and progress bars</span>
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">SCTransform</span>(
+    object <span style="color:#f92672">=</span> pbmc, 
+    vars.to.regress <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;percent.mt&#34;</span>,
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+</code></pre></div><h3 id="the-alternative-normalization-method">The alternative normalization method</h3>
+<p>It is no longer recommended to perform the older normalization method. It scales all the data to the same range, removing the effect of total cell RNA. scTransform preserves the information by the total cell RNA. However in the case that sctransform is not working or you have deliberate reason to want to use this normalization method, here is how perform the following.</p>
+<p>** <em>Please do not actually run the following during this workshop.</em> **</p>
+<h4 id="filtration-of-data">Filtration of data</h4>
+<p>From the above visuablized QC metrics, we will use these to filter cells.</p>
+<ul>
+<li>We filter cells that have unique feature counts over 2,500 or less than 200</li>
+<li>We filter cells that have &gt;5% mitochondrial counts</li>
+</ul>
+<p>These are typical filters to apply for most scRNASeq purposes, but there may be other concerns with your specific library that you may want to further filter on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Filter out the cells that fulfill any of the features</span>
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(
+    pbmc, 
+    subset <span style="color:#f92672">=</span> nFeature_RNA <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">200</span> <span style="color:#f92672">&amp;</span> nFeature_RNA <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2500</span> <span style="color:#f92672">&amp;</span> percent.mt <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">5</span>
+)
+</code></pre></div><h4 id="data-normalization">Data normalization</h4>
+<p>Next, we normalize the data on the passing cells. By default, the process is to employ a global-scaling normalization method &ldquo;LogNormalize.&rdquo; This normalized the gene expression measurements for each cell by the total expression, and multiplies this by a scale factor (10,000 by default) so that data is in a reasonably sized value. This is important to avoid floating point errors when dealing with very small numbers. Then the results are log transformed. The normalized data is stored in the Seurat object under &lsquo;data&rsquo;: <code>pbmc[[&quot;RNA&quot;]]@data</code>.</p>
+<p>The result of LogNormalize is that all genes are reported as a proportion expression of total expression. This way, samples and cells can be compared directly without concern for variance in library size, etc.</p>
+<p>The other options for normalization available are:</p>
+<ul>
+<li>LogNormalize : Gene counts for each cell are divided by the total counts, and multiplied by scale.factor. Then finally log-transformed with <em>e</em> (natural number)</li>
+<li>CLR: Applied a centered log ratio transformation - i.e. the genes are divided by the geometric mean of all genes.</li>
+<li>RC: LogNormalize without the final log transformation.</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">NormalizeData</span>(
+    pbmc, 
+    normalization.method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;LogNormalize&#34;</span>, 
+    scale.factor <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
+)
+</code></pre></div><h4 id="identification-of-highly-variable-features">Identification of highly variable features</h4>
+<p>We want to find a subset of features that exhibit high cell-to-cell variation in the data set - i.e. highly expressed in some cells, and lowly expressed in others - as focusing on these genes better powers downstream analysis. Theoretically, these highly variable genes are probably more indicative of biological function in single cell.</p>
+<p>We will be pulling the top 2,000 most variable genes. There is no particular reason for this number other than it generically captures most variation for most data sets. However, you can alter this as you see fit based on your data. By default, it is suggested to use <code>vst</code> as the selection method because it is a fast method to estimate your gene variance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Pull the top 2,000 genes</span>
+<span style="color:#75715e"># selection.method : methods to choose the variable features</span>
+<span style="color:#75715e">#                    vst, </span>
+<span style="color:#75715e"># nfeatures        : number of features to select</span>
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindVariableFeatures</span>(
+    pbmc, 
+    selection.method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;vst&#34;</span>, 
+    nfeatures <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>
+)
+
+<span style="color:#75715e"># Identify the 10 most highly variable genes</span>
+<span style="color:#75715e"># to label in the below plot</span>
+top10 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">head</span>(<span style="color:#a6e22e">VariableFeatures</span>(pbmc), <span style="color:#ae81ff">10</span>)
+
+<span style="color:#75715e"># plot variable features with and without labels</span>
+plot1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">VariableFeaturePlot</span>(pbmc) <span style="color:#f92672">+</span> <span style="color:#a6e22e">NoLegend</span>()
+plot2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">LabelPoints</span>(plot <span style="color:#f92672">=</span> plot1, points <span style="color:#f92672">=</span> top10, repel <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">NoLegend</span>()
+plot1 <span style="color:#f92672">+</span> plot2
+</code></pre></div><pre><code>Warning message:
+“Using `as.character()` on a quosure is deprecated as of rlang 0.3.0.
+Please use `as_label()` or `as_name()` instead.
+[90mThis warning is displayed once per session.[39m”
+When using repel, set xnudge and ynudge to 0 for optimal results
+
+Warning message:
+“Transformation introduced infinite values in continuous x-axis”
+Warning message:
+“Transformation introduced infinite values in continuous x-axis”
+</code></pre>
+<p><img src="/images/scRNASeq_Seurat/output_30_1.png" alt="png"></p>
+<h4 id="scaling-the-data">Scaling the data</h4>
+<p>Finally, we scale the data. This step is to make it easier and faster for dimensional reductions techniques (e.g. PCA) to do their calcuations. The function <code>ScaleData</code> works by:</p>
+<ul>
+<li>Centers the gene expression across cells to a mean of 0.</li>
+<li>Scales the expression so that the variance across cells per gene is 1.</li>
+</ul>
+<p>This can be a very slow process.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">all.genes <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rownames</span>(pbmc)
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ScaleData</span>(pbmc, features <span style="color:#f92672">=</span> all.genes)
+</code></pre></div><pre><code>Centering and scaling data matrix
+</code></pre>
+<p><em>We are finished with the old normalization methods, and will be continuing from here with the results from sctransform.</em></p>
+<p>One thing to note in differences from sctransform and the previous normalization method is that sctransform preserves the information from all genes, and not just the most variable genes.</p>
+<h2 id="dimensional-reduction-with-pca">Dimensional reduction with PCA</h2>
+<p>We want to first decorrelate the data. This results in:</p>
+<ol>
+<li>Genes with high correlation being compressed together.</li>
+<li>The ability to ignore higher dimensions as not contributing much to the data - i.e. noise.
+<ul>
+<li>This results in reducing the dimensions
+We do this decorrelation with principal compoenent analysis.</li>
+</ul>
+</li>
+</ol>
+<p>One advantage of using sctransform over the previous normalization method is that more PCA components can be used in downstream analyses. In the alternative and previously used normalization methodology, you will have to try to minimize the dimensions of PCA used. Whereas, sctransform can let you use a significant number of components - e.g. 40.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunPCA</span>(pbmc, verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><p>Once we have the PCA information, we can start to do so preliminary analysis to gain some insights into what is globally driving variation across the cell population. One of the first things we can analyze is what genes are contributing the to each principal component - i.e. what are the most variant genes that are also correlated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># This function visualizes the &#39;loadings&#39; that go in the components of PCA </span>
+<span style="color:#75715e"># - i.e. the gene contributions to that PC.</span>
+<span style="color:#75715e"># dim       : number of dimensions to display</span>
+<span style="color:#75715e">#             e.g. in PCA the components to dis</span>
+<span style="color:#75715e"># reduction : the dimensionality reduction to display</span>
+<span style="color:#75715e">#             while in this example we use pca, </span>
+<span style="color:#75715e">#             we could use UMAP, TSNE, etc. that Seurat offers</span>
+<span style="color:#a6e22e">VizDimLoadings</span>(
+    pbmc,
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>,
+    reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pca&#39;</span>
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_36_0.png" alt="png"></p>
+<p>Then we can look at a simple scatter plot of the PCA components. This will give you an idea of clustering, the extent of variation in each component, and the extent of heterogeneity along these components. This last one can give you an idea of how many components to include in further downstream analyses.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pca&#39;</span>)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_38_0.png" alt="png"></p>
+<h3 id="identifying-the-dimensionality-of-the-data-pca">Identifying the dimensionality of the data (PCA)</h3>
+<p>As a means to reducing the &lsquo;curse of dimensionality&rsquo; for clustering, PCA is used to reduce the dimensionality. Thereby, the PCA components are used as input for further downstream analysis: t-SNE, UMAP, clustering, etc. However, it is a good idea to get an idea of the extent of the dimensionality still present after PCA. To this end we have a visualization of the PCA data to identify the extent of variance explained by PCA components.</p>
+<p>A simple and less computationally taxing procedure is the elbow plot. Here, the principal components are ranked by percentage of variance explained, and this variance plotted. After the inflection point, there are diminishing returns of a component&rsquo;s contribution to explaining variance in the total dat set.</p>
+<p>We want to ensure that the major PCA components are relatively low (under 15) so that downstream analyses can work effectively.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># We run the elbow plot for PCA</span>
+<span style="color:#a6e22e">ElbowPlot</span>(pbmc, ndims<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pca&#39;</span>)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_40_0.png" alt="png"></p>
+<p>Furhtermore, we explore the PCA heterogeniety further with a heatmap. The cells and genes are ordered according to their PCA scores. In the case of this example heatmap, we are going to limit the cells to the most extreme variance in the component. Heatmaps in general are very computationally taxing to run, so it is not recommended to run on the full gene and cell set.</p>
+<p>Below, we create a heatmap of the first principal component only. See how the data tends to cluster.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># dims     : the PCA components to display</span>
+<span style="color:#75715e"># cells    : default is null (i.e. all cells), otherwise top # of cells</span>
+<span style="color:#75715e"># balanced : plot and equal number of genes with both + and - scores</span>
+<span style="color:#a6e22e">DimHeatmap</span>(
+    pbmc, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, 
+    cells <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>, 
+    balanced <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_42_0.png" alt="png"></p>
+<p>Next, we may look consecutively at the components 1-8. Here we can see the degradation in the extent of variance contributed by genes in the further components values.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">DimHeatmap</span>(
+    pbmc, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">8</span>, 
+    cells <span style="color:#f92672">=</span> <span style="color:#ae81ff">500</span>, 
+    balanced <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_44_0.png" alt="png"></p>
+<h3 id="further-dimensionality-reduction-with-umap">Further dimensionality reduction with UMAP</h3>
+<p>Then we want to further reduce dimensions - for visualization - with UMAP (additionally t-SNE can be performed in a similar manner). The outputs will be stored in the Seurat object under reductions. These outputs will be used for visualization, and not as input to downstream analysis with clustering.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># If you haven&#39;t installed UMAP, you can do so via reticulate::py_install(packages =</span>
+<span style="color:#75715e"># &#39;umap-learn&#39;)</span>
+
+<span style="color:#75715e"># For the input dims for UMAP, you can base it off your data - i.e. from your elbow plot</span>
+<span style="color:#75715e"># dims : number of components from PCA to use</span>
+<span style="color:#75715e">#        in the example below, components 1 - 40</span>
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunUMAP</span>(
+    pbmc, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">40</span>, 
+    seed.use <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+)
+<span style="color:#75715e"># Note, that I have fixed the random seed to 42 so that all UMAPs produced</span>
+<span style="color:#75715e"># this session should look the same.</span>
+
+<span style="color:#75715e"># t-SNE is invoked similarly to UMAP.</span>
+<span style="color:#75715e"># For now I have commented it out so we can focus on the rest of the downstream</span>
+<span style="color:#75715e"># analysis, as the t-SNE process is fairly slow.</span>
+<span style="color:#75715e"># pbmc &lt;- runTSNE(pbmc, dims = 1:40)</span>
+
+<span style="color:#75715e"># Plot the UMAP embeddings</span>
+<span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>)
+</code></pre></div><pre><code>Warning message:
+“The default method for RunUMAP has changed from calling Python UMAP via reticulate to the R-native UWOT using the cosine metric
+To use Python UMAP via reticulate, set umap.method to 'umap-learn' and metric to 'correlation'
+This message will be shown once per session”
+10:44:02 UMAP embedding parameters a = 0.9922 b = 1.112
+
+10:44:02 Read 2700 rows and found 40 numeric columns
+
+10:44:02 Using Annoy for neighbor search, n_neighbors = 30
+
+10:44:02 Building Annoy index with metric = cosine, n_trees = 50
+
+0%   10   20   30   40   50   60   70   80   90   100%
+
+[----|----|----|----|----|----|----|----|----|----|
+
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+
+|
+
+10:44:04 Writing NN index file to temp file /tmp/RtmpTm68GR/file130e1f814f4b
+
+10:44:04 Searching Annoy index using 1 thread, search_k = 3000
+
+10:44:05 Annoy recall = 100%
+
+10:44:05 Commencing smooth kNN distance calibration using 1 thread
+
+10:44:06 Initializing from normalized Laplacian + noise
+
+10:44:06 Commencing optimization for 500 epochs, with 115840 positive edges
+
+10:44:16 Optimization finished
+</code></pre>
+<p><img src="/images/scRNASeq_Seurat/output_46_1.png" alt="png"></p>
+<p>Additionally, the default values will only give you an approximate visualization of UMAP&rsquo;s projected low dimensional mapping. To get the best compression of the higher dimensional PCA inputs to UMAP, you will need to optimize parameters. However, this is outside the scope of this workshop. Suffice to say, the default configuration for UMAP will give you a rough estimate of the visualization of clusters, but there is the potential that it is not entirely optimal.</p>
+<h2 id="clustering-the-cells">Clustering the cells</h2>
+<p>Here, we apply a graph-based clustering approach to cluster the cell from the data. This is the KNN-SNN based approach mentioned the other day. This method has two advantages:</p>
+<ol>
+<li>It is non-parametric in it&rsquo;s cluster partitioning.</li>
+<li>It automatically determines the number of clusters.</li>
+</ol>
+<p>However, one should optimize some of the parameters for best usage. Typically, it has been found that for a approximately 3K cell data set, the resolution parameter is best set for between 0.4 - 1.2. A smaller value, at 3K cells, is tuning the clustering process to identify more clusters. With larger data sets, a larger resolution value may be required for similar results. You can use your UMAP visualization to aid in the choice of optimal resolution paramter value.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># This is a two step process</span>
+<span style="color:#75715e"># First, identify the neighbors for each cell, this is the KNN part</span>
+<span style="color:#75715e"># FindNeighbors by default uses the PCA reduction</span>
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindNeighbors</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pca&#39;</span>, dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">40</span>)
+<span style="color:#75715e"># Second, partition the clusters from this KNN graph</span>
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindClusters</span>(pbmc, resolution <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
+
+<span style="color:#75715e"># Then visualize these clusters against the UMAP.</span>
+<span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, label <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>) <span style="color:#f92672">+</span> <span style="color:#a6e22e">NoLegend</span>()
+</code></pre></div><pre><code>Computing nearest neighbor graph
+
+Computing SNN
+
+
+
+Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 2700
+Number of edges: 130387
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8766
+Number of communities: 10
+Elapsed time: 0 seconds
+
+
+Warning message:
+“Using `as.character()` on a quosure is deprecated as of rlang 0.3.0.
+Please use `as_label()` or `as_name()` instead.
+[90mThis warning is displayed once per session.[39m”
+</code></pre>
+<p><img src="/images/scRNASeq_Seurat/output_48_3.png" alt="png"></p>
+<p>Finally, we should perform a sanity check for the results of the clustering - if possible. If we know of some canonical biomarkers, we can check to ensure that the clustering - at least for the cells expressing the biomarker - makes sense.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Visualize canonical marker genes on the sctransform embedding.</span>
+<span style="color:#75715e">#</span>
+<span style="color:#75715e"># object   : Seurat object</span>
+<span style="color:#75715e"># features : list of genes to plot</span>
+<span style="color:#75715e"># pt.size  : size of the individual dots representing each cell</span>
+<span style="color:#75715e"># ncol     : # of columns to display side by side</span>
+<span style="color:#a6e22e">FeaturePlot</span>(
+    object <span style="color:#f92672">=</span> pbmc, 
+    features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CD8A&#34;</span>, <span style="color:#e6db74">&#34;GZMK&#34;</span>, <span style="color:#e6db74">&#34;CCL5&#34;</span>, <span style="color:#e6db74">&#34;CCR7&#34;</span>),
+    pt.size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>, 
+    ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_50_0.png" alt="png"></p>
+<h2 id="fine-tuning-clusters-and-visualization">Fine tuning clusters and visualization</h2>
+<p>There are a number of considerations to account for when clustering the cells:</p>
+<ol>
+<li>Number of PCA components to use in computation</li>
+<li>The parameters used in UMAP</li>
+<li>The parameters used in the KNN / graph-based clustering</li>
+</ol>
+<h3 id="choosing-the-appropriate-number-of-pca-components-to-use">Choosing the appropriate number of PCA components to use</h3>
+<p>Choosing the appropriate number of PCA components to use is an important choice for the loadings into UMAP and your graph-based clustering. After a certain point, PCA provides diminishing returns for explaining differences between cells. At some point, PCA is simply returning noise. It is prudent to optimize the choice in the number of components to use.</p>
+<p>Let us revisit the elbow plot of the PCA variance.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># We are running the elbow plot for PCA with more dimensions</span>
+<span style="color:#a6e22e">ElbowPlot</span>(pbmc, ndims<span style="color:#f92672">=</span><span style="color:#ae81ff">40</span>, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pca&#39;</span>)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_52_0.png" alt="png"></p>
+<p>We originally used 40 dimensions into UMAP, but what happens if we were to use only the first few PCA dimensions to load into UMAP.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunUMAP</span>(
+    pbmc, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">8</span>, 
+    seed.use <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+)
+<span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, label <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_54_1.png" alt="png"></p>
+<p>We see that when we use less information from reducing the number of PCA dimensions used, that we are losing a lot of fine grained subclustering. The data starts to look more like a plot of the PCA components. Looking back at the elbow plot, we can see that components 30-40 are not contributing much to the variance. The standard Seurat normalization states that the suggested maximum components to use in UMAP is 20. With scTransform, we can go up to 40. We can see from the elbow plot that 20-30 has a lot of small variance, so without scTransform we would lose that information. For these samples, we should probably aim for about 32 components, as there is little benefit to be found in the 30-40 component range and we risk further information being due to noise.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunUMAP</span>(
+    pbmc, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">32</span>, 
+    seed.use <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+)
+<span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, label <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_56_1.png" alt="png"></p>
+<p>This plot now looks strikingly similar to the 40 dimensions plot, which is to be expected. It should be stated that there is no &ldquo;right&rdquo; answer to the number of components to use. There are guidelines, like I have shown above, but it will take some testing and educated guesswork. Additionally, the difference between 32 and 33 components to use is minimal. As you can see from the previous plots, there is minimal effect from simply using 40 components. However, every data set is different, and some may have particularly high variance that requires using more components.</p>
+<h3 id="tuning-parameters-for-umap">Tuning parameters for UMAP</h3>
+<p>We have two major parameters for adjusting UMAP. However, the parameter with the largest effect is <code>min.dist</code>. We will focus on adjusting <code>min.dist</code>. By default, RunUMAP() has a default <code>min.dist</code> of 0.3. Let us see the effect of increasing min.dist further. We want to try expanding some of these really tightly packed clusters so we can see more clearly some of the subclusters&rsquo; densities.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunUMAP</span>(
+    pbmc, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">32</span>, 
+    min.dist <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>,
+    seed.use <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>,
+)
+<span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, label <span style="color:#f92672">=</span> T)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_58_1.png" alt="png"></p>
+<p>How about if we really want to identify the contours of various subclusters? We will push min.dist lower, to increase the density of idividual clusters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunUMAP</span>(
+    pbmc, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">32</span>, 
+    min.dist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.08</span>,
+    seed.use <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>,
+)
+<span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, label <span style="color:#f92672">=</span> T)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_60_1.png" alt="png"></p>
+<p>After loooking at the default, the increased <code>min.dist</code>, and the decreased, let us go with a value of 0.7. It will let us view the spread of cells within the clusters better, while not blurring the boundaries between clusters and subclusters too much.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunUMAP</span>(
+    pbmc, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">32</span>, 
+    min.dist <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.7</span>,
+    seed.use <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>,
+)
+<span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, label <span style="color:#f92672">=</span> T)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_62_1.png" alt="png"></p>
+<h3 id="tuning-parameters-for-knn--graph-based-clustering">Tuning parameters for KNN / graph-based clustering</h3>
+<p>We can see that the default parameters for KNN / graph-based clustering could probably use refinement. Cluster 2 in particular could probably be separated in two clusters. Possibly the same for cluster 3. Additionally, the tag sticking out of cluster 4 may be able to be separated.</p>
+<p>For KNN, we will stick with the default <code>k.param</code> of 20. It&rsquo;s a good balance of information and computational speed. Increasing k will only result in promoting global structure to the clustering - losing granularity. However, if the next steps do not suffice, you may consider changing <code>k.param</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Running the KNN portion that builds out the graph</span>
+<span style="color:#75715e"># We are running mostly default parameters - with </span>
+<span style="color:#75715e"># 32 components being used.</span>
+pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindNeighbors</span>(
+    pbmc, 
+    reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;pca&#39;</span>, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">32</span>,
+    k.param <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>,
+    seed.use <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+)
+</code></pre></div><pre><code>Warning message:
+“The following arguments are not used: seed.use”
+Warning message:
+“The following arguments are not used: seed.use”
+Computing nearest neighbor graph
+
+Computing SNN
+</code></pre>
+<p>The majority of the cluster tuning is best done in the FindClusters section. This adjust the granularity with which Seurat will try clustering from the graph created by <code>FindNeighbors()</code>. We know that increasing resolution will increase granularity, so let us try to increase resolution from 0.5 to 1.0.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindClusters</span>(
+    pbmc, 
+    resolution <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+)
+<span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, label <span style="color:#f92672">=</span> T)
+</code></pre></div><pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 2700
+Number of edges: 120190
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8022
+Number of communities: 13
+Elapsed time: 0 seconds
+</code></pre>
+<p><img src="/images/scRNASeq_Seurat/output_66_1.png" alt="png"></p>
+<p>This may be too granular. With resolution, a little goes a long way. Let us try to find a middle ground.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindClusters</span>(
+    pbmc, 
+    resolution <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.65</span>
+)
+<span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, label <span style="color:#f92672">=</span> T)
+</code></pre></div><pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 2700
+Number of edges: 120190
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.8474
+Number of communities: 11
+Elapsed time: 0 seconds
+</code></pre>
+<p><img src="/images/scRNASeq_Seurat/output_68_1.png" alt="png"></p>
+<p>This looks pretty good. Maybe we believe that cluster 2 should be split, however, cluster 0 will take priority. A dense cluster of points like cluster 0 will be prioritized when resolution increases. For now, we will stick with a resolution of 0.65.</p>
+<h3 id="labeling-cell-clusters-by-cell-type">Labeling cell clusters by cell type</h3>
+<p>Let us use our scMatch cell type annotations to label the cells. In the scMatch annotations, each individual cell is annotated. This may not align perfectly with our clusters, though in aggregate it should.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># We will define our own list of colors to improve clarity</span>
+colors <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(
+    <span style="color:#e6db74">&#34;#730000&#34;</span>, <span style="color:#e6db74">&#34;#ff8800&#34;</span>, <span style="color:#e6db74">&#34;#595843&#34;</span>, <span style="color:#e6db74">&#34;#00ffaa&#34;</span>, 
+    <span style="color:#e6db74">&#34;#23698c&#34;</span>, <span style="color:#e6db74">&#34;#acb4e6&#34;</span>, <span style="color:#e6db74">&#34;#8c697c&#34;</span>, 
+    <span style="color:#e6db74">&#34;#d2d96c&#34;</span>, <span style="color:#e6db74">&#34;#269973&#34;</span>, <span style="color:#e6db74">&#34;#005fb3&#34;</span>, 
+    <span style="color:#e6db74">&#34;#a66cd9&#34;</span>, <span style="color:#e6db74">&#34;#330014&#34;</span>, <span style="color:#e6db74">&#34;#d9a3a3&#34;</span>, <span style="color:#e6db74">&#34;#d9a66c&#34;</span>, 
+    <span style="color:#e6db74">&#34;#bfff40&#34;</span>, <span style="color:#e6db74">&#34;#00ffee&#34;</span>, <span style="color:#e6db74">&#34;#262d33&#34;</span>, <span style="color:#e6db74">&#34;#603973&#34;</span>, 
+    <span style="color:#e6db74">&#34;#d93677&#34;</span>, <span style="color:#e6db74">&#34;#ff2200&#34;</span>, <span style="color:#e6db74">&#34;#ffbf40&#34;</span>
+)
+<span style="color:#a6e22e">DimPlot</span>(
+    pbmc,
+    reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>,
+    group.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;scmatch_celltype&#39;</span>,
+    cols <span style="color:#f92672">=</span> colors
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_70_0.png" alt="png"></p>
+<p>However, quite a few of these cell type calls are wrong classifications. This will happen at a low rate, so we can identify these and just filter them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Here we get the cell types and their respective count of cells</span>
+<span style="color:#a6e22e">table</span>(pbmc<span style="color:#f92672">@</span>meta.data<span style="color:#f92672">$</span>scmatch_celltype)
+</code></pre></div><pre><code>     acute lymphoblastic leukemia (B-ALL) cell line 
+                                                  2 
+                                             B cell 
+                                                346 
+                                        CD4+ T cell 
+                                                375 
+                                        CD8+ T cell 
+                                               1202 
+                                 gamma-delta T cell 
+                                                 74 
+                            hematopoietic stem cell 
+                                                  5 
+                                         macrophage 
+                                                  2 
+                                           monocyte 
+                                                683 
+             natural killer cell leukemia cell line 
+                                                  2 
+                        plasmacytoid dendritic cell 
+                                                  4 
+T cell chronic lymphocytic leukemia (CLL) cell line 
+                                                  5 
+</code></pre>
+<p>Only B cells, CD4+ T cell, CD8+ T cell, gamma-delta T cell, and monocyte were found in any appreciable quantity. We will only look at those, to clean up the UMAP plot and call clusters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">celltypes_of_interest <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(
+    <span style="color:#e6db74">&#34;B cell&#34;</span>,
+    <span style="color:#e6db74">&#34;CD4+ T cell&#34;</span>,
+    <span style="color:#e6db74">&#34;CD8+ T cell&#34;</span>,
+    <span style="color:#e6db74">&#34;gamma-delta T cell&#34;</span>,
+    <span style="color:#e6db74">&#34;monocyte&#34;</span>
+)
+pbmc.sub <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(
+    pbmc,
+    subset <span style="color:#f92672">=</span> scmatch_celltype <span style="color:#f92672">%in%</span> celltypes_of_interest
+)
+<span style="color:#a6e22e">DimPlot</span>(
+    pbmc.sub, 
+    reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, 
+    group.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;scmatch_celltype&#39;</span>,
+    cols <span style="color:#f92672">=</span> colors
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_74_0.png" alt="png"></p>
+<p>Let us try to validate how accurate these cell type calls are with a few biomarkers.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">markers <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(
+    <span style="color:#e6db74">&#34;CD8A&#34;</span>, <span style="color:#e6db74">&#34;CD4&#34;</span>, <span style="color:#e6db74">&#34;PTPRC&#34;</span>,
+    <span style="color:#e6db74">&#34;CD14&#34;</span>, <span style="color:#e6db74">&#34;CCL5&#34;</span>, <span style="color:#e6db74">&#34;FCGR3A&#34;</span>
+)
+<span style="color:#a6e22e">FeaturePlot</span>(
+    pbmc.sub,
+    features <span style="color:#f92672">=</span> markers,
+    ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_76_0.png" alt="png"></p>
+<p>Let us assume that the scMatch cell typing is mostly correct. Let us try to change our cluster names from numbers to cell types. First let us plot the two plots side by side, so that we can reconcile the clusters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">sc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">DimPlot</span>(
+    pbmc.sub, 
+    reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, 
+    group.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;scmatch_celltype&#39;</span>,
+    cols <span style="color:#f92672">=</span> colors
+)
+clust <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">DimPlot</span>(pbmc, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>, label <span style="color:#f92672">=</span> T)
+clust <span style="color:#f92672">+</span> sc
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_78_0.png" alt="png"></p>
+<p>Looking over the two plots, we can presume there is some differentiation occuring along the CD8+ T cells. Let&rsquo;s assume that cluster 0 (and 7) are possible progenitors, en route to differentiation to CD8+ T cells. We can also presume that clusters 8, 9, and 10 are likely multiplets. We can confirm this with software, such as Scrublet. For now, we will label these clusters as &ldquo;multiplet&rdquo;. So we will rename the cluster identifying names to something more human readable.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">pbmc <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RenameIdents</span>(
+    pbmc,
+    <span style="color:#e6db74">&#39;0&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;prog 1&#34;</span>,
+    <span style="color:#e6db74">&#39;1&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;monocyte&#39;</span>,
+    <span style="color:#e6db74">&#39;2&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;B cell&#39;</span>,
+    <span style="color:#e6db74">&#39;3&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;CD8+ T cell&#39;</span>,
+    <span style="color:#e6db74">&#39;4&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;gamma-delta T cell&#39;</span>,
+    <span style="color:#e6db74">&#39;5&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;monocyte&#39;</span>,
+    <span style="color:#e6db74">&#39;6&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;CD8+ T cell&#39;</span>,
+    <span style="color:#e6db74">&#39;7&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;prog 2&#39;</span>,
+    <span style="color:#e6db74">&#39;8&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;multiplet&#39;</span>,
+    <span style="color:#e6db74">&#39;9&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;multiplet&#39;</span>,
+    <span style="color:#e6db74">&#39;10&#39;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;multiplet&#39;</span>
+)
+<span style="color:#a6e22e">DimPlot</span>(
+    pbmc,
+    reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>,
+    label <span style="color:#f92672">=</span> T
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_80_0.png" alt="png"></p>
+<h2 id="isolating-a-single-cluster">Isolating a single cluster</h2>
+<p>Now suppose we want to identify fine grained analysis of a single cluster. Will re-running PCA -&gt; UMAP result in getting even more granular clusters? Let&rsquo;s find out.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">mono <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(
+    pbmc,
+    idents <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;monocyte&#39;</span>
+)
+mono <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunPCA</span>(mono, verbose <span style="color:#f92672">=</span> F)
+mono <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunUMAP</span>(mono, dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">40</span>, seed.use <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>)
+<span style="color:#a6e22e">DimPlot</span>(mono, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_82_1.png" alt="png"></p>
+<p>We used the whole data set to aid in normalization, so we did not re-run normalization. We then re-ran PCA on the monocytes only, and finally re-ran UMAP. The result is that the cluster looks the same, even the scale for UMAP is roughly the same. This means that there is little advantage to re-running the dimensionality reduction. They are robust against purely local / relative values after normalization.</p>
+<p>So, to zoom in on a particular cluster, it is better to simple filter for that cluster, and plot.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">DimPlot</span>(
+    <span style="color:#a6e22e">subset</span>(
+        pbmc,
+        idents <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;monocyte&#39;</span>
+    ),
+    reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;umap&#39;</span>
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_84_0.png" alt="png"></p>
+<h2 id="identifying-marker-genes-from-a-cluster">Identifying marker genes from a cluster</h2>
+<p>Once we have our clusters, we may be interested in identifying the marker genes for these clusters. Let us revisit cluster x from our UMAP plot. We know that it expresses CD8A fairly uniquely compared to other cell clusters. So what other genes define the expression profile of this cluster, and where does CD8A rank in that?</p>
+<p>We are going to find the markers for cluster 1 by differential expression against the expression of all other cells not in cluster 1 - i.e. comparing cluster 1 against background. As for the statistical test, we are going to specifically invoke MAST. MAST is a differential gene expression analysis program specifically designed for scRNASeq. However, for simply finding marker genes from background, a Wilcoxon Ran Sum test may suffice if you need to run it for computational speed reasons.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Find all biomarkers for cluster 1</span>
+<span style="color:#75715e"># ident.1  : name of vector for cell names belonging to the first group</span>
+<span style="color:#75715e">#            in the comparison</span>
+<span style="color:#75715e"># ident.2  : by default, all other cells - i.e. background</span>
+<span style="color:#75715e">#            if explicitly named, the other group to compare</span>
+<span style="color:#75715e"># test.use : Denotes which statistical test to use.</span>
+cluster1.markers <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindMarkers</span>(
+    pbmc,
+    ident.1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;monocyte&#34;</span>,
+    test.use <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;MAST&#34;</span>
+)
+
+<span style="color:#75715e"># Display the top genes</span>
+<span style="color:#a6e22e">head</span>(cluster1.markers, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
+</code></pre></div><table>
+<caption>A data.frame: 5 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>p_val</th><th scope=col>avg_logFC</th><th scope=col>pct.1</th><th scope=col>pct.2</th><th scope=col>p_val_adj</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>S100A9</th><td>0</td><td>3.044202</td><td>0.992</td><td>0.210</td><td>0</td></tr>
+	<tr><th scope=row>LYZ</th><td>0</td><td>2.746862</td><td>1.000</td><td>0.534</td><td>0</td></tr>
+	<tr><th scope=row>S100A8</th><td>0</td><td>2.716942</td><td>0.968</td><td>0.104</td><td>0</td></tr>
+	<tr><th scope=row>FTL</th><td>0</td><td>1.743696</td><td>1.000</td><td>0.990</td><td>0</td></tr>
+	<tr><th scope=row>CST3</th><td>0</td><td>1.721325</td><td>0.998</td><td>0.264</td><td>0</td></tr>
+</tbody>
+</table>
+<p>Again, it is a good idea to perform a sanity check on the results. Here we determine just how the distribution of gene expression for cluster 1&rsquo;s marker genes compares to the rest of the cells. So we create a violin plot to show the distribution.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">VlnPlot</span>(pbmc, features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;MS4A1&#34;</span>, <span style="color:#e6db74">&#34;CD79A&#34;</span>))
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_88_0.png" alt="png"></p>
+<p>Additionally, you can just find all markers for all clusters at once. This can then be used to get a more detailed overview of the top marker genes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># find markers for every cluster compared to all remaining cells, report only the positive ones</span>
+<span style="color:#75715e"># only.pos : only return the positive / significant genes</span>
+<span style="color:#75715e"># min.pct  : only test genes that are detected in a minimum fraction of cells in any population</span>
+<span style="color:#75715e">#            default = 0.1</span>
+pbmc.markers <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindAllMarkers</span>(
+    pbmc, 
+    only.pos <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, 
+    min.pct <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.25</span>, 
+    logfc.threshold <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.25</span>,
+    test.use <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wilcox&#34;</span>
+)
+<span style="color:#75715e"># For speed reasons in this workshop, I am using the Wilcoxon Rank Sum test.</span>
+<span style="color:#75715e"># This is the default DGE algorithm in Seurat.</span>
+</code></pre></div><pre><code>Calculating cluster 0
+
+Calculating cluster 1
+
+Calculating cluster 2
+
+Calculating cluster 3
+
+Calculating cluster 4
+
+Calculating cluster 5
+
+Calculating cluster 6
+
+Calculating cluster 7
+
+Calculating cluster 8
+
+Calculating cluster 9
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Sort all the markers by average log fold change</span>
+pbmc.markers.srt <span style="color:#f92672">&lt;-</span> pbmc.markers<span style="color:#a6e22e">[order</span>(pbmc.markers<span style="color:#f92672">$</span>avg_logFC), ]
+<span style="color:#75715e"># Now apply the function head to all factors of &#39;cluster&#39;</span>
+pbmc.markers.out <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">by</span>(pbmc.markers.srt, pbmc.markers.srt[<span style="color:#e6db74">&#39;cluster&#39;</span>], head, n<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+<span style="color:#75715e"># Let&#39;s take a look</span>
+pbmc.markers.out
+<span style="color:#75715e">#do.call(&#34;rbind&#34;, pbmc.markers.out)</span>
+</code></pre></div><pre><code>cluster: 0
+               p_val avg_logFC pct.1 pct.2    p_val_adj cluster    gene
+C6orf48 2.861384e-30 0.2500030 0.641 0.435 3.597332e-26       0 C6orf48
+EEF1B2  2.491012e-41 0.2513740 0.962 0.874 3.131700e-37       0  EEF1B2
+RPL19   6.479311e-74 0.2521032 1.000 0.999 8.145789e-70       0   RPL19
+------------------------------------------------------------ 
+cluster: 1
+              p_val avg_logFC pct.1 pct.2    p_val_adj cluster   gene
+BNIP3L 1.171551e-36 0.2505443 0.341 0.117 1.472874e-32       1 BNIP3L
+OAZ2   1.690030e-28 0.2508106 0.317 0.119 2.124705e-24       1   OAZ2
+CSTB   1.394387e-23 0.2519033 0.537 0.309 1.753023e-19       1   CSTB
+------------------------------------------------------------ 
+cluster: 2
+               p_val avg_logFC pct.1 pct.2    p_val_adj cluster    gene
+TMEM50A 3.273501e-03 0.2562152 0.308 0.245 1.000000e+00       2 TMEM50A
+CD21    1.553084e-17 0.2579718 0.481 0.279 1.952537e-13       2     CD2
+LITAF   4.709034e-08 0.2583921 0.407 0.281 5.920198e-04       2   LITAF
+------------------------------------------------------------ 
+cluster: 3
+               p_val avg_logFC pct.1 pct.2    p_val_adj cluster    gene
+GNB2L1  3.873942e-19 0.2515910 1.000 0.994 4.870319e-15       3  GNB2L1
+RPS81   2.282538e-30 0.2538568 1.000 0.997 2.869606e-26       3    RPS8
+PLEKHF2 5.231658e-48 0.2604962 0.283 0.055 6.577240e-44       3 PLEKHF2
+------------------------------------------------------------ 
+cluster: 4
+               p_val avg_logFC pct.1 pct.2    p_val_adj cluster   gene
+DBI     9.026568e-10 0.2507227 0.545 0.321 1.134820e-05       4    DBI
+GLIPR21 4.881219e-13 0.2560070 0.435 0.196 6.136669e-09       4 GLIPR2
+EIF3G   8.391257e-07 0.2567494 0.675 0.529 1.054949e-02       4  EIF3G
+------------------------------------------------------------ 
+cluster: 5
+              p_val avg_logFC pct.1 pct.2    p_val_adj cluster   gene
+MSN    2.218052e-16 0.2502262 0.552 0.249 2.788535e-12       5    MSN
+RNF149 5.505231e-26 0.2509843 0.429 0.123 6.921176e-22       5 RNF149
+FCGRT1 9.467426e-24 0.2515108 0.571 0.201 1.190245e-19       5  FCGRT
+------------------------------------------------------------ 
+cluster: 6
+               p_val avg_logFC pct.1 pct.2    p_val_adj cluster   gene
+RGCC1   3.189222e-07 0.2522290 0.424 0.216 4.009489e-03       6   RGCC
+RPL23A1 6.947722e-13 0.2556288 1.000 0.998 8.734676e-09       6 RPL23A
+RPL10   5.031896e-17 0.2569154 1.000 1.000 6.326100e-13       6  RPL10
+------------------------------------------------------------ 
+cluster: 7
+               p_val avg_logFC pct.1 pct.2    p_val_adj cluster    gene
+NDUFV3  6.278988e-12 0.2514490 0.382 0.070 7.893943e-08       7  NDUFV3
+CCDC88A 7.512920e-24 0.2518290 0.324 0.026 9.445242e-20       7 CCDC88A
+SPATS2L 3.485685e-21 0.2529233 0.294 0.025 4.382203e-17       7 SPATS2L
+------------------------------------------------------------ 
+cluster: 8
+              p_val avg_logFC pct.1 pct.2 p_val_adj cluster   gene
+SNRPD2 0.0053251920 0.2505309 0.810 0.536         1       8 SNRPD2
+KARS   0.0049869961 0.2529626 0.429 0.193         1       8   KARS
+RBMS1  0.0003004107 0.2545346 0.381 0.125         1       8  RBMS1
+------------------------------------------------------------ 
+cluster: 9
+               p_val avg_logFC pct.1 pct.2    p_val_adj cluster    gene
+LDLRAP1 2.868751e-03 0.2778558 0.385 0.122 1.0000000000       9 LDLRAP1
+AGPAT1  1.408362e-08 0.2785303 0.308 0.031 0.0001770593       9  AGPAT1
+ARF3    2.823711e-03 0.2925713 0.308 0.086 1.0000000000       9    ARF3
+</code></pre>
+<p>Now that we have the markers for every cluster, we can see how these patterns present themselve in aggregate over all cells / clusters. We will look at everything in the top 10 against all the cells, grouped by their clusters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Select from each cluster the top 10 genes of differential expression</span>
+<span style="color:#75715e"># Now again apply the function head to all factors of &#39;cluster&#39;</span>
+pbmc.markers.out <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">by</span>(pbmc.markers.srt, pbmc.markers.srt[<span style="color:#e6db74">&#39;cluster&#39;</span>], head, n<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+<span style="color:#75715e"># by() outputs a list of the dataframes for each cluster</span>
+<span style="color:#75715e"># we are going to merge them with rbind</span>
+<span style="color:#75715e"># then get the unique vector of genes</span>
+top10.genes <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">do.call</span>(<span style="color:#e6db74">&#34;rbind&#34;</span>, pbmc.markers.out)<span style="color:#f92672">$</span>gene
+
+<span style="color:#75715e"># Plot a heatmap of all of these top 10 genes</span>
+<span style="color:#75715e"># features : list of genes to filter for</span>
+<span style="color:#a6e22e">DoHeatmap</span>(
+    pbmc,
+    features <span style="color:#f92672">=</span> top10.genes
+) <span style="color:#f92672">+</span> <span style="color:#a6e22e">NoLegend</span>()
+</code></pre></div><pre><code>Warning message in DoHeatmap(pbmc, features = top10.genes):
+“The following features were omitted as they were not found in the scale.data slot for the SCT assay: ABCC3, ABHD16A, CYB5R3, STOM, ARF3, TRAT1, EVL, ELF1, SNRPD2, BASP1, LGALS9, FUOM, CCDC88A, NDUFV3, RPL14, RPL36A, RPL10, RPL23A, MTSS1, PCGF5, TCF7L2, SLC2A6, C4orf48, RNF149, MSN, EIF3G, GLIPR2, DBI, MARCH1, CD40, RPS8, LCK, RNASE6, BNIP3L, TOMM7, RPL37, LEF1, PRKCQ-AS1, SOD1”
+</code></pre>
+<p><img src="/images/scRNASeq_Seurat/output_93_1.png" alt="png"></p>
+<h2 id="differential-gene-expression-analysis-between-clusters">Differential gene expression analysis between clusters</h2>
+<p>Now, we can use this differential analysis to identify what makes genes differentiate two clusters of cells. For example, cluster 1 and cluster 2 share CD8A expression. Considering that it is an important biomarker, we can use differential gene analysis to determine what genes differentiate the two clusters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Find all markers of genes from cluster 1 that are differentially expressed</span>
+<span style="color:#75715e"># from cluster 2</span>
+<span style="color:#75715e"># ident.1  : name of vector for cell names belonging to the first group</span>
+<span style="color:#75715e">#            in the comparison</span>
+<span style="color:#75715e"># ident.2  : by default, all other cells - i.e. background</span>
+<span style="color:#75715e">#            if explicitly named, the other group to compare</span>
+<span style="color:#75715e"># logfc.threshold</span>
+<span style="color:#75715e">#          : the minimum log fold change to consider for results of DGE</span>
+<span style="color:#75715e">#            default is 0.25</span>
+<span style="color:#75715e"># test.use : Denotes which statistical test to use.</span>
+cluster1.markers <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindMarkers</span>(
+    pbmc,
+    ident.1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>,
+    ident.2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>,
+    logfc.threshold <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.25</span>,
+    test.use <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;MAST&#34;</span>
+)
+
+<span style="color:#75715e"># Display the top genes</span>
+<span style="color:#a6e22e">head</span>(cluster1.markers, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
+</code></pre></div><pre><code>Assuming data assay in position 1, with name et is log-transformed.
+
+
+
+
+Done!
+
+Warning message in melt(llrt):
+“The melt generic in data.table has been passed a list and will attempt to redirect to the relevant reshape2 method; please note that reshape2 is deprecated, and this redirection is now deprecated as well. To continue using melt methods from reshape2 while both libraries are attached, e.g. melt.list, you can prepend the namespace like reshape2::melt(llrt). In the next version, this warning will become an error.”
+</code></pre>
+<table>
+<caption>A data.frame: 5 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>p_val</th><th scope=col>avg_logFC</th><th scope=col>pct.1</th><th scope=col>pct.2</th><th scope=col>p_val_adj</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>LYZ</th><td> 0.000000e+00</td><td>3.180927</td><td>1.000</td><td>0.470</td><td> 0.000000e+00</td></tr>
+	<tr><th scope=row>FTL</th><td> 0.000000e+00</td><td>2.350735</td><td>1.000</td><td>0.992</td><td> 0.000000e+00</td></tr>
+	<tr><th scope=row>FTH1</th><td>4.206178e-319</td><td>2.054131</td><td>1.000</td><td>0.992</td><td>5.288008e-315</td></tr>
+	<tr><th scope=row>TYROBP</th><td>1.238976e-283</td><td>2.266187</td><td>0.998</td><td>0.165</td><td>1.557641e-279</td></tr>
+	<tr><th scope=row>CST3</th><td>2.904036e-270</td><td>2.381567</td><td>0.998</td><td>0.159</td><td>3.650955e-266</td></tr>
+</tbody>
+</table>
+<p>Again, we can refer to the violin plots to confirm the extent of the differential expression of these genes.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Violin plot</span>
+<span style="color:#a6e22e">VlnPlot</span>(pbmc, features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;NKG7&#34;</span>, <span style="color:#e6db74">&#34;PF4&#34;</span>))
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_97_0.png" alt="png"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Scatter plot</span>
+<span style="color:#a6e22e">FeaturePlot</span>(
+    pbmc, 
+    features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;NKG7&#34;</span>, <span style="color:#e6db74">&#34;PF4&#34;</span>)
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_98_0.png" alt="png"></p>
+<h2 id="integrating-multiple-data-sets-for-a-stimulated-vs-control-experiment">Integrating multiple data sets for a stimulated vs. control experiment</h2>
+<p>With this next section we aim to address two goals:</p>
+<ol>
+<li>Provide an example of analysis comparing two conditions of otherwise similar cell cohorts.</li>
+<li>How to use Seurat to combine and annotate two separate data sets.</li>
+</ol>
+<p>Here, we are going to load another 10X data set of two sets of cells: a control and a stimulated set exposed for 6 hours to IFN-beta. You can get the raw data <a href="https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE96583">here</a>.</p>
+<p>The first steps involve loading the data like normal. Then making a list (in R) of the objects, to which we apply normalization separately.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Load the 10X data</span>
+stim.data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Read10X</span>(data.dir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./data/stim&#34;</span>)
+control.data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Read10X</span>(data.dir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./data/control&#34;</span>)
+
+<span style="color:#75715e"># Load the 10X data into a Seurat object</span>
+stim <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">CreateSeuratObject</span>(counts <span style="color:#f92672">=</span> stim.data, project <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim-control&#34;</span>)
+control <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">CreateSeuratObject</span>(counts <span style="color:#f92672">=</span> control.data, project <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim-control&#34;</span>)
+</code></pre></div><pre><code>Warning message:
+“Feature names cannot have underscores ('_'), replacing with dashes ('-')”
+Warning message:
+“Feature names cannot have underscores ('_'), replacing with dashes ('-')”
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># We are going to reduce this 14K cell data set to 3K</span>
+
+<span style="color:#75715e"># Identify a random assortment of cells</span>
+cells.to.sample <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#a6e22e">rownames</span>(stim<span style="color:#f92672">@</span>meta.data), <span style="color:#ae81ff">3000</span>)
+<span style="color:#75715e"># Subset the 14K dataset for the randomly selected 3K cells</span>
+stim.small <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(stim, cells <span style="color:#f92672">=</span> cells.to.sample)
+
+<span style="color:#75715e"># Repeat for the control</span>
+cells.to.sample <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#a6e22e">rownames</span>(control<span style="color:#f92672">@</span>meta.data), <span style="color:#ae81ff">3000</span>)
+control <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(control, cells <span style="color:#f92672">=</span> cells.to.sample)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Annotate the objects with the type, by a user-defined group name</span>
+control<span style="color:#f92672">$</span>stim <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;CONTROL&#34;</span>
+stim<span style="color:#f92672">$</span>stim <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;STIM&#34;</span>
+
+
+<span style="color:#75715e"># Merge the Seurat objects into one object</span>
+immune.combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">merge</span>(
+    control,
+    y <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(stim),
+    add.cell.ids <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CONTROL&#34;</span>, <span style="color:#e6db74">&#34;STIM&#34;</span>),
+    project <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;STIM-CONTROL&#34;</span>
+)
+
+<span style="color:#75715e"># Split the object by stim</span>
+ifnb.list <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">SplitObject</span>(immune.combined, split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim&#34;</span>)
+
+<span style="color:#75715e"># Then, for each split object, normalize each data set individually</span>
+<span style="color:#75715e"># We are going to use a flat normalization method for </span>
+ifnb.list <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lapply</span>(X <span style="color:#f92672">=</span> ifnb.list, FUN <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(x) {
+    x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">NormalizeData</span>(x)
+    x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindVariableFeatures</span>(x, selection.method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;vst&#34;</span>, nfeatures <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>)
+})
+</code></pre></div><p>Once we have normalized each file separately, we can move ahead with integration of the normalized points.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Find integration points</span>
+immune.anchors <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindIntegrationAnchors</span>(object.list <span style="color:#f92672">=</span> ifnb.list, dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">20</span>)
+
+<span style="color:#75715e"># Integrate the objects based on the determined anchor points.</span>
+<span style="color:#75715e"># This will override the previous immune.combined object.</span>
+immune.combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">IntegrateData</span>(anchorset <span style="color:#f92672">=</span> immune.anchors, dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">20</span>)
+</code></pre></div><pre><code>Computing 2000 integration features
+
+Scaling features for provided objects
+
+Finding all pairwise anchors
+
+Running CCA
+
+Merging objects
+
+Finding neighborhoods
+
+Finding anchors
+
+    Found 11892 anchors
+
+Filtering anchors
+
+    Retained 3353 anchors
+
+Extracting within-dataset neighbors
+
+Merging dataset 1 into 2
+
+Extracting anchors for merged samples
+
+Finding integration vectors
+
+Finding integration vector weights
+
+Integrating data
+
+Warning message:
+“Adding a command log without an assay associated with it”
+</code></pre>
+<p>Once we have an integrated data set, we can do our typical downstream analysis.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># This points Seurat to use the integrated data set, and not the</span>
+<span style="color:#75715e"># individually normalized data</span>
+<span style="color:#a6e22e">DefaultAssay</span>(immune.combined) <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;integrated&#34;</span>
+
+<span style="color:#75715e"># Run the standard workflow for visualization and clustering</span>
+
+<span style="color:#75715e"># We have to scale the data with a non-sctransform results first</span>
+<span style="color:#75715e"># (not stricly necessary, but it greatly aids PCA calculation)</span>
+immune.combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ScaleData</span>(immune.combined, verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+
+<span style="color:#75715e"># PCA</span>
+immune.combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunPCA</span>(immune.combined, npcs <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>, verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+
+<span style="color:#75715e"># UMAP and Clustering</span>
+<span style="color:#75715e"># With this normalization method, it is important to send fewer dimensions of</span>
+<span style="color:#75715e"># PCA to UMAP and clustering. </span>
+<span style="color:#75715e"># sctransform is much more lenient to using more dimensions (up to 40).</span>
+immune.combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunUMAP</span>(immune.combined, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pca&#34;</span>, dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">20</span>)
+immune.combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindNeighbors</span>(immune.combined, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pca&#34;</span>, dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">20</span>)
+immune.combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindClusters</span>(immune.combined, resolution <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
+</code></pre></div><pre><code>Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck
+
+Number of nodes: 17446
+Number of edges: 624273
+
+Running Louvain algorithm...
+Maximum modularity in 10 random starts: 0.9031
+Number of communities: 13
+Elapsed time: 5 seconds
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Visualization</span>
+p1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">DimPlot</span>(immune.combined, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;umap&#34;</span>, group.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim&#34;</span>)
+p2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">DimPlot</span>(immune.combined, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;umap&#34;</span>, label <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#a6e22e">plot_grid</span>(p1, p2, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_107_0.png" alt="png"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># To visualize the two conditions side-by-side, we can use the split.by </span>
+<span style="color:#75715e"># argument to show each condition colored by cluster.</span>
+<span style="color:#a6e22e">DimPlot</span>(immune.combined, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;umap&#34;</span>, split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim&#34;</span>)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_108_0.png" alt="png"></p>
+<h3 id="identifying-conserved-cell-type-markers">Identifying conserved cell type markers</h3>
+<p>We may first want to identify what genes are not changed by the stimulus condition. Seurat offers software to do this via the function <code>FindConservedMarkers</code>. Please note that this uses a different algorithmic methods from <code>FindMarkers</code> and lacks MAST as an option, so we are left with more traditional statistical approaches to dealing with single cell data. However, it is still useful for identifying genes that did not change between conditions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">DefaultAssay</span>(immune.combined) <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;RNA&#34;</span>
+nk.markers <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindConservedMarkers</span>(
+    immune.combined, 
+    ident.1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>, 
+    grouping.var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim&#34;</span>, 
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+<span style="color:#a6e22e">head</span>(nk.markers)
+</code></pre></div><table>
+<caption>A data.frame: 6 × 12</caption>
+<thead>
+	<tr><th></th><th scope=col>CONTROL_p_val</th><th scope=col>CONTROL_avg_logFC</th><th scope=col>CONTROL_pct.1</th><th scope=col>CONTROL_pct.2</th><th scope=col>CONTROL_p_val_adj</th><th scope=col>STIM_p_val</th><th scope=col>STIM_avg_logFC</th><th scope=col>STIM_pct.1</th><th scope=col>STIM_pct.2</th><th scope=col>STIM_p_val_adj</th><th scope=col>max_pval</th><th scope=col>minimump_p_val</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>RP11-51J9.5</th><td>2.781586e-53</td><td>1.247707</td><td>0.200</td><td>0.010</td><td>9.912181e-49</td><td>3.662331e-275</td><td>1.349391</td><td>0.222</td><td>0.011</td><td>1.305072e-270</td><td>2.781586e-53</td><td>7.324661e-275</td></tr>
+	<tr><th scope=row>IL23A</th><td>2.094611e-41</td><td>1.107370</td><td>0.255</td><td>0.024</td><td>7.464146e-37</td><td>1.555251e-235</td><td>1.126471</td><td>0.189</td><td>0.009</td><td>5.542137e-231</td><td>2.094611e-41</td><td>3.110502e-235</td></tr>
+	<tr><th scope=row>SRSF2</th><td>1.894999e-45</td><td>1.716273</td><td>0.673</td><td>0.188</td><td>6.752829e-41</td><td>1.660106e-227</td><td>1.781830</td><td>0.668</td><td>0.168</td><td>5.915789e-223</td><td>1.894999e-45</td><td>3.320213e-227</td></tr>
+	<tr><th scope=row>RSRC2</th><td>8.381521e-46</td><td>1.648335</td><td>0.545</td><td>0.113</td><td>2.986755e-41</td><td>3.452786e-220</td><td>1.598169</td><td>0.535</td><td>0.103</td><td>1.230400e-215</td><td>8.381521e-46</td><td>6.905572e-220</td></tr>
+	<tr><th scope=row>EIF1</th><td>1.986893e-30</td><td>0.905377</td><td>0.982</td><td>0.920</td><td>7.080295e-26</td><td>7.110044e-188</td><td>1.030753</td><td>0.994</td><td>0.931</td><td>2.533664e-183</td><td>1.986893e-30</td><td>1.422009e-187</td></tr>
+	<tr><th scope=row>HSPH1</th><td>6.784131e-78</td><td>2.112116</td><td>0.555</td><td>0.069</td><td>2.417525e-73</td><td>2.420243e-184</td><td>1.788474</td><td>0.467</td><td>0.094</td><td>8.624537e-180</td><td>6.784131e-78</td><td>4.840487e-184</td></tr>
+</tbody>
+</table>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Visualize some of these markers and the clusters they belong to</span>
+<span style="color:#75715e"># min.cutoff : minimum threshold for showing features (q9 = quantile 9)</span>
+<span style="color:#a6e22e">FeaturePlot</span>(
+    immune.combined, 
+    features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(
+        <span style="color:#e6db74">&#34;CD3D&#34;</span>, <span style="color:#e6db74">&#34;SELL&#34;</span>, <span style="color:#e6db74">&#34;CREM&#34;</span>, <span style="color:#e6db74">&#34;CD8A&#34;</span>, <span style="color:#e6db74">&#34;GNLY&#34;</span>, <span style="color:#e6db74">&#34;CD79A&#34;</span>, <span style="color:#e6db74">&#34;FCGR3A&#34;</span>, <span style="color:#e6db74">&#34;CCL2&#34;</span>, <span style="color:#e6db74">&#34;PPBP&#34;</span>
+    ), 
+    min.cutoff <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;q9&#34;</span>
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_111_0.png" alt="png"></p>
+<p>Now that we &ldquo;know&rdquo; what these cell types belonging to each cluster are, we can rename the cluster IDs. This simplifies remembering what cluster is what.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Rename the clusters</span>
+immune.combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RenameIdents</span>(
+    immune.combined, 
+    `0` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD14 Mono&#34;</span>, 
+    `1` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD4 Naive T&#34;</span>, 
+    `2` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD4 Memory T&#34;</span>, 
+    `3` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD16 Mono&#34;</span>, 
+    `4` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;B&#34;</span>, 
+    `5` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD8 T&#34;</span>, 
+    `6` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;T activated&#34;</span>, 
+    `7` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NK&#34;</span>, 
+    `8` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;DC&#34;</span>, 
+    `9` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;B Activated&#34;</span>, 
+    `10` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mk&#34;</span>, 
+    `11` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pDC&#34;</span>, 
+    `12` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Eryth&#34;</span>, 
+    `13` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mono/Nk Doublets&#34;</span>
+)
+
+<span style="color:#75715e"># Let&#39;s visualize the clusters with their new labels</span>
+<span style="color:#a6e22e">DimPlot</span>(immune.combined, label <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</code></pre></div><pre><code>Warning message:
+“Cannot find identity 13”
+</code></pre>
+<p><img src="/images/scRNASeq_Seurat/output_113_1.png" alt="png"></p>
+<p>Additionally, a dotplot can be used with <code>split.by</code> to get a better overall sense of the gene expression across cell types than looking at a scatterplot of expression. The scatter plot can be difficult to ascertain non-binary shifts in expression.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># We want to add the new cell types as factors to the Seurat object</span>
+<span style="color:#a6e22e">Idents</span>(immune.combined) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(
+    <span style="color:#a6e22e">Idents</span>(immune.combined), 
+    levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(
+        <span style="color:#e6db74">&#34;pDC&#34;</span>, <span style="color:#e6db74">&#34;Eryth&#34;</span>, <span style="color:#e6db74">&#34;Mk&#34;</span>, <span style="color:#e6db74">&#34;DC&#34;</span>, 
+        <span style="color:#e6db74">&#34;CD14 Mono&#34;</span>, <span style="color:#e6db74">&#34;CD16 Mono&#34;</span>, <span style="color:#e6db74">&#34;B Activated&#34;</span>, <span style="color:#e6db74">&#34;B&#34;</span>, 
+        <span style="color:#e6db74">&#34;CD8 T&#34;</span>, <span style="color:#e6db74">&#34;NK&#34;</span>, <span style="color:#e6db74">&#34;T activated&#34;</span>, <span style="color:#e6db74">&#34;CD4 Naive T&#34;</span>, 
+        <span style="color:#e6db74">&#34;CD4 Memory T&#34;</span>
+    )
+)
+
+<span style="color:#75715e"># Tell what markers for DotPlot to plot</span>
+markers.to.plot <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(
+    <span style="color:#e6db74">&#34;CD3D&#34;</span>, <span style="color:#e6db74">&#34;CREM&#34;</span>, <span style="color:#e6db74">&#34;HSPH1&#34;</span>, <span style="color:#e6db74">&#34;SELL&#34;</span>, <span style="color:#e6db74">&#34;GIMAP5&#34;</span>, <span style="color:#e6db74">&#34;CACYBP&#34;</span>, 
+    <span style="color:#e6db74">&#34;GNLY&#34;</span>, <span style="color:#e6db74">&#34;NKG7&#34;</span>, <span style="color:#e6db74">&#34;CCL5&#34;</span>, <span style="color:#e6db74">&#34;CD8A&#34;</span>, <span style="color:#e6db74">&#34;MS4A1&#34;</span>, <span style="color:#e6db74">&#34;CD79A&#34;</span>, 
+    <span style="color:#e6db74">&#34;MIR155HG&#34;</span>, <span style="color:#e6db74">&#34;NME1&#34;</span>, <span style="color:#e6db74">&#34;FCGR3A&#34;</span>, <span style="color:#e6db74">&#34;VMO1&#34;</span>, <span style="color:#e6db74">&#34;CCL2&#34;</span>, <span style="color:#e6db74">&#34;S100A9&#34;</span>, 
+    <span style="color:#e6db74">&#34;HLA-DQA1&#34;</span>, <span style="color:#e6db74">&#34;GPR183&#34;</span>, <span style="color:#e6db74">&#34;PPBP&#34;</span>, <span style="color:#e6db74">&#34;GNG11&#34;</span>, <span style="color:#e6db74">&#34;HBA2&#34;</span>, <span style="color:#e6db74">&#34;HBB&#34;</span>, 
+    <span style="color:#e6db74">&#34;TSPAN13&#34;</span>, <span style="color:#e6db74">&#34;IL3RA&#34;</span>, <span style="color:#e6db74">&#34;IGJ&#34;</span>
+)
+
+<span style="color:#75715e"># Plot the dot plot</span>
+<span style="color:#a6e22e">DotPlot</span>(
+    immune.combined, 
+    features <span style="color:#f92672">=</span> <span style="color:#a6e22e">rev</span>(markers.to.plot), 
+    cols <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;blue&#34;</span>, <span style="color:#e6db74">&#34;red&#34;</span>), 
+    dot.scale <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, 
+    split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim&#34;</span>
+) <span style="color:#f92672">+</span> <span style="color:#a6e22e">RotatedAxis</span>()
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_115_0.png" alt="png"></p>
+<h3 id="identify-differentially-expresed-genes-across-conditions">Identify differentially expresed genes across conditions</h3>
+<p>Now we want to perform a statistical analysis of the differences. Again, we find ourselves using Seurat&rsquo;s <code>FindMarkers</code> tool to handle this. We will want to merge the data labels into a single label encompassing both condition and cell type. Then we can perform differential gene expression. This is because Seurat was originally designed around a single dat set, so combining data sets must work around the construction of the code usage.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Take all the celltypes and combine them with the stimulated condition</span>
+<span style="color:#75715e"># and add under celltype.stim</span>
+<span style="color:#75715e"># Example: B_STIM</span>
+immune.combined<span style="color:#f92672">$</span>celltype.stim <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">paste</span>(<span style="color:#a6e22e">Idents</span>(immune.combined), immune.combined<span style="color:#f92672">$</span>stim, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;_&#34;</span>)
+
+<span style="color:#75715e"># Create a celltype with all the identifiers in immune.combined</span>
+immune.combined<span style="color:#f92672">$</span>celltype <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Idents</span>(immune.combined)
+
+<span style="color:#75715e"># Relabel the identifiers with celltype.stim identifiers</span>
+<span style="color:#a6e22e">Idents</span>(immune.combined) <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;celltype.stim&#34;</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Run the differential expression response on the selected identifiers</span>
+b.interferon.response <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindMarkers</span>(
+    immune.combined, 
+    ident.1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;B_STIM&#34;</span>, 
+    ident.2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;B_CONTROL&#34;</span>, 
+    test.use <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;MAST&#34;</span>,
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+
+<span style="color:#75715e"># Let us view the top results.</span>
+<span style="color:#a6e22e">head</span>(b.interferon.response, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>)
+</code></pre></div><pre><code>Assuming data assay in position 1, with name et is log-transformed.
+
+
+
+
+ Completed [============================================] 100% with 0 failures
+                                                                              
+
+
+Done!
+
+Combining coefficients and standard errors
+
+Warning message in melt(coefAndCI, as.is = TRUE):
+“The melt generic in data.table has been passed a array and will attempt to redirect to the relevant reshape2 method; please note that reshape2 is deprecated, and this redirection is now deprecated as well. To continue using melt methods from reshape2 while both libraries are attached, e.g. melt.list, you can prepend the namespace like reshape2::melt(coefAndCI). In the next version, this warning will become an error.”
+Calculating log-fold changes
+
+Warning message in melt(lfc):
+“The melt generic in data.table has been passed a list and will attempt to redirect to the relevant reshape2 method; please note that reshape2 is deprecated, and this redirection is now deprecated as well. To continue using melt methods from reshape2 while both libraries are attached, e.g. melt.list, you can prepend the namespace like reshape2::melt(lfc). In the next version, this warning will become an error.”
+Calculating likelihood ratio tests
+
+Refitting on reduced model...
+
+
+
+
+ Completed [============================================] 100% with 0 failures
+                                                                              
+
+
+Done!
+
+Warning message in melt(llrt):
+“The melt generic in data.table has been passed a list and will attempt to redirect to the relevant reshape2 method; please note that reshape2 is deprecated, and this redirection is now deprecated as well. To continue using melt methods from reshape2 while both libraries are attached, e.g. melt.list, you can prepend the namespace like reshape2::melt(llrt). In the next version, this warning will become an error.”
+</code></pre>
+<table>
+<caption>A data.frame: 15 × 5</caption>
+<thead>
+	<tr><th></th><th scope=col>p_val</th><th scope=col>avg_logFC</th><th scope=col>pct.1</th><th scope=col>pct.2</th><th scope=col>p_val_adj</th></tr>
+	<tr><th></th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>ISG15</th><td>3.661441e-216</td><td>2.9481852</td><td>0.989</td><td>0.274</td><td>1.304755e-211</td></tr>
+	<tr><th scope=row>ISG20</th><td>2.088407e-189</td><td>2.2445984</td><td>0.985</td><td>0.439</td><td>7.442039e-185</td></tr>
+	<tr><th scope=row>IFI6</th><td>2.376781e-172</td><td>3.0057743</td><td>0.954</td><td>0.071</td><td>8.469659e-168</td></tr>
+	<tr><th scope=row>IFIT3</th><td>7.716120e-129</td><td>2.9012107</td><td>0.877</td><td>0.057</td><td>2.749639e-124</td></tr>
+	<tr><th scope=row>IFIT1</th><td>9.268491e-124</td><td>2.7636979</td><td>0.842</td><td>0.028</td><td>3.302827e-119</td></tr>
+	<tr><th scope=row>LY6E</th><td> 4.190222e-99</td><td>1.6798024</td><td>0.930</td><td>0.325</td><td> 1.493185e-94</td></tr>
+	<tr><th scope=row>MX1</th><td> 1.016617e-92</td><td>2.2014597</td><td>0.811</td><td>0.099</td><td> 3.622714e-88</td></tr>
+	<tr><th scope=row>PLSCR1</th><td> 2.511780e-77</td><td>2.1052458</td><td>0.738</td><td>0.075</td><td> 8.950727e-73</td></tr>
+	<tr><th scope=row>OAS1</th><td> 1.147920e-62</td><td>2.0385737</td><td>0.651</td><td>0.061</td><td> 4.090612e-58</td></tr>
+	<tr><th scope=row>IFIT2</th><td> 2.219838e-62</td><td>2.0480978</td><td>0.610</td><td>0.033</td><td> 7.910391e-58</td></tr>
+	<tr><th scope=row>B2M</th><td> 5.625221e-60</td><td>0.3279358</td><td>1.000</td><td>1.000</td><td> 2.004547e-55</td></tr>
+	<tr><th scope=row>IFITM3</th><td> 1.994747e-59</td><td>2.4469463</td><td>0.617</td><td>0.061</td><td> 7.108279e-55</td></tr>
+	<tr><th scope=row>TNFSF10</th><td> 6.027435e-58</td><td>1.9220032</td><td>0.684</td><td>0.118</td><td> 2.147877e-53</td></tr>
+	<tr><th scope=row>IRF7</th><td> 2.860615e-54</td><td>1.5765888</td><td>0.712</td><td>0.151</td><td> 1.019380e-49</td></tr>
+	<tr><th scope=row>MT2A</th><td> 2.561631e-52</td><td>1.8159387</td><td>0.604</td><td>0.066</td><td> 9.128371e-48</td></tr>
+</tbody>
+</table>
+<p>We can now visually explore the underlying distribution of expression for these statistically significant genes with scatterplots or violin plots of their expression across conditions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Scatter plot</span>
+<span style="color:#a6e22e">FeaturePlot</span>(
+    immune.combined, 
+    features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;GNLY&#34;</span>, <span style="color:#e6db74">&#34;IFI6&#34;</span>), 
+    split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim&#34;</span>, 
+    max.cutoff <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, 
+    cols <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;grey&#34;</span>, <span style="color:#e6db74">&#34;red&#34;</span>)
+)
+</code></pre></div><p><img src="/images/scRNASeq_Seurat/output_121_0.png" alt="png"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Violin plot</span>
+plots <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">VlnPlot</span>(
+    immune.combined, 
+    features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;LYZ&#34;</span>, <span style="color:#e6db74">&#34;ISG15&#34;</span>, <span style="color:#e6db74">&#34;CXCL10&#34;</span>), 
+    split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim&#34;</span>, 
+    group.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;celltype&#34;</span>, 
+    pt.size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, 
+    combine <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+<span style="color:#a6e22e">CombinePlots</span>(plots <span style="color:#f92672">=</span> plots, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+</code></pre></div><pre><code>Warning message:
+“CombinePlots is being deprecated. Plots should now be combined using the patchwork system.”
+</code></pre>
+<p><img src="/images/scRNASeq_Seurat/output_122_1.png" alt="png"></p>
+<h2 id="integrating-multiple-data-sets-with-sctransform">Integrating multiple data sets with sctransform</h2>
+<p>Above, we used normalization assuming a fixed scale. sctransform is a more elegant and pertinent solution to normalization, as shown above in the single data set examples. However, integration with sctransform is a fairly new feature added. In our experience, it can be extremely computationally expensive, depending on the data set. In our case with the stimulated vs control experiment, it falls under the latter. Because of the computational limits of the workshop, we used the other methodology.</p>
+<p>However, we are providing you with the code, if you want to try it on other data.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Load the 10X data</span>
+stim.data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Read10X</span>(data.dir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./data/stim&#34;</span>)
+control.data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Read10X</span>(data.dir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./data/control&#34;</span>)
+
+<span style="color:#75715e"># Load the 10X data into a Seurat object</span>
+stim <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">CreateSeuratObject</span>(counts <span style="color:#f92672">=</span> stim.data, project <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim-control&#34;</span>)
+control <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">CreateSeuratObject</span>(counts <span style="color:#f92672">=</span> control.data, project <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim-control&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># We are going to reduce this 14K cell data set to 3K</span>
+
+<span style="color:#75715e"># Identify a random assortment of cells</span>
+cells.to.sample <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#a6e22e">rownames</span>(stim<span style="color:#f92672">@</span>meta.data), <span style="color:#ae81ff">3000</span>)
+<span style="color:#75715e"># Subset the 14K dataset for the randomly selected 3K cells</span>
+stim.small <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(stim, cells <span style="color:#f92672">=</span> cells.to.sample)
+
+<span style="color:#75715e"># Repeat for the control</span>
+cells.to.sample <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sample</span>(<span style="color:#a6e22e">rownames</span>(control<span style="color:#f92672">@</span>meta.data), <span style="color:#ae81ff">3000</span>)
+control <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(control, cells <span style="color:#f92672">=</span> cells.to.sample)
+</code></pre></div><p>In the above code, we loaded the data into separate Seurat object. We labeled them according to the same project. Next, we are going to combine the data sets into one object, and label each data set accordingly. Note that the new object will override the project names from before. Additionally, I used the format <code>y = c(stim)</code>, because this can be generalized to <code>y = c(stim, stim2, stim3)</code> or however many sets you want to merge. You would then add more IDs to the object: <code>add.cell.ids = c(&quot;CONTROL&quot;, &quot;STIM&quot;, &quot;STIM2&quot;, &quot;STIM3&quot;)</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Annotate the objects with the type, by a user-defined group name</span>
+control<span style="color:#f92672">$</span>cond <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;CONTROL&#34;</span>
+stim<span style="color:#f92672">$</span>cond <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;STIM&#34;</span>
+
+
+<span style="color:#75715e"># Merge the Seurat objects into one object</span>
+combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">merge</span>(
+    control,
+    y <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(stim),
+    add.cell.ids <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CONTROL&#34;</span>, <span style="color:#e6db74">&#34;STIM&#34;</span>),
+    project <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;STIM-CONTROL&#34;</span>
+)
+</code></pre></div><p>Now that they are merged together in one object, we can normalize the data and start visualizations. Note that now the visualizations are split by or color labeled by the cell IDs that we annotated.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Flag the mitochondrial genes</span>
+combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">PercentageFeatureSet</span>(combined, pattern <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;^Mt-&#34;</span>, col.name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;percent.mt&#34;</span>)
+
+<span style="color:#75715e"># Visualize QC metrics as a violin plot</span>
+<span style="color:#a6e22e">VlnPlot</span>(combined, features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;nFeature_RNA&#34;</span>, <span style="color:#e6db74">&#34;nCount_RNA&#34;</span>, <span style="color:#e6db74">&#34;percent.mt&#34;</span>), ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Visualize the feature-feature relationship with scatter plots</span>
+plot1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FeatureScatter</span>(combined, feature1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;nCount_RNA&#34;</span>, feature2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;percent.mt&#34;</span>)
+plot2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FeatureScatter</span>(combined, feature1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;nCount_RNA&#34;</span>, feature2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;nFeature_RNA&#34;</span>)
+<span style="color:#a6e22e">CombinePlots</span>(plots <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(plot1, plot2))
+</code></pre></div><p>Now, we plan to make a new <code>combined</code> object, as to perform a comparison across the data sets, we have to integrate them together - i.e. we need to find anchor points of comparison between the data sets. To do this, the process is roughly as follows:</p>
+<ol>
+<li>sctransform each data set individually</li>
+<li>Identify the anchor features (genes) to compare dataset to dataset</li>
+<li>Re-normalize the data by these anchor points</li>
+</ol>
+<p>This step is of particular importance when working with different technologies being merged together - i.e. comparing 10X prepared samples with inDrop prepared samples. However, even within the same technologies it is good practice, even if not strictly as necessary.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Remake the new combined object so &#39;state&#39; is clean</span>
+combined <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">merge</span>(
+    control,
+    y <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(stim),
+    add.cell.ids <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CONTROL&#34;</span>, <span style="color:#e6db74">&#34;STIM&#34;</span>),
+    project <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;STIM-CONTROL&#34;</span>
+)
+
+<span style="color:#75715e"># Split the object into a list of Seurat objects</span>
+combined.list <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">SplitObject</span>(combined, split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;cond&#39;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Now we sctransform each data set individually</span>
+<span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">length</span>(combined.list)) {
+    combined.list[[i]] <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">SCTransform</span>(combined.list[[i]], verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+}
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Prepare the features for anchor identification</span>
+combined.features <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">SelectIntegrationFeatures</span>(object.list <span style="color:#f92672">=</span> combined.list, nfeatures <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># necessary to allow R to handle the size of the data</span>
+<span style="color:#a6e22e">options</span>(future.globals.maxSize<span style="color:#f92672">=</span><span style="color:#ae81ff">891289600</span>) 
+
+combined.list <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">PrepSCTIntegration</span>(
+    object.list <span style="color:#f92672">=</span> combined.list,
+    anchor.features <span style="color:#f92672">=</span> combined.features,
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Identify the anchors and integrate the datasets.</span>
+<span style="color:#75715e"># Here we must re-normalize with sctransform via &#39;SCT&#39; parameter</span>
+combined.anchors <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindIntegrationAnchors</span>(
+    object.list <span style="color:#f92672">=</span> combined.list,
+    normalization.method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SCT&#34;</span>,
+    anchor.features <span style="color:#f92672">=</span> combined.features,
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+combined.integrated <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">IntegrateData</span>(
+    anchorset <span style="color:#f92672">=</span> combined.anchors,
+    normalization.method <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SCT&#34;</span>, 
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+</code></pre></div><p>Once we have normalized the data, we can perform our downstream analyses as before: PCA, UMAP, and clustering.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Dimensionality reduction with PCA</span>
+combined.integrated <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunPCA</span>(combined.integrated, verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+
+<span style="color:#75715e"># Run UMAP</span>
+combined.integrated <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RunUMAP</span>(
+    combined.integrated, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">30</span>, 
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+
+<span style="color:#75715e"># Cluster the cells</span>
+combined.integrated <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindNeighbors</span>(
+    combined.integrated, 
+    dims <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">30</span>, 
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+combined.integrated <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindClusters</span>(
+    combined.integrated, 
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+
+<span style="color:#75715e"># Plot the UMAP of the combined data</span>
+<span style="color:#a6e22e">DimPlot</span>(
+    combined.integrated, 
+    reduction<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;umap&#34;</span>, 
+    label <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>
+) <span style="color:#f92672">+</span> <span style="color:#a6e22e">NoLegend</span>()
+</code></pre></div><h3 id="visualization-with-annotations">Visualization with annotations</h3>
+<p>However, these are combined data sets, and with the way we annotated the Seurat object, we can split these splits by their annotations. In the below example, we are going to display these plots by annotation in two ways:</p>
+<ol>
+<li>an overlay of the groups</li>
+<li>splitting the groups into separate plots
+We are going to do this with the <strong>cond</strong> group annotation that we set for each data set prior to merging.</li>
+</ol>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># First, plot the UMAP but with the conditions split into an overlay</span>
+<span style="color:#a6e22e">DimPlot</span>(combined.integrated, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;umap&#34;</span>, group.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cond&#34;</span>)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Then, we plot the UMAP but with the conditions split into separate side</span>
+<span style="color:#75715e"># by side plots</span>
+<span style="color:#a6e22e">DimPlot</span>(combined.integrated, reduction <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;umap&#34;</span>, split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cond&#34;</span>)
+</code></pre></div><p>Additionally, we can chain both <code>split.by</code> and <code>group.by</code> for cases where we have multiple annotations.</p>
+<p>We can then move forward with identifying canonical biomarkers and how they may differ between conditions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">FeaturePlot</span>(combined.integrated, features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CD8A&#34;</span>), split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cond&#34;</span>)
+</code></pre></div><h3 id="differential-analysis-for-conserved-markers-between-conditions">Differential analysis for conserved markers between conditions</h3>
+<p>We may first want to identify what genes are not changed by the stimulus condition. Seurat offers software to do this via the function <code>FindConservedMarkers</code>. Please note that this uses a different algorithmic methods from <code>FindMarkers</code> and lacks MAST as an option, so we are left with more traditional statistical approaches to dealing with single cell data. However, it is still useful for identifying genes that did not change between conditions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">DefaultAssay</span>(combined.integrated) <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;RNA&#34;</span>
+nk.markers <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindConservedMarkers</span>(
+    combined.integrated, 
+    ident.1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>, 
+    grouping.var <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cond&#34;</span>, 
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+<span style="color:#a6e22e">head</span>(nk.markers)
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># We can then visualize the expression differences between the two conditions for some genes</span>
+<span style="color:#a6e22e">FeaturePlot</span>(combined.integrated, features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CD8A&#34;</span>, <span style="color:#e6db74">&#34;GNLY&#34;</span>, <span style="color:#e6db74">&#34;CD79A&#34;</span>, <span style="color:#e6db74">&#34;FCGR3A&#34;</span>, 
+    <span style="color:#e6db74">&#34;CCL2&#34;</span>, <span style="color:#e6db74">&#34;PPBP&#34;</span>), min.cutoff <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;q9&#34;</span>, split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cond&#34;</span>)
+</code></pre></div><p>Because this is a previously published data set, we can know some things about the data. This provides an example of how one can annotate your clusters with more human readable notations than &ldquo;cluster 1&rdquo;, &ldquo;cluster 2&rdquo;, etc.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">combined.integrated <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">RenameIdents</span>(
+    combined.integrated, 
+    `0` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD14 Mono&#34;</span>, `1` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD4 Naive T&#34;</span>, `2` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD4 Memory T&#34;</span>, 
+    `3` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD16 Mono&#34;</span>, `4` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;B&#34;</span>, `5` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD8 T&#34;</span>, `6` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;T activated&#34;</span>, 
+    `7` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NK&#34;</span>, `8` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;DC&#34;</span>, `9` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;B Activated&#34;</span>, `10` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mk&#34;</span>, 
+    `11` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pDC&#34;</span>, `12` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Eryth&#34;</span>, `13` <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Mono/Mk Doublets&#34;</span>
+)
+
+<span style="color:#a6e22e">DimPlot</span>(combined.integrated, label <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</code></pre></div><p>A better overview of the expression across clusters and conditions can be done with a dot plot. This provides us a simple graphic showcasing the expressions ordered across the multiple cell types.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">Idents</span>(combined.integrated) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">factor</span>(
+    <span style="color:#a6e22e">Idents</span>(combined.integrated),
+    levels <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(
+        <span style="color:#e6db74">&#34;Mono/Mk Doublets&#34;</span>, <span style="color:#e6db74">&#34;pDC&#34;</span>, <span style="color:#e6db74">&#34;Eryth&#34;</span>, <span style="color:#e6db74">&#34;Mk&#34;</span>, <span style="color:#e6db74">&#34;DC&#34;</span>, 
+        <span style="color:#e6db74">&#34;CD14 Mono&#34;</span>, <span style="color:#e6db74">&#34;CD16 Mono&#34;</span>, <span style="color:#e6db74">&#34;B Activated&#34;</span>, <span style="color:#e6db74">&#34;B&#34;</span>, <span style="color:#e6db74">&#34;CD8 T&#34;</span>, 
+        <span style="color:#e6db74">&#34;NK&#34;</span>, <span style="color:#e6db74">&#34;T activated&#34;</span>, <span style="color:#e6db74">&#34;CD4 Naive T&#34;</span>, <span style="color:#e6db74">&#34;CD4 Memory T&#34;</span>
+    )
+)
+markers.to.plot <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(
+    <span style="color:#e6db74">&#34;CD3D&#34;</span>, <span style="color:#e6db74">&#34;CREM&#34;</span>, <span style="color:#e6db74">&#34;HSPH1&#34;</span>, <span style="color:#e6db74">&#34;SELL&#34;</span>, <span style="color:#e6db74">&#34;GIMAP5&#34;</span>, <span style="color:#e6db74">&#34;CACYBP&#34;</span>, <span style="color:#e6db74">&#34;GNLY&#34;</span>,
+    <span style="color:#e6db74">&#34;NKG7&#34;</span>, <span style="color:#e6db74">&#34;CCL5&#34;</span>, <span style="color:#e6db74">&#34;CD8A&#34;</span>, <span style="color:#e6db74">&#34;MS4A1&#34;</span>, <span style="color:#e6db74">&#34;CD79A&#34;</span>, <span style="color:#e6db74">&#34;MIR155HG&#34;</span>, <span style="color:#e6db74">&#34;NME1&#34;</span>, 
+    <span style="color:#e6db74">&#34;FCGR3A&#34;</span>, <span style="color:#e6db74">&#34;VMO1&#34;</span>, <span style="color:#e6db74">&#34;CCL2&#34;</span>, <span style="color:#e6db74">&#34;S100A9&#34;</span>, <span style="color:#e6db74">&#34;HLA-DQA1&#34;</span>, <span style="color:#e6db74">&#34;GPR183&#34;</span>, 
+    <span style="color:#e6db74">&#34;PPBP&#34;</span>, <span style="color:#e6db74">&#34;GNG11&#34;</span>, <span style="color:#e6db74">&#34;HBA2&#34;</span>, <span style="color:#e6db74">&#34;HBB&#34;</span>, <span style="color:#e6db74">&#34;TSPAN13&#34;</span>, <span style="color:#e6db74">&#34;IL3RA&#34;</span>, <span style="color:#e6db74">&#34;IGJ&#34;</span>
+)
+<span style="color:#a6e22e">DotPlot</span>(
+    combined.integrated, 
+    features <span style="color:#f92672">=</span> <span style="color:#a6e22e">rev</span>(markers.to.plot), 
+    cols <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;blue&#34;</span>, <span style="color:#e6db74">&#34;red&#34;</span>), 
+    dot.scale <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, 
+    split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cond&#34;</span>
+) <span style="color:#f92672">+</span> <span style="color:#a6e22e">RotatedAxis</span>()
+</code></pre></div><h3 id="identify-differentially-expressed-genes-between-conditions">Identify differentially expressed genes between conditions</h3>
+<p>Now we get to the typical central question for a single cell conditional experiment. How do individual cell types differ across some condition. First thing we will do is visually inspect how the gene expression compares beween the two conditions with a scatterplot of gene expression between the two conditions.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">library</span>(ggplot2)
+<span style="color:#a6e22e">library</span>(cowplot)
+<span style="color:#a6e22e">theme_set</span>(<span style="color:#a6e22e">theme_cowplot</span>())
+
+<span style="color:#75715e"># First subset just the CD4 T cell expressions</span>
+t.cells <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(immune.combined, idents <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD4 Naive T&#34;</span>)
+<span style="color:#a6e22e">Idents</span>(t.cells) <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;cond&#34;</span>
+<span style="color:#75715e"># Get the average expression for genes across the T cells for all genes</span>
+avg.t.cells <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">log1p</span>(<span style="color:#a6e22e">AverageExpression</span>(t.cells, verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)<span style="color:#f92672">$</span>RNA)
+avg.t.cells<span style="color:#f92672">$</span>gene <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rownames</span>(avg.t.cells)
+
+<span style="color:#75715e"># Then subset just the CD14 Mono cell expressions</span>
+cd14.mono <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">subset</span>(immune.combined, idents <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;CD14 Mono&#34;</span>)
+<span style="color:#a6e22e">Idents</span>(cd14.mono) <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;cond&#34;</span>
+<span style="color:#75715e"># Again, gets the average expression for all genes in the cell type</span>
+avg.cd14.mono <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">log1p</span>(<span style="color:#a6e22e">AverageExpression</span>(cd14.mono, verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)<span style="color:#f92672">$</span>RNA)
+avg.cd14.mono<span style="color:#f92672">$</span>gene <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rownames</span>(avg.cd14.mono)
+
+<span style="color:#75715e"># Here we are going to select a few genes that we already know are</span>
+<span style="color:#75715e"># differentially expressed to highlight them</span>
+genes.to.label <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;ISG15&#34;</span>, <span style="color:#e6db74">&#34;LY6E&#34;</span>, <span style="color:#e6db74">&#34;IFI6&#34;</span>, <span style="color:#e6db74">&#34;ISG20&#34;</span>, <span style="color:#e6db74">&#34;MX1&#34;</span>, <span style="color:#e6db74">&#34;IFIT2&#34;</span>, <span style="color:#e6db74">&#34;IFIT1&#34;</span>, <span style="color:#e6db74">&#34;CXCL10&#34;</span>, <span style="color:#e6db74">&#34;CCL8&#34;</span>)
+
+<span style="color:#75715e"># Create a scatter plot of the CD4 T cells, CONTROL expression on the </span>
+<span style="color:#75715e"># x-axis and STIM on the y-axis</span>
+p1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(avg.t.cells, <span style="color:#a6e22e">aes</span>(CONTROL, STIM)) <span style="color:#f92672">+</span> <span style="color:#a6e22e">geom_point</span>() <span style="color:#f92672">+</span> <span style="color:#a6e22e">ggtitle</span>(<span style="color:#e6db74">&#34;CD4 Naive T Cells&#34;</span>)
+p1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">LabelPoints</span>(plot <span style="color:#f92672">=</span> p1, points <span style="color:#f92672">=</span> genes.to.label, repel <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#75715e"># Create a scatter plot of the CD14 Mono cells, CONTROL expression on the </span>
+<span style="color:#75715e"># x-axis and STIM on the y-axis</span>
+p2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ggplot</span>(avg.cd14.mono, <span style="color:#a6e22e">aes</span>(CONTROL, STIM)) <span style="color:#f92672">+</span> <span style="color:#a6e22e">geom_point</span>() <span style="color:#f92672">+</span> <span style="color:#a6e22e">ggtitle</span>(<span style="color:#e6db74">&#34;CD14 Monocytes&#34;</span>)
+p2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">LabelPoints</span>(plot <span style="color:#f92672">=</span> p2, points <span style="color:#f92672">=</span> genes.to.label, repel <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#75715e"># Combine the two plots into a side by side grid and display</span>
+<span style="color:#a6e22e">plot_grid</span>(p1, p2)
+</code></pre></div><p>Let us find the markers between B cells stimulated and B cells under control.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># Create new labels of &#34;CD14 Mono_CONTROL&#34;, &#34;CD14 Mono_STIM&#34;, </span>
+<span style="color:#75715e"># &#34;CD4 Naive T_CONTROL&#34;, etc.</span>
+combined.integrated<span style="color:#f92672">$</span>celltype.stim <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">paste</span>(
+    <span style="color:#a6e22e">Idents</span>(combined.integrated), 
+    combined.integrated<span style="color:#f92672">$</span>cond, 
+    sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;_&#34;</span>
+)
+<span style="color:#75715e"># Then we merge cell typings plus their condition into a </span>
+<span style="color:#75715e"># new ident under celltype.stim</span>
+combined.integrated<span style="color:#f92672">$</span>celltype <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Idents</span>(combined.integrated)
+<span style="color:#a6e22e">Idents</span>(combined.integrated) <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;celltype.stim&#34;</span>
+
+<span style="color:#75715e"># Now we find some markers </span>
+interferon.response <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">FindMarkers</span>(
+    combined.integrated, 
+    ident.1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;B_STIM&#34;</span>, 
+    ident.2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;B_CONTROL&#34;</span>,
+    test.use <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;MAST&#34;</span>,
+    verbose <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+)
+<span style="color:#a6e22e">head</span>(interferon.response, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">15</span>)
+</code></pre></div><p>Now let&rsquo;s compare one of the differentially expressed genes response visually compared to a conserved gene we identified previously. We will start with an overlay of the gene expression over the scatter plot of clusters.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">FeaturePlot</span>(
+    combined.itegrated, 
+    features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CD3D&#34;</span>, <span style="color:#e6db74">&#34;IFI6&#34;</span>), 
+    split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stim&#34;</span>, 
+    max.cutoff <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, 
+    cols <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;grey&#34;</span>, <span style="color:#e6db74">&#34;red&#34;</span>)
+)
+</code></pre></div><p>We can also visualize the distribution of expression more clearly with a violin plot.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">plots <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">VlnPlot</span>(
+    combined.integrated, 
+    features <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;CD3D&#34;</span>, <span style="color:#e6db74">&#34;IFI6&#34;</span>), 
+    split.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cond&#34;</span>, 
+    group.by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;celltype&#34;</span>, 
+    pt.size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, 
+    combine <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+<span style="color:#a6e22e">CombinePlots</span>(plots <span style="color:#f92672">=</span> plots, ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+</code></pre></div>
+    </div>
+</div><div id="social-media-share" class="has-text-centered">
+	<p><i>Sharing is caring!</i></p>
+	<br>
+	
+	<div class="share-buttons">
+	    <a  href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fscrnaseq_seurat%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Facebook. Opens in a new window.">
+	        <img src=/img/icons/45px/facebook.png>
+	    </a>
+
+	    <a  href="https://twitter.com/intent/tweet?text=scRNASeq%20analysis%20with%20Seurat%20&url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fscrnaseq_seurat%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Twitter. Opens in a new window." >
+	        <img src=/img/icons/45px/twitter.png>
+	    </a>
+
+		<a  href="http://www.reddit.com/submit?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fscrnaseq_seurat%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Reddit. Opens in a new window." >
+	        <img src=/img/icons/45px/reddit.png>
+	    </a>
+
+	    <a  href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fscrnaseq_seurat%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Pinterest. Opens in a new window." >
+	        <img src=/img/icons/45px/pinterest.png>
+	    </a>
+
+	    <a  href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fscrnaseq_seurat%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Tumblr. Opens in a new window." >
+	        <img src=/img/icons/45px/tumblr.png>
+	    </a>
+
+		<a  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fscrnaseq_seurat%2f
+			&title=scRNASeq%20analysis%20with%20Seurat%20&summary=scRNASeq%20analysis%20with%20Seurat%20and%20other%20tools%20Seurat%20install%20The%20Seurat%20package%20will%20need%20to%20be%20installed.%20You%20can%20find%20further%20instructions%20for%20install%20found%20here.%20It%20is%20installed%20via%20a%20separate%20package%20manager%20%28in%20R%29%20Bioconductor%20and%20R%26rsquo%3bs%20package%20manager%20CRAN.%0a%23%20Check%20if%20Bioconductor%20is%20installed.%20If%20not%2c%20install%20if%20%28%21requireNamespace%28%26%2334%3bBiocManager%26%2334%3b%2c%20quietly%20%3d%20TRUE%29%29%20install.packages%28%26%2334%3bBiocManager%26%2334%3b%29%20%23%20Install%20a%20necessary%20package%20for%20Seurat%20BiocManager%3a%3ainstall%28%26%2339%3bmulttest%26%2339%3b%29%20BiocManager%3a%3ainstall%28%26%2339%3bMAST%26%2339%3b%29%20%23%20Install%20Seurat%20install.packages%28%26%2339%3bSeurat%26%2339%3b%29%20Updating%20HTML%20index%20of%20packages%20in%20%27.&source=rafed123.github.io"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on LinkedIn. Opens in a new window." >
+	        <img src=/img/icons/45px/linkedin.png>
+	    </a>
+
+	    <a  href="mailto:?subject=scRNASeq%20analysis%20with%20Seurat%20&amp;body=Check out this site https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fscrnaseq_seurat%2f"
+	        title="Share via Email. Opens in a new window." >
+	        <img src=/img/icons/45px/mail.png>
+	    </a>
+	</div>
+</div>
+
+
+<br>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    (function () {
+        
+        
+        if (window.location.hostname == "localhost")
+            return;
+
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'disqus-code';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </div>
+    </div>
+<script async src="https://cse.google.com/cse.js?cx=google-search-code"></script>
+<gcse:searchresults-only></gcse:searchresults-only>
+
+
+<footer class="footer has-background-dark">
+    <div class="content has-text-centered has-text-white">
+        <p>
+            © 2020 Ramium. Powered by
+            <a class="has-text-light" href="https://github.com/gohugoio/hugo" target="_blank">
+            Hugo</a>. Theme
+            <a class="has-text-light" href="https://github.com/rafed123/ramium/" target="_blank">
+                Ramium.
+            </a>
+        </p>
+    </div>
+</footer>
+</body>
+
+</html>

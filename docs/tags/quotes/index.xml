@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quotes on Ramium</title>
+    <link>https://yaoyu-e-wang.github.io/tags/quotes/</link>
+    <description>Recent content in Quotes on Ramium</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 28 Jun 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://yaoyu-e-wang.github.io/tags/quotes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Quotes</title>
+      <link>https://yaoyu-e-wang.github.io/posts/quotes/</link>
+      <pubDate>Sun, 28 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yaoyu-e-wang.github.io/posts/quotes/</guid>
+      <description>&amp;quot;There areonly two kinds of theories: those that are wrong and those that are incomplete.&amp;quot; &amp;ndash; Karl Popper
+&amp;quot;We look for medicine to be an orderly field of knowledge and procedure. But it is not. It is an imperfect science, an enterprise of constantly changing knowledge, uncertain information, fallible individuals, and at the same time lives on the line&amp;quot; &amp;ndash;Atul Gawande, Complications: A Surgeon&amp;rsquo;s Notes on an Imperfect Science, 2003</description>
+    </item>
+    
+  </channel>
+</rss>

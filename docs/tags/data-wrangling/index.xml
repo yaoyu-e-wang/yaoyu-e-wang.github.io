@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Wrangling on Ramium</title>
+    <link>https://yaoyu-e-wang.github.io/tags/data-wrangling/</link>
+    <description>Recent content in Data Wrangling on Ramium</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 26 Apr 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://yaoyu-e-wang.github.io/tags/data-wrangling/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Wrangling with R Basics - 3</title>
+      <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/</link>
+      <pubDate>Sun, 26 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/</guid>
+      <description>Data Wrangling with R Basics - 3 Let&amp;rsquo;s load the dataset
+data=list( dge_results=read.table(&#39;scripts and data/data/differential_results.csv&#39;, sep=&#39;,&#39;, header=T), expr=read.table(&#39;scripts and data/data/gene_expression.tsv&#39;, header=T, row.names=1), # first column being the rowname annot=read.delim(&#39;scripts and data/data/gene_annotations.tsv&#39;) )  find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
+expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can use the function subset to find the given with a given coordinate</description>
+    </item>
+    
+    <item>
+      <title>Data Wrangling with R Basics - 2</title>
+      <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-2/</link>
+      <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-2/</guid>
+      <description>Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
+ my_pathway_genes.txt - mutations.tsv  These files are stored in either comma-delimited (csv) or tab-delimited (tsv) formats. Files can be read with the following functions available from default R libraries. These are built-in “functions” from R. All read files, but with slightly different default behavior.
+    Function package Description    read.</description>
+    </item>
+    
+    <item>
+      <title>Data Wrangling with R Basics - 1</title>
+      <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/</link>
+      <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/</guid>
+      <description>The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
+Variables and Data types Variables are assignment names for a piece of information, such as data.</description>
+    </item>
+    
+  </channel>
+</rss>

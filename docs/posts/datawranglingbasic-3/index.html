@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><title>
+    Data Wrangling With R Basics - 3 | 
+    
+    Ramium</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
+data=list( dge_results=read.table(&#39;scripts and data/data/differential_results.csv&#39;, sep=&#39;,&#39;, header=T), expr=read.table(&#39;scripts and data/data/gene_expression.tsv&#39;, header=T, row.names=1), # first column being the rowname annot=read.delim(&#39;scripts and data/data/gene_annotations.tsv&#39;) )  find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
+expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can use the function subset to find the given with a given coordinate
+    ">
+
+
+<meta property="og:title" content="Data Wrangling with R Basics - 3" />
+<meta property="og:description" content="Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
+data=list( dge_results=read.table(&#39;scripts and data/data/differential_results.csv&#39;, sep=&#39;,&#39;, header=T), expr=read.table(&#39;scripts and data/data/gene_expression.tsv&#39;, header=T, row.names=1), # first column being the rowname annot=read.delim(&#39;scripts and data/data/gene_annotations.tsv&#39;) )  find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
+expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can use the function subset to find the given with a given coordinate" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/" />
+<meta property="article:published_time" content="2020-04-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-04-26T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Data Wrangling with R Basics - 3"/>
+<meta name="twitter:description" content="Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
+data=list( dge_results=read.table(&#39;scripts and data/data/differential_results.csv&#39;, sep=&#39;,&#39;, header=T), expr=read.table(&#39;scripts and data/data/gene_expression.tsv&#39;, header=T, row.names=1), # first column being the rowname annot=read.delim(&#39;scripts and data/data/gene_annotations.tsv&#39;) )  find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
+expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can use the function subset to find the given with a given coordinate"/>
+
+<meta itemprop="name" content="Data Wrangling with R Basics - 3">
+<meta itemprop="description" content="Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
+data=list( dge_results=read.table(&#39;scripts and data/data/differential_results.csv&#39;, sep=&#39;,&#39;, header=T), expr=read.table(&#39;scripts and data/data/gene_expression.tsv&#39;, header=T, row.names=1), # first column being the rowname annot=read.delim(&#39;scripts and data/data/gene_annotations.tsv&#39;) )  find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
+expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can use the function subset to find the given with a given coordinate">
+<meta itemprop="datePublished" content="2020-04-26T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2020-04-26T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="674">
+
+
+
+<meta itemprop="keywords" content="R,Data Wrangling,tutorial," />
+<link rel="canonical" href="https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/" />
+
+<link rel="icon" type="image/png" href="https://yaoyu-e-wang.github.io/image/favicon.ico">
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bulma.min.css">
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'analytics-code', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script src=/js/ramium.js></script>
+<link rel="stylesheet" href=/css/ramium.css>
+
+
+
+
+
+</head>
+
+<body><nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href=/>
+      
+      <strong>Ramium </strong>
+      
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      
+      
+      <a class="navbar-item" href="/">Home</a>
+      
+      
+      
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">This Blog</a>
+        <div class="navbar-dropdown">
+          
+          <a class="navbar-item" href="/tags/">All Tags</a>
+          
+          <a class="navbar-item" href="/sections/">All Sections</a>
+          
+          <a class="navbar-item" href="/posts/">All Posts</a>
+          
+        </div>
+      </div>
+      
+      
+      
+      <a class="navbar-item" href="/authorr/">Author</a>
+      
+      
+    </div>
+
+    <div class="navbar-end">
+      
+
+      
+      <div class="navbar-item">
+        <form id="cse-search-box-form-id" onsubmit="return executeQuery();" role="search">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input id="cse-search-input-box-id" size=15 class="input" type="text" autocomplete="off"
+                placeholder="&#xf1a0; Google search" style="font-family:Arial, FontAwesome">
+            </div>
+
+            <div class="control">
+              <button type="submit" class="button is-black">
+                <i class="fa fa-search"></i>
+                </a>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</nav><div class="columns is-centered">
+        <div id="page-body" class="column is-7">
+
+<div class="content blog">
+    <h1>Data Wrangling With R Basics - 3</h1>
+
+    <div id="infobar" class="level is-mobile">
+        <div class="level-left">
+            
+            <div class="level-item">
+                <p class="subtitle info date">Apr 26, 2020
+                </p>
+            </div>
+            
+
+            <div class="level-item">
+                <p class="subtitle info">
+                    4 mins read
+                </p>
+            </div>
+        </div>
+        <div class="level-right is-hidden-touch">
+            <div class="tags">
+                
+                <a class="tag is-dark is-rounded" href="/tags/r">R</a>
+                
+                <a class="tag is-dark is-rounded" href="/tags/data-wrangling">Data Wrangling</a>
+                
+                <a class="tag is-dark is-rounded" href="/tags/tutorial">Tutorial</a>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="tags is-hidden-desktop">
+        
+        <a class="tag is-dark is-rounded" href="/tags/r">R</a>
+        
+        <a class="tag is-dark is-rounded" href="/tags/data-wrangling">Data wrangling</a>
+        
+        <a class="tag is-dark is-rounded" href="/tags/tutorial">Tutorial</a>
+        
+    </div>
+
+    <div class="blog-text">
+        
+
+        <h2 id="data-wrangling-with-r-basics---3">Data Wrangling with R Basics - 3</h2>
+<p>Let&rsquo;s load the dataset</p>
+<pre><code>data=list(
+    dge_results=read.table('scripts and data/data/differential_results.csv', sep=',', header=T),
+    expr=read.table('scripts and data/data/gene_expression.tsv', header=T, row.names=1),  # first column being the rowname
+    annot=read.delim('scripts and data/data/gene_annotations.tsv')
+)
+</code></pre>
+<h1 id="find-genes-with-greater-than-0-mean-expression-between-a-given-chr-coordinate">find genes with greater than 0 mean expression between a given chr coordinate</h1>
+<h2 id="lets-find-out-mean-first">Let’s find out mean first</h2>
+<p>You can use <strong>rowMeans</strong>, <strong>rowMax</strong>, <strong>rowMin</strong> to determine means for
+a data matrix</p>
+<pre><code>expr_mean=rowMeans(data$expr)
+gene_expr=cbind(data$expr, mean=expr_mean)
+</code></pre>
+<p>We can use the function <strong>subset</strong> to find the given with a given
+coordinate</p>
+<pre><code># select all genes on chromosome 20
+head(subset(data$annot, chrom=='chr20'))
+
+##       chrom  start    end strand       name
+## 53155 chr20  87250  97094      +    DEFB125
+## 53156 chr20 142369 145751      +    DEFB126
+## 53157 chr20 157470 159163      +    DEFB127
+## 53158 chr20 173229 173296      - AL360078.1
+## 53159 chr20 187853 189681      -    DEFB128
+## 53160 chr20 227258 229886      +    DEFB129
+
+# select all genes on chromosome 20 and on positive strand
+head(subset(data$annot, chrom == 'chr20' &amp; strand==&quot;+&quot;))
+
+##       chrom  start    end strand          name
+## 53155 chr20  87250  97094      +       DEFB125
+## 53156 chr20 142369 145751      +       DEFB126
+## 53157 chr20 157470 159163      +       DEFB127
+## 53160 chr20 227258 229886      +       DEFB129
+## 53161 chr20 257736 261096      +       DEFB132
+## 53162 chr20 267186 268857      + RP5-1103G7.10
+
+# select all genes on chromosome 20 and on positive strand and between 10mb to 20mb
+head(subset(data$annot, chrom == 'chr20' &amp; strand==&quot;+&quot; &amp; start&gt;10000000 &amp; end&lt;20000000))
+
+##       chrom    start      end strand         name
+## 53383 chr20 10025917 10026168      +  Metazoa_SRP
+## 53384 chr20 10173520 10196990      + RP11-416N4.4
+## 53385 chr20 10180235 10185775      + RP11-416N4.1
+## 53386 chr20 10218830 10307418      +       SNAP25
+## 53387 chr20 10334419 10334698      +    HIGD1AP15
+## 53389 chr20 10385779 10387806      +      SDAD1P2
+
+# select all genes on chromosome 20 and on positive strand and between 10mb to 20mb
+head(subset(data$annot, chrom == 'chr20' &amp; strand==&quot;+&quot; &amp; start&gt;10000000 &amp; end&lt;20000000, select=c(&quot;chrom&quot;, &quot;name&quot;)))
+
+##       chrom         name
+## 53383 chr20  Metazoa_SRP
+## 53384 chr20 RP11-416N4.4
+## 53385 chr20 RP11-416N4.1
+## 53386 chr20       SNAP25
+## 53387 chr20    HIGD1AP15
+## 53389 chr20      SDAD1P2
+
+# store into a variable
+chr20_subset=subset(data$annot, chrom == 'chr20' &amp; strand==&quot;+&quot; &amp; start&gt;10000000 &amp; end&lt;20000000, select=c(&quot;chrom&quot;, &quot;name&quot;))
+
+# merge with gene expression data with means
+chr20_expr=merge(chr20_subset, gene_expr, by.x=&quot;name&quot;, by.y=0)  #by.y=0 means using row names
+
+head(chr20_expr)
+
+##         name chrom SW1_Control SW2_Control SW3_Control SW4_Treated
+## 1    AIMP1P1 chr20       0.000       0.000       0.000       0.000
+## 2 AL035045.1 chr20       0.000       0.000       0.000       0.000
+## 3 AL136090.1 chr20       0.000       0.000       0.000       0.000
+## 4      BANF2 chr20       0.000       0.000       0.000       0.000
+## 5      BTBD3 chr20    2309.398    2782.401    2790.122    2900.808
+## 6  C20orf187 chr20       0.000       0.000       0.000       0.000
+##   SW5_Treated  SW6_Treated         mean
+## 1       0.000    0.9892566    0.1648761
+## 2       0.000    0.0000000    0.0000000
+## 3       0.000    0.0000000    0.0000000
+## 4       0.000    0.0000000    0.0000000
+## 5    3200.091 2960.8449159 2823.9441132
+## 6       0.000    0.0000000    0.0000000
+</code></pre>
+<p>We can put these steps into <strong>function</strong> to make it more reusable:
+<strong>function</strong> takes the form of: function( arglist ) expr return(value)</p>
+<p>Let start with a simple function</p>
+<pre><code>add&lt;-function(a,b){
+  x=a+b
+  return(x)
+}
+
+add(1,2)
+
+## [1] 3
+
+add(3,4)
+
+## [1] 7
+
+add(5,7)
+
+## [1] 12
+</code></pre>
+<p>Let’s put everything together</p>
+<pre><code>curr_coord=list(
+  chr=&quot;chr20&quot;,
+  strand=&quot;+&quot;,
+  start=10000000,
+  end=20000000
+)
+
+find_mean&lt;-function(data, gene_expr, curr_coord){
+  selected_genes=subset(data$annot, chrom==curr_coord$chr &amp; 
+                        strand==curr_coord$strand &amp; 
+                          start&gt;curr_coord$start &amp; 
+                          end&lt; curr_coord$end,
+                         select=c(&quot;chrom&quot;, &quot;name&quot;))
+  gene_mean_results=merge(selected_genes, gene_expr, by.x=&quot;name&quot;, by.y=0)
+  return(gene_mean_results)
+}
+
+merge_results=find_mean(data, gene_expr, curr_coord)
+head(merge_results==chr20_expr)
+
+##      name chrom SW1_Control SW2_Control SW3_Control SW4_Treated
+## [1,] TRUE  TRUE        TRUE        TRUE        TRUE        TRUE
+## [2,] TRUE  TRUE        TRUE        TRUE        TRUE        TRUE
+## [3,] TRUE  TRUE        TRUE        TRUE        TRUE        TRUE
+## [4,] TRUE  TRUE        TRUE        TRUE        TRUE        TRUE
+## [5,] TRUE  TRUE        TRUE        TRUE        TRUE        TRUE
+## [6,] TRUE  TRUE        TRUE        TRUE        TRUE        TRUE
+##      SW5_Treated SW6_Treated mean
+## [1,]        TRUE        TRUE TRUE
+## [2,]        TRUE        TRUE TRUE
+## [3,]        TRUE        TRUE TRUE
+## [4,]        TRUE        TRUE TRUE
+## [5,]        TRUE        TRUE TRUE
+## [6,]        TRUE        TRUE TRUE
+</code></pre>
+<p>Lastly, we filter out genes with means of 0</p>
+<pre><code>final_results=subset(merge_results, mean&gt;0, select=c(&quot;name&quot;, &quot;chrom&quot;, &quot;mean&quot;))
+head(final_results)
+
+##       name chrom         mean
+## 1  AIMP1P1 chr20 1.648761e-01
+## 5    BTBD3 chr20 2.823944e+03
+## 7  CSRP2BP chr20 1.096049e+03
+## 8     DSTN chr20 3.369902e+04
+## 9     DTD1 chr20 3.715940e+03
+## 10 GAPDHP2 chr20 8.870973e+00
+
+library(writexl)
+write_xlsx(final_results, &quot;Outputs/final_results.xlsx&quot;)
+</code></pre>
+
+    </div>
+</div><div id="social-media-share" class="has-text-centered">
+	<p><i>Sharing is caring!</i></p>
+	<br>
+	
+	<div class="share-buttons">
+	    <a  href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fdatawranglingbasic-3%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Facebook. Opens in a new window.">
+	        <img src=/img/icons/45px/facebook.png>
+	    </a>
+
+	    <a  href="https://twitter.com/intent/tweet?text=Data%20Wrangling%20with%20R%20Basics%20-%203&url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fdatawranglingbasic-3%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Twitter. Opens in a new window." >
+	        <img src=/img/icons/45px/twitter.png>
+	    </a>
+
+		<a  href="http://www.reddit.com/submit?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fdatawranglingbasic-3%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Reddit. Opens in a new window." >
+	        <img src=/img/icons/45px/reddit.png>
+	    </a>
+
+	    <a  href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fdatawranglingbasic-3%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Pinterest. Opens in a new window." >
+	        <img src=/img/icons/45px/pinterest.png>
+	    </a>
+
+	    <a  href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fdatawranglingbasic-3%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Tumblr. Opens in a new window." >
+	        <img src=/img/icons/45px/tumblr.png>
+	    </a>
+
+		<a  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fdatawranglingbasic-3%2f
+			&title=Data%20Wrangling%20with%20R%20Basics%20-%203&summary=Data%20Wrangling%20with%20R%20Basics%20-%203%20Let%26rsquo%3bs%20load%20the%20dataset%0adata%3dlist%28%20dge_results%3dread.table%28%27scripts%20and%20data%2fdata%2fdifferential_results.csv%27%2c%20sep%3d%27%2c%27%2c%20header%3dT%29%2c%20expr%3dread.table%28%27scripts%20and%20data%2fdata%2fgene_expression.tsv%27%2c%20header%3dT%2c%20row.names%3d1%29%2c%20%23%20first%20column%20being%20the%20rowname%20annot%3dread.delim%28%27scripts%20and%20data%2fdata%2fgene_annotations.tsv%27%29%20%29%20%20find%20genes%20with%20greater%20than%200%20mean%20expression%20between%20a%20given%20chr%20coordinate%20Let%e2%80%99s%20find%20out%20mean%20first%20You%20can%20use%20rowMeans%2c%20rowMax%2c%20rowMin%20to%20determine%20means%20for%20a%20data%20matrix%0aexpr_mean%3drowMeans%28data%24expr%29%20gene_expr%3dcbind%28data%24expr%2c%20mean%3dexpr_mean%29%20%20We%20can%20use%20the%20function%20subset%20to%20find%20the%20given%20with%20a%20given%20coordinate&source=rafed123.github.io"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on LinkedIn. Opens in a new window." >
+	        <img src=/img/icons/45px/linkedin.png>
+	    </a>
+
+	    <a  href="mailto:?subject=Data%20Wrangling%20with%20R%20Basics%20-%203&amp;body=Check out this site https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fdatawranglingbasic-3%2f"
+	        title="Share via Email. Opens in a new window." >
+	        <img src=/img/icons/45px/mail.png>
+	    </a>
+	</div>
+</div>
+
+
+<br>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    (function () {
+        
+        
+        if (window.location.hostname == "localhost")
+            return;
+
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'disqus-code';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </div>
+    </div>
+<script async src="https://cse.google.com/cse.js?cx=google-search-code"></script>
+<gcse:searchresults-only></gcse:searchresults-only>
+
+
+<footer class="footer has-background-dark">
+    <div class="content has-text-centered has-text-white">
+        <p>
+            © 2020 Ramium. Powered by
+            <a class="has-text-light" href="https://github.com/gohugoio/hugo" target="_blank">
+            Hugo</a>. Theme
+            <a class="has-text-light" href="https://github.com/rafed123/ramium/" target="_blank">
+                Ramium.
+            </a>
+        </p>
+    </div>
+</footer>
+</body>
+
+</html>

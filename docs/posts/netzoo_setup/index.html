@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head><title>
+    NetZooNotes | 
+    
+    Ramium</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Notes on setting up NetZoo Packages PyPanda The only PyPanda working version is on Tian&rsquo;s GitHub account as the dev branch. To set it up on an AWS EC2 instance running ubuntu 18.04, it needs to be install with python3 and it also loads &lsquo;setuptools&rsquo; module that need to be installed.
+An AWS machine is set up for testing with name NetZooTestVM with instance ID: i-0fa07d648371d7adf
+Here is the code used for set up the environment:
+    ">
+
+
+<meta property="og:title" content="NetZooNotes" />
+<meta property="og:description" content="Notes on setting up NetZoo Packages PyPanda The only PyPanda working version is on Tian&rsquo;s GitHub account as the dev branch. To set it up on an AWS EC2 instance running ubuntu 18.04, it needs to be install with python3 and it also loads &lsquo;setuptools&rsquo; module that need to be installed.
+An AWS machine is set up for testing with name NetZooTestVM with instance ID: i-0fa07d648371d7adf
+Here is the code used for set up the environment:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yaoyu-e-wang.github.io/posts/netzoo_setup/" />
+<meta property="article:published_time" content="2020-06-24T15:08:42-04:00" />
+<meta property="article:modified_time" content="2020-06-24T15:08:42-04:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="NetZooNotes"/>
+<meta name="twitter:description" content="Notes on setting up NetZoo Packages PyPanda The only PyPanda working version is on Tian&rsquo;s GitHub account as the dev branch. To set it up on an AWS EC2 instance running ubuntu 18.04, it needs to be install with python3 and it also loads &lsquo;setuptools&rsquo; module that need to be installed.
+An AWS machine is set up for testing with name NetZooTestVM with instance ID: i-0fa07d648371d7adf
+Here is the code used for set up the environment:"/>
+
+<meta itemprop="name" content="NetZooNotes">
+<meta itemprop="description" content="Notes on setting up NetZoo Packages PyPanda The only PyPanda working version is on Tian&rsquo;s GitHub account as the dev branch. To set it up on an AWS EC2 instance running ubuntu 18.04, it needs to be install with python3 and it also loads &lsquo;setuptools&rsquo; module that need to be installed.
+An AWS machine is set up for testing with name NetZooTestVM with instance ID: i-0fa07d648371d7adf
+Here is the code used for set up the environment:">
+<meta itemprop="datePublished" content="2020-06-24T15:08:42-04:00" />
+<meta itemprop="dateModified" content="2020-06-24T15:08:42-04:00" />
+<meta itemprop="wordCount" content="144">
+
+
+
+<meta itemprop="keywords" content="" />
+<link rel="canonical" href="https://yaoyu-e-wang.github.io/posts/netzoo_setup/" />
+
+<link rel="icon" type="image/png" href="https://yaoyu-e-wang.github.io/image/favicon.ico">
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/bulma.min.css">
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'analytics-code', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+<script src=/js/ramium.js></script>
+<link rel="stylesheet" href=/css/ramium.css>
+
+
+
+
+
+</head>
+
+<body><nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href=/>
+      
+      <strong>Ramium </strong>
+      
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+      data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      
+      
+      <a class="navbar-item" href="/">Home</a>
+      
+      
+      
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">This Blog</a>
+        <div class="navbar-dropdown">
+          
+          <a class="navbar-item" href="/tags/">All Tags</a>
+          
+          <a class="navbar-item" href="/sections/">All Sections</a>
+          
+          <a class="navbar-item" href="/posts/">All Posts</a>
+          
+        </div>
+      </div>
+      
+      
+      
+      <a class="navbar-item" href="/authorr/">Author</a>
+      
+      
+    </div>
+
+    <div class="navbar-end">
+      
+
+      
+      <div class="navbar-item">
+        <form id="cse-search-box-form-id" onsubmit="return executeQuery();" role="search">
+          <div class="field has-addons">
+            <div class="control is-expanded">
+              <input id="cse-search-input-box-id" size=15 class="input" type="text" autocomplete="off"
+                placeholder="&#xf1a0; Google search" style="font-family:Arial, FontAwesome">
+            </div>
+
+            <div class="control">
+              <button type="submit" class="button is-black">
+                <i class="fa fa-search"></i>
+                </a>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</nav><div class="columns is-centered">
+        <div id="page-body" class="column is-7">
+
+<div class="content blog">
+    <h1>NetZooNotes</h1>
+
+    <div id="infobar" class="level is-mobile">
+        <div class="level-left">
+            
+            <div class="level-item">
+                <p class="subtitle info date">Jun 24, 2020
+                </p>
+            </div>
+            
+
+            <div class="level-item">
+                <p class="subtitle info">
+                    1 min read
+                </p>
+            </div>
+        </div>
+        <div class="level-right is-hidden-touch">
+            <div class="tags">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="tags is-hidden-desktop">
+        
+    </div>
+
+    <div class="blog-text">
+        
+
+        <h1 id="notes-on-setting-up-netzoo-packages">Notes on setting up NetZoo Packages</h1>
+<h2 id="pypanda">PyPanda</h2>
+<p>The only PyPanda working version is on Tian&rsquo;s GitHub account as the dev branch.  To set it up on an AWS EC2 instance running ubuntu 18.04, it needs to be install with python3 and it also loads &lsquo;setuptools&rsquo; module that need to be installed.</p>
+<p>An AWS machine is set up for testing with name NetZooTestVM with instance ID: <strong>i-0fa07d648371d7adf</strong></p>
+<p>Here is the code used for set up the environment:</p>
+<pre><code class="language-[sh]" data-lang="[sh]">sudo apt install python3
+sudo apt install python3-pip
+sudo python3-pip setuptools
+</code></pre><p>Clone from Tian Wang&rsquo;s github page (<a href="https://github.com/twangxxx/pypanda-1">https://github.com/twangxxx/pypanda-1</a>) and run setup.</p>
+<pre><code class="language-[sh]" data-lang="[sh]">git clone https://github.com/twangxxx/pypanda-1.git
+cd pypanda-1
+python3 setup.py install
+
+</code></pre><p>Use the following commands to run toy data:</p>
+<pre><code class="language-[sh]" data-lang="[sh]"># For PANDA Network
+python 3 run_panda.py -e ./ToyData/ToyExpressionData.txt -m ./ToyData/ToyMotifData.txt -p ./ToyData/ToyPPIData.txt -o output_panda.txt
+
+
+# For Lioness Network
+python3 run_panda.py -e ./ToyData/ToyExpressionData.txt -m ./ToyData/ToyMotifData.txt -p ./ToyData/ToyPPIData.txt -o output_panda.txt -q output_lioness.txt
+
+</code></pre>
+    </div>
+</div><div id="social-media-share" class="has-text-centered">
+	<p><i>Sharing is caring!</i></p>
+	<br>
+	
+	<div class="share-buttons">
+	    <a  href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fnetzoo_setup%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Facebook. Opens in a new window.">
+	        <img src=/img/icons/45px/facebook.png>
+	    </a>
+
+	    <a  href="https://twitter.com/intent/tweet?text=NetZooNotes&url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fnetzoo_setup%2f"
+	        onclick="socialMediaPopUp(this.href, '', 500, 500); return false;"
+	        title="Share on Twitter. Opens in a new window." >
+	        <img src=/img/icons/45px/twitter.png>
+	    </a>
+
+		<a  href="http://www.reddit.com/submit?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fnetzoo_setup%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Reddit. Opens in a new window." >
+	        <img src=/img/icons/45px/reddit.png>
+	    </a>
+
+	    <a  href="http://pinterest.com/pin/create/button/?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fnetzoo_setup%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Pinterest. Opens in a new window." >
+	        <img src=/img/icons/45px/pinterest.png>
+	    </a>
+
+	    <a  href="http://www.tumblr.com/share/link?url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fnetzoo_setup%2f"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on Tumblr. Opens in a new window." >
+	        <img src=/img/icons/45px/tumblr.png>
+	    </a>
+
+		<a  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fnetzoo_setup%2f
+			&title=NetZooNotes&summary=Notes%20on%20setting%20up%20NetZoo%20Packages%20PyPanda%20The%20only%20PyPanda%20working%20version%20is%20on%20Tian%26rsquo%3bs%20GitHub%20account%20as%20the%20dev%20branch.%20To%20set%20it%20up%20on%20an%20AWS%20EC2%20instance%20running%20ubuntu%2018.04%2c%20it%20needs%20to%20be%20install%20with%20python3%20and%20it%20also%20loads%20%26lsquo%3bsetuptools%26rsquo%3b%20module%20that%20need%20to%20be%20installed.%0aAn%20AWS%20machine%20is%20set%20up%20for%20testing%20with%20name%20NetZooTestVM%20with%20instance%20ID%3a%20i-0fa07d648371d7adf%0aHere%20is%20the%20code%20used%20for%20set%20up%20the%20environment%3a&source=rafed123.github.io"
+	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
+	        title="Share on LinkedIn. Opens in a new window." >
+	        <img src=/img/icons/45px/linkedin.png>
+	    </a>
+
+	    <a  href="mailto:?subject=NetZooNotes&amp;body=Check out this site https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2fnetzoo_setup%2f"
+	        title="Share via Email. Opens in a new window." >
+	        <img src=/img/icons/45px/mail.png>
+	    </a>
+	</div>
+</div>
+
+
+<br>
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    (function () {
+        
+        
+        if (window.location.hostname == "localhost")
+            return;
+
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'disqus-code';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        </div>
+    </div>
+<script async src="https://cse.google.com/cse.js?cx=google-search-code"></script>
+<gcse:searchresults-only></gcse:searchresults-only>
+
+
+<footer class="footer has-background-dark">
+    <div class="content has-text-centered has-text-white">
+        <p>
+            © 2020 Ramium. Powered by
+            <a class="has-text-light" href="https://github.com/gohugoio/hugo" target="_blank">
+            Hugo</a>. Theme
+            <a class="has-text-light" href="https://github.com/rafed123/ramium/" target="_blank">
+                Ramium.
+            </a>
+        </p>
+    </div>
+</footer>
+</body>
+
+</html>

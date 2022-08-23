@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>scRNASeq on Ramium</title>
+    <link>https://yaoyu-e-wang.github.io/tags/scrnaseq/</link>
+    <description>Recent content in scRNASeq on Ramium</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://yaoyu-e-wang.github.io/tags/scrnaseq/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>scRNASeq analysis with Seurat </title>
+      <link>https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/</link>
+      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/</guid>
+      <description>scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&amp;rsquo;s package manager CRAN.
+# Check if Bioconductor is installed. If not, install if (!requireNamespace(&amp;#34;BiocManager&amp;#34;, quietly = TRUE)) install.packages(&amp;#34;BiocManager&amp;#34;) # Install a necessary package for Seurat BiocManager::install(&amp;#39;multtest&amp;#39;) BiocManager::install(&amp;#39;MAST&amp;#39;) # Install Seurat install.packages(&amp;#39;Seurat&amp;#39;) Updating HTML index of packages in &#39;.</description>
+    </item>
+    
+  </channel>
+</rss>
