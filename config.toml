@@ -9,6 +9,7 @@ disqusShortname = "disqus-code"
 googleAnalytics = "analytics-code"
 pluralizeListTitles = false
 enableemoji = false
+publishDir = "docs"
 
 [params]
     description = "A description for the meta tag of the site"
