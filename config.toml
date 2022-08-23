@@ -10,6 +10,7 @@ googleAnalytics = "analytics-code"
 pluralizeListTitles = true
 enableemoji = true
 publishDir = "docs"
+disable_share = true
 
 [params]
     description = "Making my random notes available"
