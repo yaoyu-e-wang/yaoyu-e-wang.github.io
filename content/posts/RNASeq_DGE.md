@@ -1,6 +1,6 @@
 ---
 title: "Basic RNASeq DGE Analysis"
-date: 2020-05-01
+date: 2022-05-01
 draft: false
 tags: ["R", "RNASeq", "DGE", "tutorial"]
 categories: ["Tutorial"]
@@ -19,7 +19,7 @@ matrix by gene.
 
     # One can set up the path
     # Set working directory to PROJECT_DIR
-    setwd("~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory")
+    setwd("~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory")
     # setwd("~/modules/rnaseq_dge/")
     load('RNASeq_exploratory.RData') 
 

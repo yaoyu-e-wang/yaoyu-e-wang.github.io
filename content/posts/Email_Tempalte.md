@@ -1,6 +1,6 @@
 ---
 title: "Email Templates"
-date: 2020-08-25
+date: 2022-08-25
 draft: false
 tags: ["Personal Statements"]
 categories: ["English"]
@@ -11,7 +11,7 @@ autoCollapseToc: true
 
 ## Thank you
 
-### COVID19 Lockdown March, 2020
+### COVID19 Lockdown March, 2022
 
 ```{}
 Members of the Biostatistics Department,
@@ -32,7 +32,7 @@ Thanks to Priti and Marcello for turning our Summer Program into an online progr
 
 Thanks to our postdocs and students who have worked with us, and our staff--especially Susan Luvisi--who have been helping to navigate sudden changes in OPT policies.
 
-Thanks to Sherley and Elizabeth and the finance and administrative teams who have worked to close out the 2020 fiscal year and to prepare a budget--and advocate for the department--so we can continue to function effectively.
+Thanks to Sherley and Elizabeth and the finance and administrative teams who have worked to close out the 2022 fiscal year and to prepare a budget--and advocate for the department--so we can continue to function effectively.
 
 Thanks to everyone who has helped in dealing with this week's sudden change in student visa policies--especially Jelena, Geryel, Paige, Rajarshi, David W, Erin L, JP, Heather, Pete K, and others--who are doing everything we can to ensure our students are protected and receive the educations they came to us to receive.
 
@@ -52,7 +52,7 @@ John
 ```{}
 Friends,
 
-I just want to send a quick note to wish all of you a peaceful, restful time this winter break. During the semester, t is easy to get caught up in the day-to-day grind and forget the things that are truly important. My family and I will be spending time together, visiting relatives, catching up with friends, and taking time for ourselves. Whether you celebrate Hanukah, Christmas, Kwanza, some other holiday, or none at all, I wish each of you peace, joy, and comfort as you look back at all you have accomplished in the past year and look forward to new year that awaits us. I look forward to seeing you all in 2020 and working with you toward our shared goals of discovering new ways to advance human health, to train the next generation of leaders in quantitative health science, and to strive each day to become better versions of ourselves.
+I just want to send a quick note to wish all of you a peaceful, restful time this winter break. During the semester, t is easy to get caught up in the day-to-day grind and forget the things that are truly important. My family and I will be spending time together, visiting relatives, catching up with friends, and taking time for ourselves. Whether you celebrate Hanukah, Christmas, Kwanza, some other holiday, or none at all, I wish each of you peace, joy, and comfort as you look back at all you have accomplished in the past year and look forward to new year that awaits us. I look forward to seeing you all in 2022 and working with you toward our shared goals of discovering new ways to advance human health, to train the next generation of leaders in quantitative health science, and to strive each day to become better versions of ourselves.
 
 Happy Holidays,
 John
@@ -60,7 +60,7 @@ John
 
 ### Thanksgiving
 
-#### JQ 2020
+#### JQ 2022
 
 ```{}
 Members of the Biostatistics Department,
@@ -80,7 +80,7 @@ John
 
 ## Voting
 
-### 2020 Presidential Election
+### 2022 Presidential Election
 
 #### JQ Election Day
 
@@ -97,7 +97,7 @@ John
 ```{}
 Members of our Department,
 
-As everyone almost certainly knows by now, the 2020 Presidential Election has been called and Joe Biden and Kamala Harris have been declared the winners. I think all of us can breathe a sigh of relief that the uncertainty of the past few days (or weeks) is now over and we can look to the future.
+As everyone almost certainly knows by now, the 2022 Presidential Election has been called and Joe Biden and Kamala Harris have been declared the winners. I think all of us can breathe a sigh of relief that the uncertainty of the past few days (or weeks) is now over and we can look to the future.
 
 As we do, I want to remind everyone of the values we hold as a department and a community. While many of us are likely happy with the result, there may well be others who wished for a different result. Part of the problem with American politics over the past many years has been that we too often vilify those who disagree with us and question their motives rather than trying to understand their point of view. Certainly not everyone who supported Trump is a racist in the same way that not everyone supporting Biden is a socialist.
 

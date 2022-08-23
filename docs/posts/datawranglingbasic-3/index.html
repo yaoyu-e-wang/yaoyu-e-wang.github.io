@@ -20,8 +20,8 @@ data=list( dge_results=read.table(&#39;scripts and data/data/differential_result
 expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can use the function subset to find the given with a given coordinate" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/" />
-<meta property="article:published_time" content="2020-04-26T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-04-26T00:00:00+00:00" />
+<meta property="article:published_time" content="2022-04-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-26T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Data Wrangling with R Basics - 3"/>
@@ -33,8 +33,8 @@ expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can
 <meta itemprop="description" content="Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
 data=list( dge_results=read.table(&#39;scripts and data/data/differential_results.csv&#39;, sep=&#39;,&#39;, header=T), expr=read.table(&#39;scripts and data/data/gene_expression.tsv&#39;, header=T, row.names=1), # first column being the rowname annot=read.delim(&#39;scripts and data/data/gene_annotations.tsv&#39;) )  find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
 expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can use the function subset to find the given with a given coordinate">
-<meta itemprop="datePublished" content="2020-04-26T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-04-26T00:00:00&#43;00:00" />
+<meta itemprop="datePublished" content="2022-04-26T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2022-04-26T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="674">
 
 
@@ -149,7 +149,7 @@ if (!doNotTrack) {
         <div class="level-left">
             
             <div class="level-item">
-                <p class="subtitle info date">Apr 26, 2020
+                <p class="subtitle info date">Apr 26, 2022
                 </p>
             </div>
             

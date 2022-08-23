@@ -16,7 +16,7 @@
 <meta property="og:description" content="A description for the meta tag of the site" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://yaoyu-e-wang.github.io/posts/" />
-<meta property="og:updated_time" content="2022-08-23T16:21:30-04:00" />
+<meta property="og:updated_time" content="2022-07-16T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Posts"/>
@@ -132,258 +132,6 @@ if (!doNotTrack) {
 
 
 <div class="blog-brief">
-    <a href="/posts/rnaseq_dge/">
-        <h3 class="title is-4">
-            Basic RNASeq DGE Analysis
-        </h3>
-    </a>
-
-    <div class="level is-mobile details">
-        <div class="level-left">
-
-            
-            <div class="level-item">
-                <a href="/posts/rnaseq_dge/">
-                    <p class="subtitle info date">May 1, 2020
-                    </p>
-                </a>
-            </div>
-            
-
-
-            <div class="level-item">
-                <a href="/posts/rnaseq_dge/">
-                    <p class="subtitle info">
-                        9 mins read
-                    </p>
-                </a>
-            </div>
-        </div>
-        <div class="level-right is-hidden-touch">
-            
-            <a class="tag is-rounded" href="/tags/r">R</a>
-            
-            <a class="tag is-rounded" href="/tags/rnaseq">RNASeq</a>
-            
-            <a class="tag is-rounded" href="/tags/dge">DGE</a>
-            
-            <a class="tag is-rounded" href="/tags/tutorial">Tutorial</a>
-            
-        </div>
-    </div>
-
-    <div>
-        
-
-        <div>
-            <a href="/posts/rnaseq_dge/">
-                <p class="summary">
-                    Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
-# One can set up the path # Set working directory to PROJECT_DIR setwd(&#34;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&#34;) # setwd(&#34;~/modules/rnaseq_dge/&#34;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &#34;count_data&#34; &#34;exploratory_results&#34; &#34;groups&#34; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.
-                    
-                </p>
-            </a>
-        </div>
-    </div>
-
-    <div class="level is-mobile continue-reading">
-        <div class="level-left">
-        </div>
-        <div class="level-right">
-            <a href="/posts/rnaseq_dge/">Continue reading <i class="fa fa-angle-double-right"
-                    aria-hidden="true"></i></a>
-        </div>
-    </div>
-    <hr>
-</div><div class="blog-brief">
-    <a href="/posts/datawranglingbasic-3/">
-        <h3 class="title is-4">
-            Data Wrangling With R Basics - 3
-        </h3>
-    </a>
-
-    <div class="level is-mobile details">
-        <div class="level-left">
-
-            
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-3/">
-                    <p class="subtitle info date">Apr 26, 2020
-                    </p>
-                </a>
-            </div>
-            
-
-
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-3/">
-                    <p class="subtitle info">
-                        4 mins read
-                    </p>
-                </a>
-            </div>
-        </div>
-        <div class="level-right is-hidden-touch">
-            
-            <a class="tag is-rounded" href="/tags/r">R</a>
-            
-            <a class="tag is-rounded" href="/tags/data-wrangling">Data Wrangling</a>
-            
-            <a class="tag is-rounded" href="/tags/tutorial">Tutorial</a>
-            
-        </div>
-    </div>
-
-    <div>
-        
-
-        <div>
-            <a href="/posts/datawranglingbasic-3/">
-                <p class="summary">
-                    Data Wrangling with R Basics - 3 Let’s load the dataset
-data=list( dge_results=read.table(&#39;scripts and data/data/differential_results.csv&#39;, sep=&#39;,&#39;, header=T), expr=read.table(&#39;scripts and data/data/gene_expression.tsv&#39;, header=T, row.names=1), # first column being the rowname annot=read.delim(&#39;scripts and data/data/gene_annotations.tsv&#39;) )  find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
-expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can use the function subset to find the given with a given coordinate
-                    
-                </p>
-            </a>
-        </div>
-    </div>
-
-    <div class="level is-mobile continue-reading">
-        <div class="level-left">
-        </div>
-        <div class="level-right">
-            <a href="/posts/datawranglingbasic-3/">Continue reading <i class="fa fa-angle-double-right"
-                    aria-hidden="true"></i></a>
-        </div>
-    </div>
-    <hr>
-</div><div class="blog-brief">
-    <a href="/posts/datawranglingbasic-2/">
-        <h3 class="title is-4">
-            Data Wrangling With R Basics - 2
-        </h3>
-    </a>
-
-    <div class="level is-mobile details">
-        <div class="level-left">
-
-            
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-2/">
-                    <p class="subtitle info date">Apr 25, 2020
-                    </p>
-                </a>
-            </div>
-            
-
-
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-2/">
-                    <p class="subtitle info">
-                        16 mins read
-                    </p>
-                </a>
-            </div>
-        </div>
-        <div class="level-right is-hidden-touch">
-            
-            <a class="tag is-rounded" href="/tags/r">R</a>
-            
-            <a class="tag is-rounded" href="/tags/data-wrangling">Data Wrangling</a>
-            
-            <a class="tag is-rounded" href="/tags/tutorial">Tutorial</a>
-            
-        </div>
-    </div>
-
-    <div>
-        
-
-        <div>
-            <a href="/posts/datawranglingbasic-2/">
-                <p class="summary">
-                    Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
- my_pathway_genes.txt - mutations.tsv  These files are stored in either comma-delimited (csv) or tab-delimited (tsv) formats. Files can be read with the following functions available from default R libraries. These are built-in “functions” from R. All read files, but with slightly different default behavior.
-    Function package Description    read.
-                    
-                </p>
-            </a>
-        </div>
-    </div>
-
-    <div class="level is-mobile continue-reading">
-        <div class="level-left">
-        </div>
-        <div class="level-right">
-            <a href="/posts/datawranglingbasic-2/">Continue reading <i class="fa fa-angle-double-right"
-                    aria-hidden="true"></i></a>
-        </div>
-    </div>
-    <hr>
-</div><div class="blog-brief">
-    <a href="/posts/datawranglingbasic-1/">
-        <h3 class="title is-4">
-            Data Wrangling With R Basics - 1
-        </h3>
-    </a>
-
-    <div class="level is-mobile details">
-        <div class="level-left">
-
-            
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-1/">
-                    <p class="subtitle info date">Apr 24, 2020
-                    </p>
-                </a>
-            </div>
-            
-
-
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-1/">
-                    <p class="subtitle info">
-                        7 mins read
-                    </p>
-                </a>
-            </div>
-        </div>
-        <div class="level-right is-hidden-touch">
-            
-            <a class="tag is-rounded" href="/tags/r">R</a>
-            
-            <a class="tag is-rounded" href="/tags/data-wrangling">Data Wrangling</a>
-            
-            <a class="tag is-rounded" href="/tags/tutorial">Tutorial</a>
-            
-        </div>
-    </div>
-
-    <div>
-        
-
-        <div>
-            <a href="/posts/datawranglingbasic-1/">
-                <p class="summary">
-                    The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
-Variables and Data types Variables are assignment names for a piece of information, such as data.
-                    
-                </p>
-            </a>
-        </div>
-    </div>
-
-    <div class="level is-mobile continue-reading">
-        <div class="level-left">
-        </div>
-        <div class="level-right">
-            <a href="/posts/datawranglingbasic-1/">Continue reading <i class="fa fa-angle-double-right"
-                    aria-hidden="true"></i></a>
-        </div>
-    </div>
-    <hr>
-</div><div class="blog-brief">
     <a href="/posts/hugothemecreationtutorial/">
         <h3 class="title is-4">
             [English] Creating a New Theme
@@ -445,6 +193,118 @@ We’ll start with creating a new site with a very basic template.
         </div>
     </div>
     <hr>
+</div><div class="blog-brief">
+    <a href="/posts/writingsampleanalysis/">
+        <h3 class="title is-4">
+            
+        </h3>
+    </a>
+
+    <div class="level is-mobile details">
+        <div class="level-left">
+
+            
+            <div class="level-item">
+                <a href="/posts/writingsampleanalysis/">
+                    <p class="subtitle info date">Jan 1, 0001
+                    </p>
+                </a>
+            </div>
+            
+
+
+            <div class="level-item">
+                <a href="/posts/writingsampleanalysis/">
+                    <p class="subtitle info">
+                        10 mins read
+                    </p>
+                </a>
+            </div>
+        </div>
+        <div class="level-right is-hidden-touch">
+            
+        </div>
+    </div>
+
+    <div>
+        
+
+        <div>
+            <a href="/posts/writingsampleanalysis/">
+                <p class="summary">
+                    July 20, 2022 (Monday) - Heather Cox Richardson
+The big news today—and it is indeed big news—is that the Trump administration has announced it will be sending federal officers into Chicago, and perhaps other cities run by Democrats, ostensibly to fight crime there.
+The move mirrors what the administration has done in Portland, Oregon, where unidentified officers from Customs and Border Protection operating under Trump’s Executive Order to protect monuments and federal property have clashed with local protesters, sometimes grabbing them off the streets and forcing them into unmarked vans.
+                    
+                </p>
+            </a>
+        </div>
+    </div>
+
+    <div class="level is-mobile continue-reading">
+        <div class="level-left">
+        </div>
+        <div class="level-right">
+            <a href="/posts/writingsampleanalysis/">Continue reading <i class="fa fa-angle-double-right"
+                    aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <hr>
+</div><div class="blog-brief">
+    <a href="/posts/readme/">
+        <h3 class="title is-4">
+            
+        </h3>
+    </a>
+
+    <div class="level is-mobile details">
+        <div class="level-left">
+
+            
+            <div class="level-item">
+                <a href="/posts/readme/">
+                    <p class="subtitle info date">Jan 1, 0001
+                    </p>
+                </a>
+            </div>
+            
+
+
+            <div class="level-item">
+                <a href="/posts/readme/">
+                    <p class="subtitle info">
+                        1 min read
+                    </p>
+                </a>
+            </div>
+        </div>
+        <div class="level-right is-hidden-touch">
+            
+        </div>
+    </div>
+
+    <div>
+        
+
+        <div>
+            <a href="/posts/readme/">
+                <p class="summary">
+                    Notes 
+                    
+                </p>
+            </a>
+        </div>
+    </div>
+
+    <div class="level is-mobile continue-reading">
+        <div class="level-left">
+        </div>
+        <div class="level-right">
+            <a href="/posts/readme/">Continue reading <i class="fa fa-angle-double-right"
+                    aria-hidden="true"></i></a>
+        </div>
+    </div>
+    <hr>
 </div>
 
 
@@ -471,7 +331,7 @@ We’ll start with creating a new site with a very basic template.
         
 
         
-            <a class="pagination-next" href="/posts/page/4/">Next page</a>
+            <a class="pagination-next" disabled>Next page</a>
         
 
 
@@ -507,18 +367,6 @@ We’ll start with creating a new site with a very basic template.
             
 
                 <li><a href="/posts/page/3/" class="pagination-link is-current">3</a></li>
-
-                
-                
-
-            
-
-        
-
-            
-            
-
-                <li><a href="/posts/page/4/" class="pagination-link">4</a></li>
 
                 
                 

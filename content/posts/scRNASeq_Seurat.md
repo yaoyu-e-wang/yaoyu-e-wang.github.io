@@ -1,6 +1,6 @@
 ---
 title: "scRNASeq analysis with Seurat "
-date: 2020-05-02
+date: 2022-05-02
 draft: false
 tags: ["R", "scRNASeq", "tutorial"]
 categories: ["Tutorial"]

@@ -1,6 +1,6 @@
 ---
 title: "[News] How Hong Kong National Security Law affects Americans"
-date: 2020-07-01
+date: 2022-07-01
 draft: false
 tags: ["News", "Asia", "politics"]
 categories: ["News"]

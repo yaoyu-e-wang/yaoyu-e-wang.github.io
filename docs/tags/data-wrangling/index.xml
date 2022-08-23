@@ -6,7 +6,7 @@
     <description>Recent content in Data Wrangling on Ramium</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 26 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Apr 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://yaoyu-e-wang.github.io/tags/data-wrangling/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Data Wrangling with R Basics - 3</title>
       <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/</link>
-      <pubDate>Sun, 26 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 26 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/</guid>
       <description>Data Wrangling with R Basics - 3 Let&amp;rsquo;s load the dataset
@@ -25,7 +25,7 @@ expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can
     <item>
       <title>Data Wrangling with R Basics - 2</title>
       <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-2/</link>
-      <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 25 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-2/</guid>
       <description>Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
@@ -36,7 +36,7 @@ expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can
     <item>
       <title>Data Wrangling with R Basics - 1</title>
       <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/</link>
-      <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/</guid>
       <description>The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R

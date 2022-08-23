@@ -9,28 +9,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
-# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.
     ">
 
 
 <meta property="og:title" content="Basic RNASeq DGE Analysis" />
 <meta property="og:description" content="Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
-# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution." />
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yaoyu-e-wang.github.io/posts/rnaseq_dge/" />
-<meta property="article:published_time" content="2020-05-01T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-05-01T00:00:00+00:00" />
+<meta property="article:published_time" content="2022-05-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-05-01T00:00:00+00:00" />
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Basic RNASeq DGE Analysis"/>
 <meta name="twitter:description" content="Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
-# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution."/>
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution."/>
 
 <meta itemprop="name" content="Basic RNASeq DGE Analysis">
 <meta itemprop="description" content="Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
-# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.">
-<meta itemprop="datePublished" content="2020-05-01T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2020-05-01T00:00:00&#43;00:00" />
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.">
+<meta itemprop="datePublished" content="2022-05-01T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2022-05-01T00:00:00&#43;00:00" />
 <meta itemprop="wordCount" content="1397">
 
 
@@ -145,7 +145,7 @@ if (!doNotTrack) {
         <div class="level-left">
             
             <div class="level-item">
-                <p class="subtitle info date">May 1, 2020
+                <p class="subtitle info date">May 1, 2022
                 </p>
             </div>
             
@@ -192,7 +192,7 @@ a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count
 matrix by gene.</p>
 <pre><code># One can set up the path
 # Set working directory to PROJECT_DIR
-setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&quot;)
+setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;)
 # setwd(&quot;~/modules/rnaseq_dge/&quot;)
 load('RNASeq_exploratory.RData') 
 
@@ -556,7 +556,7 @@ write_xlsx(fgsea_results, &quot;outputs/gsea_results.xlsx&quot;, col_names=TRUE)
 	    </a>
 
 		<a  href="https://www.linkedin.com/shareArticle?mini=true&url=https%3a%2f%2fyaoyu-e-wang.github.io%2fposts%2frnaseq_dge%2f
-			&title=Basic%20RNASeq%20DGE%20Analysis&summary=Begin%20RNA-Seq%20DGE%20Analysis%20We%20first%20load%20the%20RNA-Seq%20count%20matrix%20from%20%e2%80%98RNASeqData.Rdata%e2%80%99.%20This%20is%20a%20simple%203%20vs%203%20RNA-Seq%20experiment%20with%20Control%20vs%20Experiment%20in%20count%20matrix%20by%20gene.%0a%23%20One%20can%20set%20up%20the%20path%20%23%20Set%20working%20directory%20to%20PROJECT_DIR%20setwd%28%26quot%3b~%2fDropbox%20%28Harvard%20University%29%2fqBRC-Share%2fPresentations%2fQBRC-Workshops%2fIntro%20to%20RNASeq%20Analysis%2f2020-0424-IID%2fRNASeq_Exploratory%26quot%3b%29%20%23%20setwd%28%26quot%3b~%2fmodules%2frnaseq_dge%2f%26quot%3b%29%20load%28%27RNASeq_exploratory.RData%27%29%20ls%28%29%20%23%20list%20all%20current%20variables%20%23%23%20%5b1%5d%20%26quot%3bcount_data%26quot%3b%20%26quot%3bexploratory_results%26quot%3b%20%26quot%3bgroups%26quot%3b%20%23head%28count_data%29%20%23%20The%20head%28count_data%29%20provides%20the%20first%206%20row%20of%20the%20%27count_data%27%20%23head%28groups%29%20%23%20The%20head%28count_data%29%20provides%20the%20first%206%20row%20of%20the%20%27count_data%27%20%20Principle%20component%20analysis%20Once%20the%20matrix%20is%20loaded%2c%20we%20can%20perform%20principle%20component%20analysis%20to%20visualize%20sample%20distribution.&source=rafed123.github.io"
+			&title=Basic%20RNASeq%20DGE%20Analysis&summary=Begin%20RNA-Seq%20DGE%20Analysis%20We%20first%20load%20the%20RNA-Seq%20count%20matrix%20from%20%e2%80%98RNASeqData.Rdata%e2%80%99.%20This%20is%20a%20simple%203%20vs%203%20RNA-Seq%20experiment%20with%20Control%20vs%20Experiment%20in%20count%20matrix%20by%20gene.%0a%23%20One%20can%20set%20up%20the%20path%20%23%20Set%20working%20directory%20to%20PROJECT_DIR%20setwd%28%26quot%3b~%2fDropbox%20%28Harvard%20University%29%2fqBRC-Share%2fPresentations%2fQBRC-Workshops%2fIntro%20to%20RNASeq%20Analysis%2f2022-0424-IID%2fRNASeq_Exploratory%26quot%3b%29%20%23%20setwd%28%26quot%3b~%2fmodules%2frnaseq_dge%2f%26quot%3b%29%20load%28%27RNASeq_exploratory.RData%27%29%20ls%28%29%20%23%20list%20all%20current%20variables%20%23%23%20%5b1%5d%20%26quot%3bcount_data%26quot%3b%20%26quot%3bexploratory_results%26quot%3b%20%26quot%3bgroups%26quot%3b%20%23head%28count_data%29%20%23%20The%20head%28count_data%29%20provides%20the%20first%206%20row%20of%20the%20%27count_data%27%20%23head%28groups%29%20%23%20The%20head%28count_data%29%20provides%20the%20first%206%20row%20of%20the%20%27count_data%27%20%20Principle%20component%20analysis%20Once%20the%20matrix%20is%20loaded%2c%20we%20can%20perform%20principle%20component%20analysis%20to%20visualize%20sample%20distribution.&source=rafed123.github.io"
 	        onclick="socialMediaPopUp(this.href, '', 900, 500); return false;"
 	        title="Share on LinkedIn. Opens in a new window." >
 	        <img src=/img/icons/45px/linkedin.png>

@@ -6,7 +6,7 @@
     <description>Recent content in tutorial on Ramium</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://yaoyu-e-wang.github.io/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>scRNASeq analysis with Seurat </title>
       <link>https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/</link>
-      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/</guid>
       <description>scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&amp;rsquo;s package manager CRAN.
@@ -24,17 +24,17 @@
     <item>
       <title>Basic RNASeq DGE Analysis</title>
       <link>https://yaoyu-e-wang.github.io/posts/rnaseq_dge/</link>
-      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/rnaseq_dge/</guid>
       <description>Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
-# One can set up the path # Set working directory to PROJECT_DIR setwd(&amp;quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&amp;quot;) # setwd(&amp;quot;~/modules/rnaseq_dge/&amp;quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &amp;quot;count_data&amp;quot; &amp;quot;exploratory_results&amp;quot; &amp;quot;groups&amp;quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.</description>
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&amp;quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&amp;quot;) # setwd(&amp;quot;~/modules/rnaseq_dge/&amp;quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &amp;quot;count_data&amp;quot; &amp;quot;exploratory_results&amp;quot; &amp;quot;groups&amp;quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.</description>
     </item>
     
     <item>
       <title>Data Wrangling with R Basics - 3</title>
       <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/</link>
-      <pubDate>Sun, 26 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 26 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/</guid>
       <description>Data Wrangling with R Basics - 3 Let&amp;rsquo;s load the dataset
@@ -45,7 +45,7 @@ expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can
     <item>
       <title>Data Wrangling with R Basics - 2</title>
       <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-2/</link>
-      <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 25 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-2/</guid>
       <description>Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
@@ -56,7 +56,7 @@ expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can
     <item>
       <title>Data Wrangling with R Basics - 1</title>
       <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/</link>
-      <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/</guid>
       <description>The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R

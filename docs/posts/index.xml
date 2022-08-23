@@ -6,51 +6,15 @@
     <description>Recent content in Posts on Ramium</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 23 Aug 2022 16:21:30 -0400</lastBuildDate>
+    <lastBuildDate>Sat, 16 Jul 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://yaoyu-e-wang.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Test_post</title>
-      <link>https://yaoyu-e-wang.github.io/posts/test_post/</link>
-      <pubDate>Tue, 23 Aug 2022 16:21:30 -0400</pubDate>
-      
-      <guid>https://yaoyu-e-wang.github.io/posts/test_post/</guid>
-      <description>This is a test post created as a test.</description>
-    </item>
-    
-    <item>
-      <title>Email Templates</title>
-      <link>https://yaoyu-e-wang.github.io/posts/email_tempalte/</link>
-      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://yaoyu-e-wang.github.io/posts/email_tempalte/</guid>
-      <description>Thank you COVID19 Lockdown March, 2020 Members of the Biostatistics Department, On March 9, I left my office in Building 2 of the Harvard Chan School, ready to get away for a few days during my son Adam&#39;s spring break. COVID-19 was something we were already worrying about and our department had been proactive in preparing to offer classes and to conduct thesis exams over Zoom. I was sure that whatever we were facing, we would deal with it quickly, and that before long things would be back to normal.</description>
-    </item>
-    
-    <item>
-      <title>Email Templates</title>
-      <link>https://yaoyu-e-wang.github.io/posts/email_templates/</link>
-      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://yaoyu-e-wang.github.io/posts/email_templates/</guid>
-      <description>Thank you  COVID19 Lockdown March, 2020   Holidays  Christmas Thanksgiving  JQ 2020     Voting  2020 Presidential Election  JQ Election Day JQ Post Election Post-Election uncertainty      Thank you COVID19 Lockdown March, 2020 Members of the Biostatistics Department, On March 9, I left my office in Building 2 of the Harvard Chan School, ready to get away for a few days during my son Adam&#39;s spring break.</description>
-    </item>
-    
-    <item>
-      <title>MIT-HMS Innovation Interview</title>
-      <link>https://yaoyu-e-wang.github.io/posts/mit-hms_innovationinterview/</link>
-      <pubDate>Tue, 25 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://yaoyu-e-wang.github.io/posts/mit-hms_innovationinterview/</guid>
-      <description>A passion for healthcare. Tell us why you are passionate about healthcare After I graduated from college with a computer science degree, my first job was as research contractor for Pfizer Computational Science division. At that time, I worked with the research team to develop software to perform in silico small molecule screening. It was my first revelation that data mining and modeling can drastically excellerate drug discovery process that not only save money for the company and save time from development to market of the patients.</description>
-    </item>
-    
-    <item>
       <title>Re: [新聞]薪水像國小老師 台大師：回台任教都很佛心  </title>
       <link>https://yaoyu-e-wang.github.io/posts/ptt%E5%8D%9A%E5%A3%AB%E7%89%88%E8%96%AA%E8%B3%87%E8%AA%BF%E6%9F%A5/</link>
-      <pubDate>Thu, 16 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 16 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/ptt%E5%8D%9A%E5%A3%AB%E7%89%88%E8%96%AA%E8%B3%87%E8%AA%BF%E6%9F%A5/</guid>
       <description>國外搶才教授薪資8倍? PTT博士鄉民薪水分佈 噓 mtcoat: 都沒有參考國外物價指數 常拿國外的薪水直接套在台灣，英 07/15 08:40
@@ -73,7 +37,7 @@
     <item>
       <title>[News] How Hong Kong National Security Law affects Americans</title>
       <link>https://yaoyu-e-wang.github.io/posts/hongkongnationalsecurity/</link>
-      <pubDate>Wed, 01 Jul 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Jul 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/hongkongnationalsecurity/</guid>
       <description>Even among world-shattering news coming out of US almost every day, the Hong Kong’s National Security Law stands out to affect Americans long term.
@@ -83,7 +47,7 @@ The CCP passed Hong Kong National Security Law to curb pro-democracy and pro-aut
     <item>
       <title>Quotes</title>
       <link>https://yaoyu-e-wang.github.io/posts/quotes/</link>
-      <pubDate>Sun, 28 Jun 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/quotes/</guid>
       <description>&amp;quot;There areonly two kinds of theories: those that are wrong and those that are incomplete.&amp;quot; &amp;ndash; Karl Popper
@@ -93,7 +57,7 @@ The CCP passed Hong Kong National Security Law to curb pro-democracy and pro-aut
     <item>
       <title>NetZooNotes</title>
       <link>https://yaoyu-e-wang.github.io/posts/netzoo_setup/</link>
-      <pubDate>Wed, 24 Jun 2020 15:08:42 -0400</pubDate>
+      <pubDate>Fri, 24 Jun 2022 15:08:42 -0400</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/netzoo_setup/</guid>
       <description>Notes on setting up NetZoo Packages PyPanda The only PyPanda working version is on Tian&amp;rsquo;s GitHub account as the dev branch. To set it up on an AWS EC2 instance running ubuntu 18.04, it needs to be install with python3 and it also loads &amp;lsquo;setuptools&amp;rsquo; module that need to be installed.
@@ -104,7 +68,7 @@ Here is the code used for set up the environment:</description>
     <item>
       <title>Odessy_starter</title>
       <link>https://yaoyu-e-wang.github.io/posts/odessy_starter/</link>
-      <pubDate>Wed, 24 Jun 2020 15:08:42 -0400</pubDate>
+      <pubDate>Fri, 24 Jun 2022 15:08:42 -0400</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/odessy_starter/</guid>
       <description>This note provides introduction guidance to the HUIT Odessy system with FAQ
@@ -118,7 +82,7 @@ Update members within qbrc_center resources If users with preexisting RC account
     <item>
       <title>scRNASeq analysis with Seurat </title>
       <link>https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/</link>
-      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/</guid>
       <description>scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&amp;rsquo;s package manager CRAN.
@@ -128,17 +92,17 @@ Update members within qbrc_center resources If users with preexisting RC account
     <item>
       <title>Basic RNASeq DGE Analysis</title>
       <link>https://yaoyu-e-wang.github.io/posts/rnaseq_dge/</link>
-      <pubDate>Fri, 01 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 01 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/rnaseq_dge/</guid>
       <description>Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
-# One can set up the path # Set working directory to PROJECT_DIR setwd(&amp;quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2020-0424-IID/RNASeq_Exploratory&amp;quot;) # setwd(&amp;quot;~/modules/rnaseq_dge/&amp;quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &amp;quot;count_data&amp;quot; &amp;quot;exploratory_results&amp;quot; &amp;quot;groups&amp;quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.</description>
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&amp;quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&amp;quot;) # setwd(&amp;quot;~/modules/rnaseq_dge/&amp;quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &amp;quot;count_data&amp;quot; &amp;quot;exploratory_results&amp;quot; &amp;quot;groups&amp;quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.</description>
     </item>
     
     <item>
       <title>Data Wrangling with R Basics - 3</title>
       <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/</link>
-      <pubDate>Sun, 26 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 26 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-3/</guid>
       <description>Data Wrangling with R Basics - 3 Let&amp;rsquo;s load the dataset
@@ -149,7 +113,7 @@ expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can
     <item>
       <title>Data Wrangling with R Basics - 2</title>
       <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-2/</link>
-      <pubDate>Sat, 25 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 25 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-2/</guid>
       <description>Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
@@ -160,7 +124,7 @@ expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can
     <item>
       <title>Data Wrangling with R Basics - 1</title>
       <link>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/</link>
-      <pubDate>Fri, 24 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 24 Apr 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/</guid>
       <description>The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
@@ -192,7 +156,7 @@ We&amp;rsquo;ll start with creating a new site with a very basic template.</desc
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/writingsampleanalysis/</guid>
-      <description>July 20, 2020 (Monday) - Heather Cox Richardson
+      <description>July 20, 2022 (Monday) - Heather Cox Richardson
 The big news today—and it is indeed big news—is that the Trump administration has announced it will be sending federal officers into Chicago, and perhaps other cities run by Democrats, ostensibly to fight crime there.
 The move mirrors what the administration has done in Portland, Oregon, where unidentified officers from Customs and Border Protection operating under Trump’s Executive Order to protect monuments and federal property have clashed with local protesters, sometimes grabbing them off the streets and forcing them into unmarked vans.</description>
     </item>

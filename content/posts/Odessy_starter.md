@@ -1,6 +1,6 @@
 ---
 title: "Odessy_starter"
-date: 2020-06-24T15:08:42-04:00
+date: 2022-06-24T15:08:42-04:00
 draft: false
 ---
 This note provides introduction guidance to the HUIT Odessy system with FAQ 

@@ -6,7 +6,7 @@
     <description>Recent content in scRNASeq on Ramium</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://yaoyu-e-wang.github.io/tags/scrnaseq/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>scRNASeq analysis with Seurat </title>
       <link>https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/</link>
-      <pubDate>Sat, 02 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 02 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/</guid>
       <description>scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&amp;rsquo;s package manager CRAN.

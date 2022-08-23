@@ -1,6 +1,6 @@
 ---
 title: "Quotes"
-date: 2020-06-28
+date: 2022-06-28
 draft: false
 tags: ["Quotes"]
 categories: ["English"]

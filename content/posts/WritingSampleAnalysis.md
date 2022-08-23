@@ -1,4 +1,4 @@
-July 20, 2020 (Monday) - Heather Cox Richardson
+July 20, 2022 (Monday) - Heather Cox Richardson
 
 The big news today—and it is indeed big news—is that the Trump administration **```has announced```**
  it will be sending federal officers into Chicago, and perhaps other cities run by Democrats, ostensibly to fight crime there.
@@ -34,7 +34,7 @@ The administration’s unprecedented development of a federal police force ```re
 
 The administration’s attacks on Black protesters have actually gained power for the movement. Tonight the official account of Major League Baseball tweeted a photo of members of the San Francisco Giants kneeling during the national anthem along with the hashtag BlackLivesMatter. When users complained about their stance, the account user responded in a defense of the tactics that brought football quarterback Colin Kaepernick such anger from Trump and Pence. The administrator wrote: “It has never been about the military or the flag. The players and coaches are using their platforms to peacefully protest.”
 
-Trump’s attempts to downplay the coronavirus are not getting the traction he wishes, ```either```. The Washington Nationals baseball team has invited “Nats super-fan,” Dr. Anthony Fauci, to throw out the ceremonial first pitch on Opening Day, Thursday, July 23. “Dr. Fauci has been a true champion for our country during the Covid-19 pandemic and throughout his distinguished career, so it is only fitting that we honor him as we kick off the 2020 season and defend our World Series Championship title.” Fauci ```donned``` a Nationals face mask when he testified before a House Committee on the coronavirus.
+Trump’s attempts to downplay the coronavirus are not getting the traction he wishes, ```either```. The Washington Nationals baseball team has invited “Nats super-fan,” Dr. Anthony Fauci, to throw out the ceremonial first pitch on Opening Day, Thursday, July 23. “Dr. Fauci has been a true champion for our country during the Covid-19 pandemic and throughout his distinguished career, so it is only fitting that we honor him as we kick off the 2022 season and defend our World Series Championship title.” Fauci ```donned``` a Nationals face mask when he testified before a House Committee on the coronavirus.
 
 ```Trump’s attempt to``` divert attention from the coronavirus and protests against police violence against Black Americans is not working. He is attempting to portray those who oppose him as violent criminals, and promises to bring back LAW & ORDER, as he repeatedly tweets. But it is not working. Only 33% of Americans approve of his handling of the coronavirus pandemic and only 31% approve of his handling of race relations. ```And``` as for law and order: most people also trust Biden, rather than Trump, on that issue, too, by a margin of 49% to 42%.
 

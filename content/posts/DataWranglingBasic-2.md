@@ -1,6 +1,6 @@
 ---
 title: "Data Wrangling with R Basics - 2"
-date: 2020-04-25
+date: 2022-04-25
 draft: false
 tags: ["R", "Data Wrangling", "tutorial"]
 categories: ["Tutorial"]
@@ -573,7 +573,7 @@ output files.
     # get current working directory. 
     getwd()
 
-    ## [1] "/Users/yaoyuwang/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Data Wrangling with R/2020-0424-IID"
+    ## [1] "/Users/yaoyuwang/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Data Wrangling with R/2022-0424-IID"
 
     # Current directory is Data directory, change to output
     if(!dir.exists('Outputs')){
