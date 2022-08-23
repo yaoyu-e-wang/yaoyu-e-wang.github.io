@@ -22,7 +22,7 @@ disable_share = true
     tagsInHome = 40     # set zero to not show in home page
     sectionsInHome = 5  # set zero to not show in home page
     paginatePostsPerPage = 5
-    paginateTagsPerPage = 6
+    paginateTagsPerPage = 20
 
 [taxonomies]
     tag = "tags"
