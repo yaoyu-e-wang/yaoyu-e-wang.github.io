@@ -4,15 +4,15 @@ baseURL = "https://yaoyu-e-wang.github.io/"
 languageCode = "en-us"
 theme = "ramium"
 
-title = "Ramium"
+title = "LinGo's Notes"
 disqusShortname = "disqus-code"
 googleAnalytics = "analytics-code"
-pluralizeListTitles = false
-enableemoji = false
+pluralizeListTitles = true
+enableemoji = true
 publishDir = "docs"
 
 [params]
-    description = "A description for the meta tag of the site"
+    description = "Making my random notes available"
     googleSearch = "google-search-code"
     showDate = true # make false if dont want to show date for evergeen articles
     math = false # best to enable this in the front matter of a page
