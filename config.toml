@@ -1,4 +1,4 @@
-baseURL = "http://yaoyu-e-wang.github.io"
+baseURL = "https://yaoyu-e-wang.github.io/"
 #CanonifyURLs=true
 
 languageCode = "en-us"
