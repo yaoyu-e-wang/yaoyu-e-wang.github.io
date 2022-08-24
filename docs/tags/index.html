@@ -62,16 +62,17 @@
     </a>
     <div class="flex-l items-center">
       
-<h4></h4>
-<ul class="pl0 mr3">
-    
-    <li class="list f5 f4-ns fw4 dib pr3">
-        <a class="hover-white no-underline white-90" href="/fr/tags/">fr</a>
-    </li>
-    
-</ul>
 
-
+      
+        <ul class="pl0 mr3">
+          
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
+          
+        </ul>
       
       
 <div class="ananke-socials">
@@ -112,6 +113,579 @@
   </article>
   <div class="mw8 center">
     <section class="ph4">
+      
+        <h2 class="f1">
+          <a href="/tags/asia" class="link blue hover-black">
+            Tag: asia
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/hongkongnationalsecurity/" class="link black dim">
+        [News] How Hong Kong National Security Law affects Americans
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Even among world-shattering news coming out of US almost every day, the Hong Kong’s National Security Law stands out to affect Americans long term.
+The CCP passed Hong Kong National Security Law to curb pro-democracy and pro-autonomy movement in Hong Kong. The law codifies crimes against secession, subversion, terrorism, and collusion with any foreign entities, from institution to persons. The secession law (Article 20) is broad to cover any actions aiming at undermining national unity.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/data-wrangling" class="link blue hover-black">
+            Tag: data-wrangling
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-3/" class="link black dim">
+        Data Wrangling with R Basics - 3
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
+data=list( dge_results=read.table('scripts and data/data/differential_results.csv', sep=',', header=T), expr=read.table('scripts and data/data/gene_expression.tsv', header=T, row.names=1), # first column being the rowname annot=read.delim('scripts and data/data/gene_annotations.tsv') ) find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
+expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean) We can use the function subset to find the given with a given coordinate
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-2/" class="link black dim">
+        Data Wrangling with R Basics - 2
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
+my_pathway_genes.txt - mutations.tsv These files are stored in either comma-delimited (csv) or tab-delimited (tsv) formats. Files can be read with the following functions available from default R libraries. These are built-in “functions” from R. All read files, but with slightly different default behavior.
+# setwd(&quot;~/modules/data_wrangling&quot;) # First, load all the data: print('Loading data.
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-1/" class="link black dim">
+        Data Wrangling with R Basics - 1
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
+Variables and Data types Variables are assignment names for a piece of information, such as data.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/dge" class="link blue hover-black">
+            Tag: dge
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/rnaseq_dge/" class="link black dim">
+        Basic RNASeq DGE Analysis
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load('RNASeq_exploratory.RData') ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the 'count_data' #head(groups) # The head(count_data) provides the first 6 row of the 'count_data' Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/english" class="link blue hover-black">
+            Tag: english
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/hugothemecreationtutorial/" class="link black dim">
+        [English] Creating a New Theme
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&rsquo;t cover using CSS to style your theme.
+We&rsquo;ll start with creating a new site with a very basic template.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/news" class="link blue hover-black">
+            Tag: news
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/hongkongnationalsecurity/" class="link black dim">
+        [News] How Hong Kong National Security Law affects Americans
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Even among world-shattering news coming out of US almost every day, the Hong Kong’s National Security Law stands out to affect Americans long term.
+The CCP passed Hong Kong National Security Law to curb pro-democracy and pro-autonomy movement in Hong Kong. The law codifies crimes against secession, subversion, terrorism, and collusion with any foreign entities, from institution to persons. The secession law (Article 20) is broad to cover any actions aiming at undermining national unity.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/politics" class="link blue hover-black">
+            Tag: politics
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/hongkongnationalsecurity/" class="link black dim">
+        [News] How Hong Kong National Security Law affects Americans
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Even among world-shattering news coming out of US almost every day, the Hong Kong’s National Security Law stands out to affect Americans long term.
+The CCP passed Hong Kong National Security Law to curb pro-democracy and pro-autonomy movement in Hong Kong. The law codifies crimes against secession, subversion, terrorism, and collusion with any foreign entities, from institution to persons. The secession law (Article 20) is broad to cover any actions aiming at undermining national unity.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/preview" class="link blue hover-black">
+            Tag: preview
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/hugothemecreationtutorial/" class="link black dim">
+        [English] Creating a New Theme
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&rsquo;t cover using CSS to style your theme.
+We&rsquo;ll start with creating a new site with a very basic template.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/quotes" class="link blue hover-black">
+            Tag: quotes
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/quotes/" class="link black dim">
+        Quotes
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      &#34;There areonly two kinds of theories: those that are wrong and those that are incomplete.&#34; &ndash; Karl Popper
+&#34;We look for medicine to be an orderly field of knowledge and procedure. But it is not. It is an imperfect science, an enterprise of constantly changing knowledge, uncertain information, fallible individuals, and at the same time lives on the line&#34; &ndash;Atul Gawande, Complications: A Surgeon&rsquo;s Notes on an Imperfect Science, 2003
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/r" class="link blue hover-black">
+            Tag: r
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/scrnaseq_seurat/" class="link black dim">
+        scRNASeq analysis with Seurat 
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&rsquo;s package manager CRAN.
+# Check if Bioconductor is installed. If not, install if (!requireNamespace(&#34;BiocManager&#34;, quietly = TRUE)) install.packages(&#34;BiocManager&#34;) # Install a necessary package for Seurat BiocManager::install(&#39;multtest&#39;) BiocManager::install(&#39;MAST&#39;) # Install Seurat install.packages(&#39;Seurat&#39;) Updating HTML index of packages in '.
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/rnaseq_dge/" class="link black dim">
+        Basic RNASeq DGE Analysis
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load('RNASeq_exploratory.RData') ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the 'count_data' #head(groups) # The head(count_data) provides the first 6 row of the 'count_data' Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-3/" class="link black dim">
+        Data Wrangling with R Basics - 3
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
+data=list( dge_results=read.table('scripts and data/data/differential_results.csv', sep=',', header=T), expr=read.table('scripts and data/data/gene_expression.tsv', header=T, row.names=1), # first column being the rowname annot=read.delim('scripts and data/data/gene_annotations.tsv') ) find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
+expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean) We can use the function subset to find the given with a given coordinate
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-2/" class="link black dim">
+        Data Wrangling with R Basics - 2
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
+my_pathway_genes.txt - mutations.tsv These files are stored in either comma-delimited (csv) or tab-delimited (tsv) formats. Files can be read with the following functions available from default R libraries. These are built-in “functions” from R. All read files, but with slightly different default behavior.
+# setwd(&quot;~/modules/data_wrangling&quot;) # First, load all the data: print('Loading data.
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-1/" class="link black dim">
+        Data Wrangling with R Basics - 1
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
+Variables and Data types Variables are assignment names for a piece of information, such as data.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/rnaseq" class="link blue hover-black">
+            Tag: rnaseq
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/rnaseq_dge/" class="link black dim">
+        Basic RNASeq DGE Analysis
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load('RNASeq_exploratory.RData') ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the 'count_data' #head(groups) # The head(count_data) provides the first 6 row of the 'count_data' Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/salary" class="link blue hover-black">
+            Tag: salary
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/ptt%E5%8D%9A%E5%A3%AB%E7%89%88%E8%96%AA%E8%B3%87%E8%AA%BF%E6%9F%A5/" class="link black dim">
+        Re: [新聞]薪水像國小老師 台大師：回台任教都很佛心  
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      國外搶才教授薪資8倍? PTT博士鄉民薪水分佈 噓 mtcoat: 都沒有參考國外物價指數 常拿國外的薪水直接套在台灣，英 07/15 08:40
+→ mtcoat: 國吃個飯也要VAT 20% 扣稅和昂貴的租金後剩下生活的錢根 07/15 08:40
+→ mtcoat: 本很少
+[文長慎入]
+討論台灣教授薪資低於國際水準時, 各方都不太會把物價拿出來討論。一方會直接比較薪資數字,而另一方會說調整國外指數後台灣教授薪水其實不差。很可惜即使政府喊要推動台灣博士薪水好像從沒看過全球博士級研發人員薪水調查報告，有系統性的將台灣教授或是研發人員跟各國比較。
+我前陣子剛好在版上調查各國博士鄉民畢業後的職位, 稅後月薪, 生活開銷, 以及家庭組成 原文在 #1UnIDUOE, 調查在 https://tinyurl.com/ycwet2sb 結果也公開在 https://tinyurl.com/y96ppyjb
+很榮幸的有九十多位博士或是博士班鄉民共襄盛舉, 提供了匿名資料。雖然樣本數遠遠不足，參與鄉民也主要分布在台灣與美國，但這些都是四散全球活生生鄉民為了幫助未來學生填出來的，個別數字應該約正確反映當地薪資與生活開銷，可以參考。
+如果只分析博士後正式職位的國家分佈, 台灣有21位, 美國有九位, 其他香港，英國，中國與日本各一位。這些職位包括教授,研究員, 軟體研發與資深工程師, 講師等, 而助理,學生或是博士後都被排除。台灣鄉民裡，包括了六個助理教授和六個副教授。所有的幣值都轉換成台幣。因為年份不同與匯率浮動，我只抓大約匯率:美元1:30.5, 英鎊1:38.5,港幣1:3.8, 日圓1:0.27, 人民幣1:4.5。
+首先, 我們看各國的生活平均開銷+住宿開銷與稅後薪資比例:
+台灣平均必須開銷佔了稅後薪資的40.2%, 而美國是37.9%。只看台灣教授的話,助理教授平均值是27.2%, 而副教授是31.3%。為什麼副教授較高的薪水會有比較高的必須開銷比例？台灣助理教授大多單身, 而副教授大多有小孩, 這會是主因嗎？
+所以如果細分成無小孩(單身/情侶夫妻)或是有小孩的鄉民, 台灣的比例變成21.1%, 32.6% 與54.7%; 美國的比例則是無小孩為28.2%, 38.4%,有小孩的平均為39.4%。
+整體而言,在博士鄉民族群裡，台灣的必須開銷佔稅後薪資比例是比美國高的。兩國單身的鄉民比例差距不大，但有小孩後兩國的差距就完全拉開了(54.7%比39.4%)。這代表著兩種可能狀況: 第一, 台灣的可支配收入相對美國低; 第二, 台灣養小孩費用比例高於美國。
+我很簡單的定義 可支配收入上 = 稅後薪資-必須開銷。這代表可以自由運用在買車買房旅遊上好餐廳喝下午茶投資存銀行等經費。在這數字上台灣鄉民就遠遠低於美國鄉民:
+台灣鄉民平均每月有$68,221 的可支配收入, 而美國鄉民有$181,306,是接近台灣鄉民的三倍。 如果再把這數字分開成無/有小孩族群來看:
+台灣鄉民的可支配收入從無小孩的$94,000 降為 $54,400, 美國鄉民卻從$155,550增加到$199,775。雖然這很可能是選樣偏差造成的，但也可能是美國職業生涯薪資與必須生活開銷一同成長, 而台灣的薪資成長速度則遠低於必須生活開銷的成長。
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/scrnaseq" class="link blue hover-black">
+            Tag: scrnaseq
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/scrnaseq_seurat/" class="link black dim">
+        scRNASeq analysis with Seurat 
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&rsquo;s package manager CRAN.
+# Check if Bioconductor is installed. If not, install if (!requireNamespace(&#34;BiocManager&#34;, quietly = TRUE)) install.packages(&#34;BiocManager&#34;) # Install a necessary package for Seurat BiocManager::install(&#39;multtest&#39;) BiocManager::install(&#39;MAST&#39;) # Install Seurat install.packages(&#39;Seurat&#39;) Updating HTML index of packages in '.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/tag-2" class="link blue hover-black">
+            Tag: tag-2
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/hugothemecreationtutorial/" class="link black dim">
+        [English] Creating a New Theme
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&rsquo;t cover using CSS to style your theme.
+We&rsquo;ll start with creating a new site with a very basic template.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/taiwan" class="link blue hover-black">
+            Tag: taiwan
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/ptt%E5%8D%9A%E5%A3%AB%E7%89%88%E8%96%AA%E8%B3%87%E8%AA%BF%E6%9F%A5/" class="link black dim">
+        Re: [新聞]薪水像國小老師 台大師：回台任教都很佛心  
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      國外搶才教授薪資8倍? PTT博士鄉民薪水分佈 噓 mtcoat: 都沒有參考國外物價指數 常拿國外的薪水直接套在台灣，英 07/15 08:40
+→ mtcoat: 國吃個飯也要VAT 20% 扣稅和昂貴的租金後剩下生活的錢根 07/15 08:40
+→ mtcoat: 本很少
+[文長慎入]
+討論台灣教授薪資低於國際水準時, 各方都不太會把物價拿出來討論。一方會直接比較薪資數字,而另一方會說調整國外指數後台灣教授薪水其實不差。很可惜即使政府喊要推動台灣博士薪水好像從沒看過全球博士級研發人員薪水調查報告，有系統性的將台灣教授或是研發人員跟各國比較。
+我前陣子剛好在版上調查各國博士鄉民畢業後的職位, 稅後月薪, 生活開銷, 以及家庭組成 原文在 #1UnIDUOE, 調查在 https://tinyurl.com/ycwet2sb 結果也公開在 https://tinyurl.com/y96ppyjb
+很榮幸的有九十多位博士或是博士班鄉民共襄盛舉, 提供了匿名資料。雖然樣本數遠遠不足，參與鄉民也主要分布在台灣與美國，但這些都是四散全球活生生鄉民為了幫助未來學生填出來的，個別數字應該約正確反映當地薪資與生活開銷，可以參考。
+如果只分析博士後正式職位的國家分佈, 台灣有21位, 美國有九位, 其他香港，英國，中國與日本各一位。這些職位包括教授,研究員, 軟體研發與資深工程師, 講師等, 而助理,學生或是博士後都被排除。台灣鄉民裡，包括了六個助理教授和六個副教授。所有的幣值都轉換成台幣。因為年份不同與匯率浮動，我只抓大約匯率:美元1:30.5, 英鎊1:38.5,港幣1:3.8, 日圓1:0.27, 人民幣1:4.5。
+首先, 我們看各國的生活平均開銷+住宿開銷與稅後薪資比例:
+台灣平均必須開銷佔了稅後薪資的40.2%, 而美國是37.9%。只看台灣教授的話,助理教授平均值是27.2%, 而副教授是31.3%。為什麼副教授較高的薪水會有比較高的必須開銷比例？台灣助理教授大多單身, 而副教授大多有小孩, 這會是主因嗎？
+所以如果細分成無小孩(單身/情侶夫妻)或是有小孩的鄉民, 台灣的比例變成21.1%, 32.6% 與54.7%; 美國的比例則是無小孩為28.2%, 38.4%,有小孩的平均為39.4%。
+整體而言,在博士鄉民族群裡，台灣的必須開銷佔稅後薪資比例是比美國高的。兩國單身的鄉民比例差距不大，但有小孩後兩國的差距就完全拉開了(54.7%比39.4%)。這代表著兩種可能狀況: 第一, 台灣的可支配收入相對美國低; 第二, 台灣養小孩費用比例高於美國。
+我很簡單的定義 可支配收入上 = 稅後薪資-必須開銷。這代表可以自由運用在買車買房旅遊上好餐廳喝下午茶投資存銀行等經費。在這數字上台灣鄉民就遠遠低於美國鄉民:
+台灣鄉民平均每月有$68,221 的可支配收入, 而美國鄉民有$181,306,是接近台灣鄉民的三倍。 如果再把這數字分開成無/有小孩族群來看:
+台灣鄉民的可支配收入從無小孩的$94,000 降為 $54,400, 美國鄉民卻從$155,550增加到$199,775。雖然這很可能是選樣偏差造成的，但也可能是美國職業生涯薪資與必須生活開銷一同成長, 而台灣的薪資成長速度則遠低於必須生活開銷的成長。
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/tutorial" class="link blue hover-black">
+            Tag: tutorial
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/scrnaseq_seurat/" class="link black dim">
+        scRNASeq analysis with Seurat 
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&rsquo;s package manager CRAN.
+# Check if Bioconductor is installed. If not, install if (!requireNamespace(&#34;BiocManager&#34;, quietly = TRUE)) install.packages(&#34;BiocManager&#34;) # Install a necessary package for Seurat BiocManager::install(&#39;multtest&#39;) BiocManager::install(&#39;MAST&#39;) # Install Seurat install.packages(&#39;Seurat&#39;) Updating HTML index of packages in '.
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/rnaseq_dge/" class="link black dim">
+        Basic RNASeq DGE Analysis
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load('RNASeq_exploratory.RData') ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the 'count_data' #head(groups) # The head(count_data) provides the first 6 row of the 'count_data' Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-3/" class="link black dim">
+        Data Wrangling with R Basics - 3
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
+data=list( dge_results=read.table('scripts and data/data/differential_results.csv', sep=',', header=T), expr=read.table('scripts and data/data/gene_expression.tsv', header=T, row.names=1), # first column being the rowname annot=read.delim('scripts and data/data/gene_annotations.tsv') ) find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
+expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean) We can use the function subset to find the given with a given coordinate
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-2/" class="link black dim">
+        Data Wrangling with R Basics - 2
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
+my_pathway_genes.txt - mutations.tsv These files are stored in either comma-delimited (csv) or tab-delimited (tsv) formats. Files can be read with the following functions available from default R libraries. These are built-in “functions” from R. All read files, but with slightly different default behavior.
+# setwd(&quot;~/modules/data_wrangling&quot;) # First, load all the data: print('Loading data.
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-1/" class="link black dim">
+        Data Wrangling with R Basics - 1
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
+Variables and Data types Variables are assignment names for a piece of information, such as data.
+    </div>
+  </div>
+</div>
+
+        
+      
+        <h2 class="f1">
+          <a href="/tags/%E4%B8%AD%E6%96%87" class="link blue hover-black">
+            Tag: 中文
+          </a>
+        </h2>
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/ptt%E5%8D%9A%E5%A3%AB%E7%89%88%E8%96%AA%E8%B3%87%E8%AA%BF%E6%9F%A5/" class="link black dim">
+        Re: [新聞]薪水像國小老師 台大師：回台任教都很佛心  
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      國外搶才教授薪資8倍? PTT博士鄉民薪水分佈 噓 mtcoat: 都沒有參考國外物價指數 常拿國外的薪水直接套在台灣，英 07/15 08:40
+→ mtcoat: 國吃個飯也要VAT 20% 扣稅和昂貴的租金後剩下生活的錢根 07/15 08:40
+→ mtcoat: 本很少
+[文長慎入]
+討論台灣教授薪資低於國際水準時, 各方都不太會把物價拿出來討論。一方會直接比較薪資數字,而另一方會說調整國外指數後台灣教授薪水其實不差。很可惜即使政府喊要推動台灣博士薪水好像從沒看過全球博士級研發人員薪水調查報告，有系統性的將台灣教授或是研發人員跟各國比較。
+我前陣子剛好在版上調查各國博士鄉民畢業後的職位, 稅後月薪, 生活開銷, 以及家庭組成 原文在 #1UnIDUOE, 調查在 https://tinyurl.com/ycwet2sb 結果也公開在 https://tinyurl.com/y96ppyjb
+很榮幸的有九十多位博士或是博士班鄉民共襄盛舉, 提供了匿名資料。雖然樣本數遠遠不足，參與鄉民也主要分布在台灣與美國，但這些都是四散全球活生生鄉民為了幫助未來學生填出來的，個別數字應該約正確反映當地薪資與生活開銷，可以參考。
+如果只分析博士後正式職位的國家分佈, 台灣有21位, 美國有九位, 其他香港，英國，中國與日本各一位。這些職位包括教授,研究員, 軟體研發與資深工程師, 講師等, 而助理,學生或是博士後都被排除。台灣鄉民裡，包括了六個助理教授和六個副教授。所有的幣值都轉換成台幣。因為年份不同與匯率浮動，我只抓大約匯率:美元1:30.5, 英鎊1:38.5,港幣1:3.8, 日圓1:0.27, 人民幣1:4.5。
+首先, 我們看各國的生活平均開銷+住宿開銷與稅後薪資比例:
+台灣平均必須開銷佔了稅後薪資的40.2%, 而美國是37.9%。只看台灣教授的話,助理教授平均值是27.2%, 而副教授是31.3%。為什麼副教授較高的薪水會有比較高的必須開銷比例？台灣助理教授大多單身, 而副教授大多有小孩, 這會是主因嗎？
+所以如果細分成無小孩(單身/情侶夫妻)或是有小孩的鄉民, 台灣的比例變成21.1%, 32.6% 與54.7%; 美國的比例則是無小孩為28.2%, 38.4%,有小孩的平均為39.4%。
+整體而言,在博士鄉民族群裡，台灣的必須開銷佔稅後薪資比例是比美國高的。兩國單身的鄉民比例差距不大，但有小孩後兩國的差距就完全拉開了(54.7%比39.4%)。這代表著兩種可能狀況: 第一, 台灣的可支配收入相對美國低; 第二, 台灣養小孩費用比例高於美國。
+我很簡單的定義 可支配收入上 = 稅後薪資-必須開銷。這代表可以自由運用在買車買房旅遊上好餐廳喝下午茶投資存銀行等經費。在這數字上台灣鄉民就遠遠低於美國鄉民:
+台灣鄉民平均每月有$68,221 的可支配收入, 而美國鄉民有$181,306,是接近台灣鄉民的三倍。 如果再把這數字分開成無/有小孩族群來看:
+台灣鄉民的可支配收入從無小孩的$94,000 降為 $54,400, 美國鄉民卻從$155,550增加到$199,775。雖然這很可能是選樣偏差造成的，但也可能是美國職業生涯薪資與必須生活開銷一同成長, 而台灣的薪資成長速度則遠低於必須生活開銷的成長。
+    </div>
+  </div>
+</div>
+
+        
       
     </section>
   </div>

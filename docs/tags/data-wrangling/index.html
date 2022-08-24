@@ -1,363 +1,200 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
-<head><title>
-    Data Wrangling | 
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    LinGo&#39;s Notes</title>
+    <title>Data Wrangling | Ananke</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The last theme you&#39;ll ever need. Maybe.">
+    <meta name="generator" content="Hugo 0.101.0" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Making my random notes available
-    ">
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
 
 
-<meta property="og:title" content="Data Wrangling" />
-<meta property="og:description" content="Making my random notes available" />
+
+    
+    
+    
+      
+
+    
+
+    
+    
+      <link href="/tags/data-wrangling/index.xml" rel="alternate" type="application/rss+xml" title="Ananke" />
+      <link href="/tags/data-wrangling/index.xml" rel="feed" type="application/rss+xml" title="Ananke" />
+      
+    
+    
+    <meta property="og:title" content="Data Wrangling" />
+<meta property="og:description" content="The last theme you&#39;ll ever need. Maybe." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://yaoyu-e-wang.github.io/tags/data-wrangling/" />
-<meta property="og:updated_time" content="2022-04-26T00:00:00+00:00" />
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Data Wrangling"/>
-<meta name="twitter:description" content="Making my random notes available"/>
+<meta property="og:url" content="https://yaoyu-e-wang.github.io/tags/data-wrangling/" /><meta property="og:site_name" content="Ananke" />
 
 <meta itemprop="name" content="Data Wrangling">
-<meta itemprop="description" content="Making my random notes available">
-<link rel="canonical" href="https://yaoyu-e-wang.github.io/tags/data-wrangling/" />
+<meta itemprop="description" content="The last theme you&#39;ll ever need. Maybe."><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Data Wrangling"/>
+<meta name="twitter:description" content="The last theme you&#39;ll ever need. Maybe."/>
 
-<link rel="icon" type="image/png" href="https://yaoyu-e-wang.github.io/image/favicon.ico">
-
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/bulma.min.css">
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'analytics-code', 'auto');
 	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+  </head>
 
+  <body class="ma0 avenir bg-near-white">
 
+    
 
-<script src=/js/ramium.js></script>
-<link rel="stylesheet" href=/css/ramium.css>
-
-
-
-
-
-</head>
-
-<body><nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href=/>
+  <header>
+    <div class="pb3-m pb6-l bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
       
-      <strong>LinGo&#39;s Notes </strong>
+        Ananke
       
     </a>
+    <div class="flex-l items-center">
+      
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-      data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
       
-      
-      <a class="navbar-item" href="/">Home</a>
-      
-      
-      
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">This Blog</a>
-        <div class="navbar-dropdown">
+        <ul class="pl0 mr3">
           
-          <a class="navbar-item" href="/tags/">All Tags</a>
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
           
-          <a class="navbar-item" href="/sections/">All Sections</a>
-          
-          <a class="navbar-item" href="/posts/">All Posts</a>
-          
-        </div>
-      </div>
+        </ul>
       
       
+<div class="ananke-socials">
+  
+    <a href="https://twitter.com/GoHugoIO" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
       
-      <a class="navbar-item" href="/authorr/">Author</a>
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
       
-      
-    </div>
-
-    <div class="navbar-end">
-      
-
-      
-      <div class="navbar-item">
-        <form id="cse-search-box-form-id" onsubmit="return executeQuery();" role="search">
-          <div class="field has-addons">
-            <div class="control is-expanded">
-              <input id="cse-search-input-box-id" size=15 class="input" type="text" autocomplete="off"
-                placeholder="&#xf1a0; Google search" style="font-family:Arial, FontAwesome">
-            </div>
-
-            <div class="control">
-              <button type="submit" class="button is-black">
-                <i class="fa fa-search"></i>
-                </a>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-      
-    </div>
-  </div>
-</nav><div class="columns is-centered">
-        <div id="page-body" class="column is-7">
-
-<div class="content">
-    <h1>Data Wrangling</h1>
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
 </div>
 
-<div class="blog-brief">
-    <a href="/posts/datawranglingbasic-3/">
-        <h3 class="title is-4">
-            Data Wrangling With R Basics - 3
-        </h3>
-    </a>
-
-    <div class="level is-mobile details">
-        <div class="level-left">
-
-            
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-3/">
-                    <p class="subtitle info date">Apr 26, 2022
-                    </p>
-                </a>
-            </div>
-            
-
-
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-3/">
-                    <p class="subtitle info">
-                        4 mins read
-                    </p>
-                </a>
-            </div>
-        </div>
-        <div class="level-right is-hidden-touch">
-            
-            <a class="tag is-rounded" href="/tags/r">R</a>
-            
-            <a class="tag is-rounded" href="/tags/data-wrangling">Data Wrangling</a>
-            
-            <a class="tag is-rounded" href="/tags/tutorial">Tutorial</a>
-            
-        </div>
     </div>
+  </div>
+</nav>
 
-    <div>
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          Data Wrangling
+        </h1>
         
-
-        <div>
-            <a href="/posts/datawranglingbasic-3/">
-                <p class="summary">
-                    Data Wrangling with R Basics - 3 Let’s load the dataset
-data=list( dge_results=read.table(&#39;scripts and data/data/differential_results.csv&#39;, sep=&#39;,&#39;, header=T), expr=read.table(&#39;scripts and data/data/gene_expression.tsv&#39;, header=T, row.names=1), # first column being the rowname annot=read.delim(&#39;scripts and data/data/gene_annotations.tsv&#39;) )  find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
-expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean)  We can use the function subset to find the given with a given coordinate
-                    
-                </p>
-            </a>
-        </div>
+      </div>
     </div>
+  </header>
 
-    <div class="level is-mobile continue-reading">
-        <div class="level-left">
-        </div>
-        <div class="level-right">
-            <a href="/posts/datawranglingbasic-3/">Continue reading <i class="fa fa-angle-double-right"
-                    aria-hidden="true"></i></a>
-        </div>
+
+    <main class="pb7" role="main">
+      
+  <article class="cf pa3 pa4-m pa4-l">
+    <div class="measure-wide-l center f4 lh-copy nested-copy-line-height nested-links mid-gray">
+      <p>Below you will find pages that utilize the taxonomy term “Data Wrangling”</p>
     </div>
-    <hr>
-</div><div class="blog-brief">
-    <a href="/posts/datawranglingbasic-2/">
-        <h3 class="title is-4">
-            Data Wrangling With R Basics - 2
-        </h3>
-    </a>
-
-    <div class="level is-mobile details">
-        <div class="level-left">
-
-            
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-2/">
-                    <p class="subtitle info date">Apr 25, 2022
-                    </p>
-                </a>
-            </div>
-            
-
-
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-2/">
-                    <p class="subtitle info">
-                        16 mins read
-                    </p>
-                </a>
-            </div>
-        </div>
-        <div class="level-right is-hidden-touch">
-            
-            <a class="tag is-rounded" href="/tags/r">R</a>
-            
-            <a class="tag is-rounded" href="/tags/data-wrangling">Data Wrangling</a>
-            
-            <a class="tag is-rounded" href="/tags/tutorial">Tutorial</a>
-            
-        </div>
+  </article>
+  <div class="mw8 center">
+    <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-3/" class="link black dim">
+        Data Wrangling with R Basics - 3
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
+data=list( dge_results=read.table('scripts and data/data/differential_results.csv', sep=',', header=T), expr=read.table('scripts and data/data/gene_expression.tsv', header=T, row.names=1), # first column being the rowname annot=read.delim('scripts and data/data/gene_annotations.tsv') ) find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
+expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean) We can use the function subset to find the given with a given coordinate
     </div>
+  </div>
+</div>
 
-    <div>
-        
-
-        <div>
-            <a href="/posts/datawranglingbasic-2/">
-                <p class="summary">
-                    Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
- my_pathway_genes.txt - mutations.tsv  These files are stored in either comma-delimited (csv) or tab-delimited (tsv) formats. Files can be read with the following functions available from default R libraries. These are built-in “functions” from R. All read files, but with slightly different default behavior.
-    Function package Description    read.
-                    
-                </p>
-            </a>
         </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-2/" class="link black dim">
+        Data Wrangling with R Basics - 2
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
+my_pathway_genes.txt - mutations.tsv These files are stored in either comma-delimited (csv) or tab-delimited (tsv) formats. Files can be read with the following functions available from default R libraries. These are built-in “functions” from R. All read files, but with slightly different default behavior.
+# setwd(&quot;~/modules/data_wrangling&quot;) # First, load all the data: print('Loading data.
     </div>
+  </div>
+</div>
 
-    <div class="level is-mobile continue-reading">
-        <div class="level-left">
         </div>
-        <div class="level-right">
-            <a href="/posts/datawranglingbasic-2/">Continue reading <i class="fa fa-angle-double-right"
-                    aria-hidden="true"></i></a>
-        </div>
-    </div>
-    <hr>
-</div><div class="blog-brief">
-    <a href="/posts/datawranglingbasic-1/">
-        <h3 class="title is-4">
-            Data Wrangling With R Basics - 1
-        </h3>
-    </a>
-
-    <div class="level is-mobile details">
-        <div class="level-left">
-
-            
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-1/">
-                    <p class="subtitle info date">Apr 24, 2022
-                    </p>
-                </a>
-            </div>
-            
-
-
-            <div class="level-item">
-                <a href="/posts/datawranglingbasic-1/">
-                    <p class="subtitle info">
-                        7 mins read
-                    </p>
-                </a>
-            </div>
-        </div>
-        <div class="level-right is-hidden-touch">
-            
-            <a class="tag is-rounded" href="/tags/r">R</a>
-            
-            <a class="tag is-rounded" href="/tags/data-wrangling">Data Wrangling</a>
-            
-            <a class="tag is-rounded" href="/tags/tutorial">Tutorial</a>
-            
-        </div>
-    </div>
-
-    <div>
-        
-
-        <div>
-            <a href="/posts/datawranglingbasic-1/">
-                <p class="summary">
-                    The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/posts/datawranglingbasic-1/" class="link black dim">
+        Data Wrangling with R Basics - 1
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
 Variables and Data types Variables are assignment names for a piece of information, such as data.
-                    
-                </p>
-            </a>
-        </div>
     </div>
-
-    <div class="level is-mobile continue-reading">
-        <div class="level-left">
-        </div>
-        <div class="level-right">
-            <a href="/posts/datawranglingbasic-1/">Continue reading <i class="fa fa-angle-double-right"
-                    aria-hidden="true"></i></a>
-        </div>
-    </div>
-    <hr>
+  </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
-    </div>
-<script async src="https://cse.google.com/cse.js?cx=google-search-code"></script>
-<gcse:searchresults-only></gcse:searchresults-only>
+      
+    </section>
+  </div>
 
-
-<footer class="footer has-background-dark">
-    <div class="content has-text-centered has-text-white">
-        <p>
-            © 2020 Ramium. Powered by
-            <a class="has-text-light" href="https://github.com/gohugoio/hugo" target="_blank">
-            Hugo</a>. Theme
-            <a class="has-text-light" href="https://github.com/rafed123/ramium/" target="_blank">
-                Ramium.
-            </a>
-        </p>
-    </div>
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://yaoyu-e-wang.github.io/" >
+    &copy;  Ananke 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    <a href="https://twitter.com/GoHugoIO" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
 </footer>
-</body>
 
+  </body>
 </html>

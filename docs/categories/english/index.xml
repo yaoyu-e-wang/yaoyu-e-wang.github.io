@@ -2,11 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>English on Ananke</title>
-    <link>https://yaoyu-e-wang.github.io/tags/english/</link>
+    <link>https://yaoyu-e-wang.github.io/categories/english/</link>
     <description>Recent content in English on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 31 Aug 2017 15:43:48 +0800</lastBuildDate><atom:link href="https://yaoyu-e-wang.github.io/tags/english/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 28 Jun 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yaoyu-e-wang.github.io/categories/english/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Quotes</title>
+      <link>https://yaoyu-e-wang.github.io/posts/quotes/</link>
+      <pubDate>Tue, 28 Jun 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yaoyu-e-wang.github.io/posts/quotes/</guid>
+      <description>&amp;#34;There areonly two kinds of theories: those that are wrong and those that are incomplete.&amp;#34; &amp;ndash; Karl Popper
+&amp;#34;We look for medicine to be an orderly field of knowledge and procedure. But it is not. It is an imperfect science, an enterprise of constantly changing knowledge, uncertain information, fallible individuals, and at the same time lives on the line&amp;#34; &amp;ndash;Atul Gawande, Complications: A Surgeon&amp;rsquo;s Notes on an Imperfect Science, 2003</description>
+    </item>
+    
     <item>
       <title>[English] Creating a New Theme</title>
       <link>https://yaoyu-e-wang.github.io/posts/hugothemecreationtutorial/</link>

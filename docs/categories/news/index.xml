@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Salary on Ananke</title>
-    <link>https://yaoyu-e-wang.github.io/tags/salary/</link>
-    <description>Recent content in Salary on Ananke</description>
+    <title>News on Ananke</title>
+    <link>https://yaoyu-e-wang.github.io/categories/news/</link>
+    <description>Recent content in News on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 16 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yaoyu-e-wang.github.io/tags/salary/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 16 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yaoyu-e-wang.github.io/categories/news/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Re: [新聞]薪水像國小老師 台大師：回台任教都很佛心  </title>
       <link>https://yaoyu-e-wang.github.io/posts/ptt%E5%8D%9A%E5%A3%AB%E7%89%88%E8%96%AA%E8%B3%87%E8%AA%BF%E6%9F%A5/</link>
@@ -28,6 +28,16 @@
 我很簡單的定義 可支配收入上 = 稅後薪資-必須開銷。這代表可以自由運用在買車買房旅遊上好餐廳喝下午茶投資存銀行等經費。在這數字上台灣鄉民就遠遠低於美國鄉民:
 台灣鄉民平均每月有$68,221 的可支配收入, 而美國鄉民有$181,306,是接近台灣鄉民的三倍。 如果再把這數字分開成無/有小孩族群來看:
 台灣鄉民的可支配收入從無小孩的$94,000 降為 $54,400, 美國鄉民卻從$155,550增加到$199,775。雖然這很可能是選樣偏差造成的，但也可能是美國職業生涯薪資與必須生活開銷一同成長, 而台灣的薪資成長速度則遠低於必須生活開銷的成長。</description>
+    </item>
+    
+    <item>
+      <title>[News] How Hong Kong National Security Law affects Americans</title>
+      <link>https://yaoyu-e-wang.github.io/posts/hongkongnationalsecurity/</link>
+      <pubDate>Fri, 01 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://yaoyu-e-wang.github.io/posts/hongkongnationalsecurity/</guid>
+      <description>Even among world-shattering news coming out of US almost every day, the Hong Kong’s National Security Law stands out to affect Americans long term.
+The CCP passed Hong Kong National Security Law to curb pro-democracy and pro-autonomy movement in Hong Kong. The law codifies crimes against secession, subversion, terrorism, and collusion with any foreign entities, from institution to persons. The secession law (Article 20) is broad to cover any actions aiming at undermining national unity.</description>
     </item>
     
   </channel>

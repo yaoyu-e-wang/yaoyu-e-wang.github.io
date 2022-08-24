@@ -4,6 +4,7 @@ languageCode = "en-us"
 theme = "ananke"
 resourceDir = "../resources"
 publishDir = "docs"
+contentDir = "content/"
 
 DefaultContentLanguage = "en"
 SectionPagesMenu = "main"
@@ -15,13 +16,9 @@ enableRobotsTXT = true
   [languages.en]
     title = "Ananke"
     weight = 1
-    contentDir = "content/en"
+    # contentDir = "content/en"
     # languageDirection = 'rtl' for Right-To-Left languages
-  [languages.fr]
-    title = "Ananke Fr"
-    weight = 2
-    contentDir = "content/fr"
-
+  
 [sitemap]
   changefreq = "monthly"
   priority = 0.5

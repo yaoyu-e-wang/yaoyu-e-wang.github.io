@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tutorial on Ananke</title>
-    <link>https://yaoyu-e-wang.github.io/tags/tutorial/</link>
-    <description>Recent content in tutorial on Ananke</description>
+    <title>Tutorial on Ananke</title>
+    <link>https://yaoyu-e-wang.github.io/categories/tutorial/</link>
+    <description>Recent content in Tutorial on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yaoyu-e-wang.github.io/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 02 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yaoyu-e-wang.github.io/categories/tutorial/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>scRNASeq analysis with Seurat </title>
       <link>https://yaoyu-e-wang.github.io/posts/scrnaseq_seurat/</link>

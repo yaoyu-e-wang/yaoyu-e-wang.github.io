@@ -1,188 +1,157 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
-<head><title>
-    Data Wrangling With R Basics - 1 | 
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    LinGo&#39;s Notes</title>
+    <title>Data Wrangling with R Basics - 1 | Ananke</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
+Variables and Data types Variables are assignment names for a piece of information, such as data.">
+    <meta name="generator" content="Hugo 0.101.0" />
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
-Variables and Data types Variables are assignment names for a piece of information, such as data.
-    ">
+    
+<link rel="stylesheet" href="/ananke/css/main.min.css" >
 
 
-<meta property="og:title" content="Data Wrangling with R Basics - 1" />
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="Data Wrangling with R Basics - 1" />
 <meta property="og:description" content="The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
 Variables and Data types Variables are assignment names for a piece of information, such as data." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/" />
+<meta property="og:url" content="https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-04-24T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-04-24T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-04-24T00:00:00+00:00" /><meta property="og:site_name" content="Ananke" />
 
-<meta name="twitter:card" content="summary"/>
+<meta itemprop="name" content="Data Wrangling with R Basics - 1">
+<meta itemprop="description" content="The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
+Variables and Data types Variables are assignment names for a piece of information, such as data."><meta itemprop="datePublished" content="2022-04-24T00:00:00+00:00" />
+<meta itemprop="dateModified" content="2022-04-24T00:00:00+00:00" />
+<meta itemprop="wordCount" content="1131">
+<meta itemprop="keywords" content="R,Data Wrangling,tutorial," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Data Wrangling with R Basics - 1"/>
 <meta name="twitter:description" content="The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
 Variables and Data types Variables are assignment names for a piece of information, such as data."/>
 
-<meta itemprop="name" content="Data Wrangling with R Basics - 1">
-<meta itemprop="description" content="The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
-Variables and Data types Variables are assignment names for a piece of information, such as data.">
-<meta itemprop="datePublished" content="2022-04-24T00:00:00&#43;00:00" />
-<meta itemprop="dateModified" content="2022-04-24T00:00:00&#43;00:00" />
-<meta itemprop="wordCount" content="1131">
-
-
-
-<meta itemprop="keywords" content="R,Data Wrangling,tutorial," />
-<link rel="canonical" href="https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/" />
-
-<link rel="icon" type="image/png" href="https://yaoyu-e-wang.github.io/image/favicon.ico">
-
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/bulma.min.css">
-
-
-
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'analytics-code', 'auto');
 	
-	ga('send', 'pageview');
-}
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+  </head>
 
+  <body class="ma0 avenir bg-near-white">
 
+    
+   
+  
 
-<script src=/js/ramium.js></script>
-<link rel="stylesheet" href=/css/ramium.css>
-
-
-
-
-
-</head>
-
-<body><nav class="navbar is-dark" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href=/>
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/" class="f3 fw2 hover-white no-underline white-90 dib">
       
-      <strong>LinGo&#39;s Notes </strong>
+        Ananke
       
     </a>
+    <div class="flex-l items-center">
+      
 
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-      data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
       
-      
-      <a class="navbar-item" href="/">Home</a>
-      
-      
-      
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">This Blog</a>
-        <div class="navbar-dropdown">
+        <ul class="pl0 mr3">
           
-          <a class="navbar-item" href="/tags/">All Tags</a>
+          <li class="list f5 f4-ns fw4 dib pr3">
+            <a class="hover-white no-underline white-90" href="/posts/" title="Posts page">
+              Posts
+            </a>
+          </li>
           
-          <a class="navbar-item" href="/sections/">All Sections</a>
-          
-          <a class="navbar-item" href="/posts/">All Posts</a>
-          
-        </div>
-      </div>
+        </ul>
       
       
+<div class="ananke-socials">
+  
+    <a href="https://twitter.com/GoHugoIO" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
       
-      <a class="navbar-item" href="/authorr/">Author</a>
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
       
-      
-    </div>
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
 
-    <div class="navbar-end">
-      
-
-      
-      <div class="navbar-item">
-        <form id="cse-search-box-form-id" onsubmit="return executeQuery();" role="search">
-          <div class="field has-addons">
-            <div class="control is-expanded">
-              <input id="cse-search-input-box-id" size=15 class="input" type="text" autocomplete="off"
-                placeholder="&#xf1a0; Google search" style="font-family:Arial, FontAwesome">
-            </div>
-
-            <div class="control">
-              <button type="submit" class="button is-black">
-                <i class="fa fa-search"></i>
-                </a>
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-      
     </div>
   </div>
-</nav><div class="columns is-centered">
-        <div id="page-body" class="column is-7">
+</nav>
 
-<div class="content blog">
-    <h1>Data Wrangling With R Basics - 1</h1>
-
-    <div id="infobar" class="level is-mobile">
-        <div class="level-left">
-            
-            <div class="level-item">
-                <p class="subtitle info date">Apr 24, 2022
-                </p>
-            </div>
-            
-
-            <div class="level-item">
-                <p class="subtitle info">
-                    7 mins read
-                </p>
-            </div>
-        </div>
-        <div class="level-right is-hidden-touch">
-            <div class="tags">
-                
-                <a class="tag is-dark is-rounded" href="/tags/r">R</a>
-                
-                <a class="tag is-dark is-rounded" href="/tags/data-wrangling">Data Wrangling</a>
-                
-                <a class="tag is-dark is-rounded" href="/tags/tutorial">Tutorial</a>
-                
-            </div>
-        </div>
     </div>
+  </header>
 
-    <div class="tags is-hidden-desktop">
-        
-        <a class="tag is-dark is-rounded" href="/tags/r">R</a>
-        
-        <a class="tag is-dark is-rounded" href="/tags/data-wrangling">Data wrangling</a>
-        
-        <a class="tag is-dark is-rounded" href="/tags/tutorial">Tutorial</a>
-        
-    </div>
 
-    <div class="blog-text">
-        
 
-        <h1 id="the-r-syntax-and-data-structre">The R syntax and Data Structre</h1>
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+      
+      <a href="https://twitter.com/share?url=https://yaoyu-e-wang.github.io/posts/datawranglingbasic-1/&amp;text=Data%20Wrangling%20with%20R%20Basics%20-%201" class="ananke-social-link twitter no-underline" aria-label="share on Twitter">
+        
+        <span class="icon"> <svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+        
+      </a>
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">Data Wrangling with R Basics - 1</h1>
+      
+      <p class="tracked">
+        By <strong>Yaoyu E. Wang</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2022-04-24T00:00:00Z">April 24, 2022</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="the-r-syntax-and-data-structre">The R syntax and Data Structre</h1>
 <p>R is composed of the following syntax to describe the program: -
 <em>variables</em> that can be of any of R data types - <em>operators</em> operations
 that perform a arithematic or numerical action - <em>functions</em> a
@@ -196,50 +165,50 @@ structure</em>.</p>
 <table>
 <thead>
 <tr>
-<th align="center">Operator</th>
-<th align="left">Description</th>
-<th align="left">Example</th>
+<th style="text-align:center">Operator</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:left">Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">numeric</td>
-<td align="left">any number including floating</td>
-<td align="left">1, 1.234</td>
+<td style="text-align:center">numeric</td>
+<td style="text-align:left">any number including floating</td>
+<td style="text-align:left">1, 1.234</td>
 </tr>
 <tr>
-<td align="center">integer</td>
-<td align="left">integer number</td>
-<td align="left">1,2,3,4…</td>
+<td style="text-align:center">integer</td>
+<td style="text-align:left">integer number</td>
+<td style="text-align:left">1,2,3,4…</td>
 </tr>
 <tr>
-<td align="center">character</td>
-<td align="left">any string of text values declared by quotation <strong>&quot;</strong> or <strong>’</strong></td>
-<td align="left">“a”, “abcd”, ‘123’</td>
+<td style="text-align:center">character</td>
+<td style="text-align:left">any string of text values declared by quotation <strong>&quot;</strong> or <strong>’</strong></td>
+<td style="text-align:left">“a”, “abcd”, ‘123’</td>
 </tr>
 <tr>
-<td align="center">logical</td>
-<td align="left">boolean results</td>
-<td align="left">TRUE/FALSE</td>
+<td style="text-align:center">logical</td>
+<td style="text-align:left">boolean results</td>
+<td style="text-align:left">TRUE/FALSE</td>
 </tr>
 </tbody>
 </table>
 <p>There are other data types that are beyond scope of this course.</p>
 <p>We can declare a simple variable and find its data type with the
 following:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># This is a comment that is not read by R </span>
-<span style="color:#75715e"># Comment is for human to read to explain the code</span>
-x<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
-x<span style="color:#f92672">&lt;-</span><span style="color:#ae81ff">10</span>
-<span style="color:#75715e"># Declare a character</span>
-y<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;a&#34;</span>
-<span style="color:#75715e"># Declare a logic</span>
-z<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>
-</code></pre></div><p>We can also find the data type of a variable by <strong>class</strong> function.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">class</span>(x)
-<span style="color:#a6e22e">class</span>(y)
-<span style="color:#a6e22e">class</span>(z)
-</code></pre></div><h2 id="data-structure">Data Structure</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># This is a comment that is not read by R </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Comment is for human to read to explain the code</span>
+</span></span><span style="display:flex;"><span>x<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>x<span style="color:#f92672">&lt;-</span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Declare a character</span>
+</span></span><span style="display:flex;"><span>y<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;a&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Declare a logic</span>
+</span></span><span style="display:flex;"><span>z<span style="color:#f92672">=</span><span style="color:#66d9ef">TRUE</span>
+</span></span></code></pre></div><p>We can also find the data type of a variable by <strong>class</strong> function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">class</span>(x)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">class</span>(y)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">class</span>(z)
+</span></span></code></pre></div><h2 id="data-structure">Data Structure</h2>
 <p><strong>Variables</strong> can be stored in different data structure that takes
 different types of variable organization.</p>
 <h3 id="vector">Vector</h3>
@@ -249,75 +218,75 @@ We can also declare a vector of numbers into a single variable using
 <strong>c()</strong></p>
 <p>For example we can declare the following vectors with different data
 types:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># declare a numeric vector</span>
-x<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
-<span style="color:#75715e"># declare a character vector</span>
-y<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>)
-<span style="color:#75715e"># declare a logic vector, TRUE and FALSE can be short-handed as T and F</span>
-z<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#66d9ef">TRUE</span>,<span style="color:#66d9ef">FALSE</span>,T,F)
-
-<span style="color:#75715e"># A data type is assumed when a mixed data types are declared</span>
-a<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#34;f&#34;</span>)
-<span style="color:#a6e22e">class</span>(a)  <span style="color:#75715e"># a would be a character vector</span>
-</code></pre></div><p>[1] “character”</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">b<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">5</span>, F)   <span style="color:#75715e"># this is a numeric vector  F becomes 0</span>
-</code></pre></div><p>Since <strong>vector</strong> can only be of a single data type, a data type is
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># declare a numeric vector</span>
+</span></span><span style="display:flex;"><span>x<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># declare a character vector</span>
+</span></span><span style="display:flex;"><span>y<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># declare a logic vector, TRUE and FALSE can be short-handed as T and F</span>
+</span></span><span style="display:flex;"><span>z<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#66d9ef">TRUE</span>,<span style="color:#66d9ef">FALSE</span>,T,F)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># A data type is assumed when a mixed data types are declared</span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#e6db74">&#34;f&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">class</span>(a)  <span style="color:#75715e"># a would be a character vector</span>
+</span></span></code></pre></div><p>[1] “character”</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>b<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">5</span>, F)   <span style="color:#75715e"># this is a numeric vector  F becomes 0</span>
+</span></span></code></pre></div><p>Since <strong>vector</strong> can only be of a single data type, a data type is
 assumed when a mixed data types of vector is declared. The default
 priority is given to <strong>character</strong>-&gt;<strong>numeric</strong>/<strong>integer</strong>-&gt;<strong>logic</strong></p>
 <p>The data type can also be changed into different types:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">class</span>(x)
-x<span style="color:#f92672">=</span><span style="color:#a6e22e">as.character</span>(x)
-x
-<span style="color:#a6e22e">class</span>(x)
-x<span style="color:#f92672">=</span><span style="color:#a6e22e">as.numeric</span>(x)
-x
-</code></pre></div><p>We can get the length of the vector as well as access values by calling
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">class</span>(x)
+</span></span><span style="display:flex;"><span>x<span style="color:#f92672">=</span><span style="color:#a6e22e">as.character</span>(x)
+</span></span><span style="display:flex;"><span>x
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">class</span>(x)
+</span></span><span style="display:flex;"><span>x<span style="color:#f92672">=</span><span style="color:#a6e22e">as.numeric</span>(x)
+</span></span><span style="display:flex;"><span>x
+</span></span></code></pre></div><p>We can get the length of the vector as well as access values by calling
 for their specific positions using square brackets.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># length can be determined </span>
-len<span style="color:#f92672">=</span><span style="color:#a6e22e">length</span>(x)
-len
-</code></pre></div><p>[1] 4</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x[1]
-</code></pre></div><p>[1] 1</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x[2]
-</code></pre></div><p>[1] 2</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># length can be determined </span>
+</span></span><span style="display:flex;"><span>len<span style="color:#f92672">=</span><span style="color:#a6e22e">length</span>(x)
+</span></span><span style="display:flex;"><span>len
+</span></span></code></pre></div><p>[1] 4</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>x[1]
+</span></span></code></pre></div><p>[1] 1</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>x[2]
+</span></span></code></pre></div><p>[1] 2</p>
 <h3 id="matrix">Matrix</h3>
 <p>The vector can be tranformed into a matrix by assign a dimension. For
 instance, a vector with length of 4 can be transformed into a 2x2 matrix
 by <strong>dim</strong> function. A matrix can also be created by <strong>matrix</strong>
 function. Again, the data type of the matrix needs to be uniform as
 either numeric, character, or logical.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># change vector into matrix by dim</span>
-x<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
-<span style="color:#a6e22e">dim</span>(x)<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>)
-x
-</code></pre></div><pre><code>##      [,1] [,2]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># change vector into matrix by dim</span>
+</span></span><span style="display:flex;"><span>x<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">dim</span>(x)<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>x
+</span></span></code></pre></div><pre><code>##      [,1] [,2]
 ## [1,]    1    3
 ## [2,]    2    4
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># change vector into matrix by declare matirx</span>
-y<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
-y<span style="color:#f92672">=</span><span style="color:#a6e22e">matrix</span>(y, nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
-y
-</code></pre></div><pre><code>##      [,1] [,2]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># change vector into matrix by declare matirx</span>
+</span></span><span style="display:flex;"><span>y<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>y<span style="color:#f92672">=</span><span style="color:#a6e22e">matrix</span>(y, nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>y
+</span></span></code></pre></div><pre><code>##      [,1] [,2]
 ## [1,]    1    3
 ## [2,]    2    4
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># declare a character vector into a matrix</span>
-a<span style="color:#f92672">=</span><span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>), nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
-a
-</code></pre></div><pre><code>##      [,1] [,2]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># declare a character vector into a matrix</span>
+</span></span><span style="display:flex;"><span>a<span style="color:#f92672">=</span><span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;a&#39;</span>,<span style="color:#e6db74">&#39;b&#39;</span>, <span style="color:#e6db74">&#39;c&#39;</span>, <span style="color:#e6db74">&#39;d&#39;</span>), nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>a
+</span></span></code></pre></div><pre><code>##      [,1] [,2]
 ## [1,] &quot;a&quot;  &quot;c&quot; 
 ## [2,] &quot;b&quot;  &quot;d&quot;
 </code></pre>
 <p>Values within the matrix can be access through defining value
 coordinates in very similar way as excel sheet with row and column
 numbers.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x[1,<span style="color:#ae81ff">1</span>]
-</code></pre></div><pre><code>## [1] 1
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>x[1,<span style="color:#ae81ff">1</span>]
+</span></span></code></pre></div><pre><code>## [1] 1
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x[2,<span style="color:#ae81ff">1</span>]
-</code></pre></div><pre><code>## [1] 2
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>x[2,<span style="color:#ae81ff">1</span>]
+</span></span></code></pre></div><pre><code>## [1] 2
 </code></pre>
 <h3 id="list">List</h3>
 <p>A <strong>list</strong> is similar to vector, but allow for mixing data type of
@@ -325,38 +294,38 @@ vectors to be stored in a single variable as elements with assigned
 name. A list variable can be declare as a vector of vectors with or
 without names. The assigned values still retain its order.</p>
 <p>For example:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#75715e"># a list variable can be declare as a vector of vectors with or without names</span>
-y<span style="color:#f92672">=</span><span style="color:#a6e22e">list</span>(a<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">17</span>, b<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;a&#39;</span>)
-</code></pre></div><p>Assigns 4 elements into <strong>y</strong> with the order of 1, 17, 2:5, and ‘a’.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># a list variable can be declare as a vector of vectors with or without names</span>
+</span></span><span style="display:flex;"><span>y<span style="color:#f92672">=</span><span style="color:#a6e22e">list</span>(a<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">17</span>, b<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span><span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>, c<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;a&#39;</span>)
+</span></span></code></pre></div><p>Assigns 4 elements into <strong>y</strong> with the order of 1, 17, 2:5, and ‘a’.
 These values can be access by either name with a $ or position within
 the list:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">y[[1]]
-</code></pre></div><pre><code>## [1] 1
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>y[[1]]
+</span></span></code></pre></div><pre><code>## [1] 1
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">y[[2]]
-</code></pre></div><pre><code>## [1] 17
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>y[[2]]
+</span></span></code></pre></div><pre><code>## [1] 17
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">y<span style="color:#f92672">$</span>b
-</code></pre></div><pre><code>## [1] 2 3 4 5
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>y<span style="color:#f92672">$</span>b
+</span></span></code></pre></div><pre><code>## [1] 2 3 4 5
 </code></pre>
 <p>We can also get the names from the list variable and rename the
 elements:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">names</span>(y)
-</code></pre></div><pre><code>## [1] &quot;a&quot; &quot;&quot;  &quot;b&quot; &quot;c&quot;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">names</span>(y)
+</span></span></code></pre></div><pre><code>## [1] &quot;a&quot; &quot;&quot;  &quot;b&quot; &quot;c&quot;
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">names</span>(y)<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>,<span style="color:#e6db74">&#34;d&#34;</span>)
-<span style="color:#a6e22e">names</span>(y)
-</code></pre></div><pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">names</span>(y)<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a&#34;</span>,<span style="color:#e6db74">&#34;b&#34;</span>,<span style="color:#e6db74">&#34;c&#34;</span>,<span style="color:#e6db74">&#34;d&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">names</span>(y)
+</span></span></code></pre></div><pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">y<span style="color:#f92672">$</span>b
-</code></pre></div><pre><code>## [1] 17
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>y<span style="color:#f92672">$</span>b
+</span></span></code></pre></div><pre><code>## [1] 17
 </code></pre>
 <h3 id="data-frame">Data Frame</h3>
 <p><strong>Data Frame</strong> is a special kind of list to store rectangular data sets
 Think of it as excel sheet where each column is a list.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df.y<span style="color:#f92672">=</span><span style="color:#a6e22e">data.frame</span>(y)
-df.y
-</code></pre></div><pre><code>##   a  b c d
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>df.y<span style="color:#f92672">=</span><span style="color:#a6e22e">data.frame</span>(y)
+</span></span><span style="display:flex;"><span>df.y
+</span></span></code></pre></div><pre><code>##   a  b c d
 ## 1 1 17 2 a
 ## 2 1 17 3 a
 ## 3 1 17 4 a
@@ -370,34 +339,34 @@ repeated to fit into the rectangular data frame.</p>
 column in an excel sheet. When we combine list name with a number, it is
 equivalent defining a cell in excel with column name and row number like
 <strong>‘A1’</strong> points to column A, row 1 cell.</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df.y<span style="color:#f92672">$</span>a[1]
-</code></pre></div><pre><code>## [1] 1
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>df.y<span style="color:#f92672">$</span>a[1]
+</span></span></code></pre></div><pre><code>## [1] 1
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df.y<span style="color:#f92672">$</span>c[1]
-</code></pre></div><pre><code>## [1] 2
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>df.y<span style="color:#f92672">$</span>c[1]
+</span></span></code></pre></div><pre><code>## [1] 2
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">df.y<span style="color:#f92672">$</span>c
-</code></pre></div><pre><code>## [1] 2 3 4 5
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>df.y<span style="color:#f92672">$</span>c
+</span></span></code></pre></div><pre><code>## [1] 2 3 4 5
 </code></pre>
 <h3 id="factors">Factors</h3>
 <p><strong>Factor</strong> is a data type unique to R and other statistical language, it
 condenses variables into unique categorical variables and store them as
 levels. Makes computation of large data with repeated string/character
 data type more efficient</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x<span style="color:#f92672">=</span><span style="color:#a6e22e">sample</span>(<span style="color:#66d9ef">letters</span>[1<span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>], <span style="color:#ae81ff">10</span>, replace <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
-x
-</code></pre></div><pre><code>##  [1] &quot;c&quot; &quot;e&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;c&quot; &quot;b&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>x<span style="color:#f92672">=</span><span style="color:#a6e22e">sample</span>(<span style="color:#66d9ef">letters</span>[1<span style="color:#f92672">:</span><span style="color:#ae81ff">5</span>], <span style="color:#ae81ff">10</span>, replace <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</span></span><span style="display:flex;"><span>x
+</span></span></code></pre></div><pre><code>##  [1] &quot;c&quot; &quot;e&quot; &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;c&quot; &quot;b&quot; &quot;d&quot; &quot;d&quot; &quot;d&quot;
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">y<span style="color:#f92672">=</span><span style="color:#a6e22e">factor</span>(x)
-y
-</code></pre></div><pre><code>##  [1] c e a b c c b d d d
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>y<span style="color:#f92672">=</span><span style="color:#a6e22e">factor</span>(x)
+</span></span><span style="display:flex;"><span>y
+</span></span></code></pre></div><pre><code>##  [1] c e a b c c b d d d
 ## Levels: a b c d e
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">levels</span>(y)
-</code></pre></div><pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">levels</span>(y)
+</span></span></code></pre></div><pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;
 </code></pre>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">as.numeric</span>(y)
-</code></pre></div><pre><code>##  [1] 3 5 1 2 3 3 2 4 4 4
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">as.numeric</span>(y)
+</span></span></code></pre></div><pre><code>##  [1] 3 5 1 2 3 3 2 4 4 4
 </code></pre>
 <h2 id="fundamental-operators">Fundamental Operators</h2>
 <p>R contains designed arithmetic and logic operators: ### Arithmetic
@@ -408,107 +377,120 @@ y |modulus (x mod y) 5%%2 is 1 |x %/% y |integer division 5%/%2 is 2</p>
 <table>
 <thead>
 <tr>
-<th align="center">Operator</th>
-<th align="left">Description</th>
+<th style="text-align:center">Operator</th>
+<th style="text-align:left">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">&lt;</td>
-<td align="left">less than</td>
+<td style="text-align:center">&lt;</td>
+<td style="text-align:left">less than</td>
 </tr>
 <tr>
-<td align="center">&lt;=</td>
-<td align="left">less than or equal to</td>
+<td style="text-align:center">&lt;=</td>
+<td style="text-align:left">less than or equal to</td>
 </tr>
 <tr>
-<td align="center">&gt;</td>
-<td align="left">greater than</td>
+<td style="text-align:center">&gt;</td>
+<td style="text-align:left">greater than</td>
 </tr>
 <tr>
-<td align="center">&gt;=</td>
-<td align="left">greater than or equal to</td>
+<td style="text-align:center">&gt;=</td>
+<td style="text-align:left">greater than or equal to</td>
 </tr>
 <tr>
-<td align="center">=</td>
-<td align="left">exactly equal to</td>
+<td style="text-align:center">=</td>
+<td style="text-align:left">exactly equal to</td>
 </tr>
 <tr>
-<td align="center">!=</td>
-<td align="left">not equal to</td>
+<td style="text-align:center">!=</td>
+<td style="text-align:left">not equal to</td>
 </tr>
 <tr>
-<td align="center">!x</td>
-<td align="left">Not x</td>
+<td style="text-align:center">!x</td>
+<td style="text-align:left">Not x</td>
 </tr>
 <tr>
-<td align="center">x | y</td>
-<td align="left">x OR y</td>
+<td style="text-align:center">x | y</td>
+<td style="text-align:left">x OR y</td>
 </tr>
 <tr>
-<td align="center">x &amp; y</td>
-<td align="left">x AND y</td>
+<td style="text-align:center">x &amp; y</td>
+<td style="text-align:left">x AND y</td>
 </tr>
 <tr>
-<td align="center">isTRUE(x)</td>
-<td align="left">test if X is TRUE</td>
+<td style="text-align:center">isTRUE(x)</td>
+<td style="text-align:left">test if X is TRUE</td>
 </tr>
 </tbody>
 </table>
 <p>For example we can add two matrices together using <strong>+</strong></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x<span style="color:#f92672">=</span><span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>), nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
-y<span style="color:#f92672">=</span><span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>), nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
-x<span style="color:#f92672">+</span>y
-</code></pre></div><pre><code>##      [,1] [,2]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>x<span style="color:#f92672">=</span><span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>), nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>y<span style="color:#f92672">=</span><span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>), nrow<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, ncol<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>x<span style="color:#f92672">+</span>y
+</span></span></code></pre></div><pre><code>##      [,1] [,2]
 ## [1,]    6   10
 ## [2,]    8   12
 </code></pre>
 <p>or compare them</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">x<span style="color:#f92672">&gt;</span>y
-</code></pre></div><pre><code>##       [,1]  [,2]
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>x<span style="color:#f92672">&gt;</span>y
+</span></span></code></pre></div><pre><code>##       [,1]  [,2]
 ## [1,] FALSE FALSE
 ## [2,] FALSE FALSE
 </code></pre>
-
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/tags/r" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">R</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/data-wrangling" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">Data Wrangling</a>
+   </li>
+  
+   <li class="list di">
+     <a href="/tags/tutorial" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">tutorial</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
     </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://yaoyu-e-wang.github.io/" >
+    &copy;  Ananke 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    <a href="https://twitter.com/GoHugoIO" target="_blank" class="twitter ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Twitter link" rel="noopener" aria-label="follow on Twitter——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 67 67;" version="1.1" viewBox="0 0 67 67"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M37.167,22.283c-2.619,0.953-4.274,3.411-4.086,6.101  l0.063,1.038l-1.048-0.127c-3.813-0.487-7.145-2.139-9.974-4.915l-1.383-1.377l-0.356,1.017c-0.754,2.267-0.272,4.661,1.299,6.271  c0.838,0.89,0.649,1.017-0.796,0.487c-0.503-0.169-0.943-0.296-0.985-0.233c-0.146,0.149,0.356,2.076,0.754,2.839  c0.545,1.06,1.655,2.097,2.871,2.712l1.027,0.487l-1.215,0.021c-1.173,0-1.215,0.021-1.089,0.467  c0.419,1.377,2.074,2.839,3.918,3.475l1.299,0.444l-1.131,0.678c-1.676,0.976-3.646,1.526-5.616,1.568  C19.775,43.256,19,43.341,19,43.405c0,0.211,2.557,1.397,4.044,1.864c4.463,1.377,9.765,0.783,13.746-1.568  c2.829-1.673,5.657-5,6.978-8.221c0.713-1.716,1.425-4.851,1.425-6.354c0-0.975,0.063-1.102,1.236-2.267  c0.692-0.678,1.341-1.419,1.467-1.631c0.21-0.403,0.188-0.403-0.88-0.043c-1.781,0.636-2.033,0.551-1.152-0.402  c0.649-0.678,1.425-1.907,1.425-2.267c0-0.063-0.314,0.042-0.671,0.233c-0.377,0.212-1.215,0.53-1.844,0.72l-1.131,0.361l-1.027-0.7  c-0.566-0.381-1.361-0.805-1.781-0.932C39.766,21.902,38.131,21.944,37.167,22.283z M33,64C16.432,64,3,50.569,3,34S16.432,4,33,4  s30,13.431,30,30S49.568,64,33,64z" style="fill-rule:evenodd;clip-rule:evenodd;"/></svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
 </div>
-
-<br>
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    (function () {
-        
-        
-        if (window.location.hostname == "localhost")
-            return;
-
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        var disqus_shortname = 'disqus-code';
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-        </div>
-    </div>
-<script async src="https://cse.google.com/cse.js?cx=google-search-code"></script>
-<gcse:searchresults-only></gcse:searchresults-only>
-
-
-<footer class="footer has-background-dark">
-    <div class="content has-text-centered has-text-white">
-        <p>
-            © 2020 Ramium. Powered by
-            <a class="has-text-light" href="https://github.com/gohugoio/hugo" target="_blank">
-            Hugo</a>. Theme
-            <a class="has-text-light" href="https://github.com/rafed123/ramium/" target="_blank">
-                Ramium.
-            </a>
-        </p>
-    </div>
+</div>
+  </div>
 </footer>
-</body>
 
+  </body>
 </html>

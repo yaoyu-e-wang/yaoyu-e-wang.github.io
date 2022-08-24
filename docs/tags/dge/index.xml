@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>DGE on LinGo&#39;s Notes</title>
+    <title>DGE on Ananke</title>
     <link>https://yaoyu-e-wang.github.io/tags/dge/</link>
-    <description>Recent content in DGE on LinGo&#39;s Notes</description>
+    <description>Recent content in DGE on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://yaoyu-e-wang.github.io/tags/dge/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 01 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yaoyu-e-wang.github.io/tags/dge/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Basic RNASeq DGE Analysis</title>
       <link>https://yaoyu-e-wang.github.io/posts/rnaseq_dge/</link>
@@ -18,7 +14,7 @@
       
       <guid>https://yaoyu-e-wang.github.io/posts/rnaseq_dge/</guid>
       <description>Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
-# One can set up the path # Set working directory to PROJECT_DIR setwd(&amp;quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&amp;quot;) # setwd(&amp;quot;~/modules/rnaseq_dge/&amp;quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &amp;quot;count_data&amp;quot; &amp;quot;exploratory_results&amp;quot; &amp;quot;groups&amp;quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39;  Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.</description>
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&amp;quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&amp;quot;) # setwd(&amp;quot;~/modules/rnaseq_dge/&amp;quot;) load(&#39;RNASeq_exploratory.RData&#39;) ls() # list all current variables ## [1] &amp;quot;count_data&amp;quot; &amp;quot;exploratory_results&amp;quot; &amp;quot;groups&amp;quot; #head(count_data) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; #head(groups) # The head(count_data) provides the first 6 row of the &#39;count_data&#39; Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.</description>
     </item>
     
   </channel>
