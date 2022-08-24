@@ -114,13 +114,13 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/datawranglingbasic-1/" class="link black dim">
-        Data Wrangling with R Basics - 1
+      <a href="/posts/rnaseq_dge/" class="link black dim">
+        Basic RNASeq DGE Analysis
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      The R syntax and Data Structre R is composed of the following syntax to describe the program: - variables that can be of any of R data types - operators operations that perform a arithematic or numerical action - functions a description of a series of operations to be performed - comments the # indicates comments that are not performed by R
-Variables and Data types Variables are assignment names for a piece of information, such as data.
+      Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
+# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load('RNASeq_exploratory.RData') ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the 'count_data' #head(groups) # The head(count_data) provides the first 6 row of the 'count_data' Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.
     </div>
   </div>
 </div>
@@ -132,13 +132,14 @@ Variables and Data types Variables are assignment names for a piece of informati
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/hugothemecreationtutorial/" class="link black dim">
-        [English] Creating a New Theme
+      <a href="/posts/datawranglingbasic-3/" class="link black dim">
+        Data Wrangling with R Basics - 3
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&rsquo;t cover using CSS to style your theme.
-We&rsquo;ll start with creating a new site with a very basic template.
+      Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
+data=list( dge_results=read.table('scripts and data/data/differential_results.csv', sep=',', header=T), expr=read.table('scripts and data/data/gene_expression.tsv', header=T, row.names=1), # first column being the rowname annot=read.delim('scripts and data/data/gene_annotations.tsv') ) find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
+expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean) We can use the function subset to find the given with a given coordinate
     </div>
   </div>
 </div>
@@ -150,12 +151,14 @@ We&rsquo;ll start with creating a new site with a very basic template.
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/readme/" class="link black dim">
-        
+      <a href="/posts/datawranglingbasic-2/" class="link black dim">
+        Data Wrangling with R Basics - 2
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Notes 
+      Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
+my_pathway_genes.txt - mutations.tsv These files are stored in either comma-delimited (csv) or tab-delimited (tsv) formats. Files can be read with the following functions available from default R libraries. These are built-in “functions” from R. All read files, but with slightly different default behavior.
+# setwd(&quot;~/modules/data_wrangling&quot;) # First, load all the data: print('Loading data.
     </div>
   </div>
 </div>
@@ -171,9 +174,6 @@ We&rsquo;ll start with creating a new site with a very basic template.
         <a href="/posts/page/3/" aria-label="Previous" class="page-link" role="button"><span aria-hidden="true">&laquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/posts/" aria-label="Page 1" class="page-link" role="button">1</a>
-      </li>
-      <li class="page-item">
         <a href="/posts/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
       </li>
       <li class="page-item">
@@ -186,10 +186,13 @@ We&rsquo;ll start with creating a new site with a very basic template.
         <a href="/posts/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
       </li>
       <li class="page-item">
+        <a href="/posts/page/6/" aria-label="Page 6" class="page-link" role="button">6</a>
+      </li>
+      <li class="page-item">
         <a href="/posts/page/5/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/posts/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/posts/page/6/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul></article>
 

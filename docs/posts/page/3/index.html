@@ -114,13 +114,14 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/rnaseq_dge/" class="link black dim">
-        Basic RNASeq DGE Analysis
+      <a href="/posts/netzoo_setup/" class="link black dim">
+        NetZooNotes
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Begin RNA-Seq DGE Analysis We first load the RNA-Seq count matrix from ‘RNASeqData.Rdata’. This is a simple 3 vs 3 RNA-Seq experiment with Control vs Experiment in count matrix by gene.
-# One can set up the path # Set working directory to PROJECT_DIR setwd(&quot;~/Dropbox (Harvard University)/qBRC-Share/Presentations/QBRC-Workshops/Intro to RNASeq Analysis/2022-0424-IID/RNASeq_Exploratory&quot;) # setwd(&quot;~/modules/rnaseq_dge/&quot;) load('RNASeq_exploratory.RData') ls() # list all current variables ## [1] &quot;count_data&quot; &quot;exploratory_results&quot; &quot;groups&quot; #head(count_data) # The head(count_data) provides the first 6 row of the 'count_data' #head(groups) # The head(count_data) provides the first 6 row of the 'count_data' Principle component analysis Once the matrix is loaded, we can perform principle component analysis to visualize sample distribution.
+      Notes on setting up NetZoo Packages PyPanda The only PyPanda working version is on Tian&rsquo;s GitHub account as the dev branch. To set it up on an AWS EC2 instance running ubuntu 18.04, it needs to be install with python3 and it also loads &lsquo;setuptools&rsquo; module that need to be installed.
+An AWS machine is set up for testing with name NetZooTestVM with instance ID: i-0fa07d648371d7adf
+Here is the code used for set up the environment:
     </div>
   </div>
 </div>
@@ -132,14 +133,17 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/datawranglingbasic-3/" class="link black dim">
-        Data Wrangling with R Basics - 3
+      <a href="/posts/odessy_starter/" class="link black dim">
+        Odessy_starter
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Data Wrangling with R Basics - 3 Let&rsquo;s load the dataset
-data=list( dge_results=read.table('scripts and data/data/differential_results.csv', sep=',', header=T), expr=read.table('scripts and data/data/gene_expression.tsv', header=T, row.names=1), # first column being the rowname annot=read.delim('scripts and data/data/gene_annotations.tsv') ) find genes with greater than 0 mean expression between a given chr coordinate Let’s find out mean first You can use rowMeans, rowMax, rowMin to determine means for a data matrix
-expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean) We can use the function subset to find the given with a given coordinate
+      This note provides introduction guidance to the HUIT Odessy system with FAQ
+How do I login to Odyssey ssh into yewang@login.rc.fas.harvard.edu with password and with OpenAuth DUO set up. The information is at https://www.rc.fas.harvard.edu/resources/documentation/openauth/
+Center Shared Directory The center shared directory is located at:
+/n/qbrc_center
+and can be mounted (https://www.rc.fas.harvard.edu/resources/documentation/mounting-storage/) as smb://qbrc.rc.fas.harvard.edu/qbrc_center
+Update members within qbrc_center resources If users with preexisting RC accounts want to join your group, they can do that with Portal:
     </div>
   </div>
 </div>
@@ -151,14 +155,13 @@ expr_mean=rowMeans(data$expr) gene_expr=cbind(data$expr, mean=expr_mean) We can 
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/posts/datawranglingbasic-2/" class="link black dim">
-        Data Wrangling with R Basics - 2
+      <a href="/posts/scrnaseq_seurat/" class="link black dim">
+        scRNASeq analysis with Seurat 
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Working with genomic data with R We provided 5 files in the Data directory: - differntial_results.csv - gene_expression.tsv - gene_annotations.tsv
-my_pathway_genes.txt - mutations.tsv These files are stored in either comma-delimited (csv) or tab-delimited (tsv) formats. Files can be read with the following functions available from default R libraries. These are built-in “functions” from R. All read files, but with slightly different default behavior.
-# setwd(&quot;~/modules/data_wrangling&quot;) # First, load all the data: print('Loading data.
+      scRNASeq analysis with Seurat and other tools Seurat install The Seurat package will need to be installed. You can find further instructions for install found here. It is installed via a separate package manager (in R) Bioconductor and R&rsquo;s package manager CRAN.
+# Check if Bioconductor is installed. If not, install if (!requireNamespace(&#34;BiocManager&#34;, quietly = TRUE)) install.packages(&#34;BiocManager&#34;) # Install a necessary package for Seurat BiocManager::install(&#39;multtest&#39;) BiocManager::install(&#39;MAST&#39;) # Install Seurat install.packages(&#39;Seurat&#39;) Updating HTML index of packages in '.
     </div>
   </div>
 </div>
@@ -192,7 +195,7 @@ my_pathway_genes.txt - mutations.tsv These files are stored in either comma-deli
         <a href="/posts/page/4/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/posts/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/posts/page/6/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul></article>
 

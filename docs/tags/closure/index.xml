@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Closure on LinGo&#39;s Notes</title>
+    <title>Closure on Ananke</title>
     <link>https://yaoyu-e-wang.github.io/tags/closure/</link>
-    <description>Recent content in Closure on LinGo&#39;s Notes</description>
+    <description>Recent content in Closure on Ananke</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 24 Jul 2022 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://yaoyu-e-wang.github.io/tags/closure/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 24 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://yaoyu-e-wang.github.io/tags/closure/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Yaoyu Final Email to QBRC and JQ team</title>
       <link>https://yaoyu-e-wang.github.io/posts/email_20200724/</link>

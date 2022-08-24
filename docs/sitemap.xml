@@ -3,21 +3,66 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yaoyu-e-wang.github.io/</loc>
-    <lastmod>2022-07-16T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://yaoyu-e-wang.github.io/categories/</loc>
-    <lastmod>2022-07-16T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://yaoyu-e-wang.github.io/categories/news/</loc>
-    <lastmod>2022-07-16T00:00:00+00:00</lastmod>
+    <lastmod>2022-08-23T22:59:07-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://yaoyu-e-wang.github.io/posts/</loc>
+    <lastmod>2022-08-23T22:59:07-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/posts/test/</loc>
+    <lastmod>2022-08-23T22:59:07-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/posts/test_post/</loc>
+    <lastmod>2022-08-23T16:21:30-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/categories/</loc>
+    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/tags/closure/</loc>
+    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/tags/departure/</loc>
+    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/categories/email/</loc>
+    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/categories/english/</loc>
+    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/tags/quote/</loc>
+    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/tags/</loc>
+    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/posts/email_20200724/</loc>
+    <lastmod>2022-07-24T00:00:00+00:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://yaoyu-e-wang.github.io/categories/news/</loc>
     <lastmod>2022-07-16T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -28,11 +73,6 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://yaoyu-e-wang.github.io/tags/salary/</loc>
-    <lastmod>2022-07-16T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://yaoyu-e-wang.github.io/tags/</loc>
     <lastmod>2022-07-16T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -64,11 +104,6 @@
   </url><url>
     <loc>https://yaoyu-e-wang.github.io/tags/politics/</loc>
     <lastmod>2022-07-01T00:00:00+00:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://yaoyu-e-wang.github.io/categories/english/</loc>
-    <lastmod>2022-06-28T00:00:00+00:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
