@@ -1,62 +1,42 @@
-baseURL = "https://yaoyu-e-wang.github.io/"
-#CanonifyURLs=true
-
-languageCode = "en-us"
-theme = "ramium"
-
 title = "LinGo's Notes"
-disqusShortname = "disqus-code"
-googleAnalytics = "analytics-code"
-pluralizeListTitles = true
-enableemoji = true
+baseURL = "https://yaoyu-e-wang.github.io/"
+languageCode = "en-us"
+theme = "ananke"
+resourceDir = "../resources"
 publishDir = "docs"
-disable_share = true
+
+DefaultContentLanguage = "en"
+SectionPagesMenu = "main"
+Paginate = 3 # this is set low for demonstrating with dummy content. Set to a higher number
+googleAnalytics = ""
+enableRobotsTXT = true
+
+[languages]
+  [languages.en]
+    title = "Ananke"
+    weight = 1
+    contentDir = "content/en"
+    # languageDirection = 'rtl' for Right-To-Left languages
+  [languages.fr]
+    title = "Ananke Fr"
+    weight = 2
+    contentDir = "content/fr"
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
 
 [params]
-    description = "Making my random notes available"
-    googleSearch = "google-search-code"
-    showDate = true # make false if dont want to show date for evergeen articles
-    math = false # best to enable this in the front matter of a page
-    githubLink = "rafed/ramium/"
+  text_color = ""
+  author = ""
+  favicon = ""
+  site_logo = ""
+  description = "The last theme you'll ever need. Maybe."
+  # choose a background color from any on this page: https://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+  background_color_class = "bg-black"
+  recent_posts_number = 3
 
-    tagsInHome = 40     # set zero to not show in home page
-    sectionsInHome = 5  # set zero to not show in home page
-    paginatePostsPerPage = 5
-    paginateTagsPerPage = 20
-
-[taxonomies]
-    tag = "tags"
-
-[markup.goldmark.renderer]
-    unsafe = true
-
-[menu]
-    [[menu.main]]
-        name = "Home"
-        url = "/"
-        weight = 1
-
-    [[menu.main]]
-        identifier = "blog"
-        name = "This Blog"
-        weight = 2
-            [[menu.main]]
-                parent = "blog"
-                name = "All Tags"
-                url = "/tags/"
-                weight = 1
-            [[menu.main]]
-                parent = "blog"
-                name = "All Sections"
-                url = "/sections/"
-                weight = 2
-            [[menu.main]]
-                parent = "blog"
-                name = "All Posts"
-                url = "/posts/"
-                weight = 3
-    
-    [[menu.main]]
-        name = "Author"
-        url = "/authorr/"
-        weight = 3
+[[params.ananke_socials]]
+name = "twitter"
+url = "https://twitter.com/GoHugoIO"
