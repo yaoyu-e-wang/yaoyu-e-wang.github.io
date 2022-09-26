@@ -23,13 +23,21 @@ Often time biotech companies fail to establish the foundation for future data us
 
 Create an environment to support standard data products that can be tailored to suit the needs of various type of users and applications.  The products can be managed by dedicated teams within business units, supported by a central function that coordinates and standardizes design.
 
-Every biotech company recognizes the power of integrating biomedical data, yet most company struggle to leverage its potentials.  The problem is often that the initial data investement focuses on customized pipelines for data generation support while data types, volume, and application technologies rapidly evolve in unpredictable ways.  Data from different modalities naturally ends in silos without clear means to integration.  ßßß
+Every biotech company recognizes the power of integrating biomedical data, yet most company struggle to leverage its potentials.  The problem is often that the initial data investement focuses on customized pipelines for data generation support while data types, volume, and application technologies rapidly evolve in unpredictable ways.  Data from different modalities naturally diverge, obstructing future repurposing and integration.  As companies devise plan to leverage data to guide decision making, it is common to find that the overhead to harmonize the data is insurrmontable.
+
 
 
 ## EXAMPLE
 
 ## SOLUTION
-Developing data as a software product ofters a flexible framework to repurpose data for different applications.  As developing a software product, 
+
+Developing data as a product offers a flexible framework to repurpose data for different applications. As in the case of developing a software, organization would create a baseline offering that can address the core user needs and develop modularized features that can be added on.
+
+
+
+
+
+Developing data as a software product ofters a flexible framework to repurpose data for different applications.  As developing a software product, the organization would develop a baseline prodcut
 
 1. create an offering that can address the needs of as many kinds of users
 2. Developing a base product that can be customized
