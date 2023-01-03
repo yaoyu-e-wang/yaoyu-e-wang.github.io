@@ -19,17 +19,24 @@ Although integrating multi-modal biomedical data offers enormous opportunities t
 
 Often time biotech companies fail to establish the foundation for future data usage during data generation.  Individual teams capture data in silo for each application that cannot easily be repurposed.
 
-## THE SOLUTION
+## THE PROBLEM
 
 Create an environment to support standard data products that can be tailored to suit the needs of various type of users and applications.  The products can be managed by dedicated teams within business units, supported by a central function that coordinates and standardizes design.
 
-Every biotech company recognizes the power of integrating biomedical data, yet most company struggle to leverage its potentials.  The problem is often that the initial data investement focuses on customized pipelines for data generation support while data types, volume, and application technologies rapidly evolve in unpredictable ways.  Data from different modalities naturally diverge, obstructing future repurposing and integration.  As companies devise plan to leverage data to guide decision making, it is common to find that the overhead to harmonize the data is insurrmontable.
-
+Every biotech company recognizes the power of integrating biomedical data, yet most company struggle to leverage its potentials.  The problem is often that the initial data investement focuses on customized pipelines for data generation support while data types, volume, and application technologies rapidly evolve in unpredictable ways.  Data from different modalities naturally diverge, obstructing future repurposing and integration.  As companies devise plan to leverage data to guide decision making, it is common to find that the overhead to harmonize the data is overwhelming.  
 
 
 ## EXAMPLE
 
-## SOLUTION
+The H3 Biomedicine, the former oncology drug discovery subsidiary of Eisai Pharmaceutical, was established in 2011 
+
+## THE SOLUTION
+
+Whether companies decide to redesign an organization data environment (top-bottom) or restructure key functional areas individually (bottom-up) for integration, a consistent data framework is needed to improve the chance of success.
+
+
+
+
 
 Developing data as a product offers a flexible framework to repurpose data for different applications. As in the case of developing a software, organization would create a baseline offering that can address the core user needs and develop modularized features that can be added on.
 
