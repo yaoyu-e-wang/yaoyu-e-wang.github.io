@@ -9,6 +9,10 @@ author: "Yaoyu E. Wang"
 autoCollapseToc: true
 ---
 
+Reaction to A better Way to Put Your Data to Work
+
+https://hbr.org/2022/07/a-better-way-to-put-your-data-to-work
+
 # Biotech Data Ecosystem as a Data Product
 
 ## THE PROBLEM
